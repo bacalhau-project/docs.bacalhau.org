@@ -18,7 +18,7 @@ curl -sL https://get.bacalhau.org/install.sh | bash
 ```
 bacalhau docker run ubuntu echo hello
 ```
-<!-- Explain here what this command is doing. What is INF jsonrpc/jsonrpc_client.go:73. I assume it's a program that prints out 'Hello'? -->
+// Explain here what this command is doing. What is INF jsonrpc/jsonrpc_client.go:73. I assume it's a program that prints out 'Hello'?
 ```
 [2207] INF jsonrpc/jsonrpc_client.go:73 > Submitted Job Id: fa11069f-17e0-47de-b8b5-37444cb396b5
 fa11069f-17e0-47de-b8b5-37444cb396b5
@@ -35,7 +35,7 @@ Replace `JOB_ID` with the job id you copied in the last step.
 Only one of the production servers accepted the job, because you only requested a concurrency setting of 1 (the default in `bacalhau docker run`).
 
 You should see something like
-<!-- aren't these process IDs? It's confusing to have JOB_ID in two contexts -->
+// aren't these process IDs? It's confusing to have JOB_ID in two contexts
 ```
  fa11069f   QmdZQ7Zb  bid_rejected  /ipfs/
             QmXaXu9N  complete      /ipfs/QmQtZKRPXehLU5JroBbzBCVdhNkgZT7m4MiSD7sUVxE3LD
@@ -43,7 +43,7 @@ You should see something like
 ```
 
 Copy the JOB_ID (in this case `fa11069f`), and run:
-<!-- More context here. What's happening?  -->
+// More context here. What's happening?
 ```
 bacalhau get JOB_ID
 ```
@@ -57,7 +57,7 @@ You should see the following:
 ```
 
 Now read the stdout
-<!-- What is a stdout? -->
+// What is a stdout?
 ```
 cat stdout
 ```
