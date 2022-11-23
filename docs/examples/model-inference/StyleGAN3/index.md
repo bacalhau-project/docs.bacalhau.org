@@ -97,6 +97,8 @@ We use the `--gpu` flag to denote the no of GPU we are going to use
 bacalhau docker run \
 jsacex/stylegan3 \
 --gpu 1 \
+--timeout 3600 \
+--wait-timeout-secs 3600 \
 -- python gen_images.py --outdir=../outputs --trunc=1 --seeds=2 --network=stylegan3-r-afhqv2-512x512.pkl
 ```
 
@@ -112,6 +114,8 @@ In the following command we will render a latent vector interpolation video.
 bacalhau docker run \
 jsacex/stylegan3 \
 --gpu 1 \
+--timeout 3600 \
+--wait-timeout-secs 3600 \
 -- python gen_video.py --output=../outputs/lerp.mp4 --trunc=1 --seeds=0-31 --grid=4x2 --network=stylegan3-r-afhqv2-512x512.pkl
 ```
   
@@ -158,17 +162,23 @@ Animation length and seed keyframes:
 
 ### Running Bacalhau with StyleGan3
 
-```python
-!echo $(bacalhau docker run --wait --wait-timeout-secs 1000 --id-only --gpu 1 jsacex/stylegan3 -- python gen_images.py --outdir=../outputs --trunc=1 --seeds=2 --network=stylegan3-r-afhqv2-512x512.pkl) > job_id.txt
-!cat job_id.txt
+```bash
+bacalhau docker run \
+--wait \
+--id-only \
+--gpu 1 \
+--timeout 3600 \
+--wait-timeout-secs 3600 \
+jsacex/stylegan3 \
+-- python gen_images.py --outdir=../outputs --trunc=1 --seeds=2 --network=stylegan3-r-afhqv2-512x512.pkl
 ```
 
     4f758052-0543-40b5-bd86-6ab41e77389a
 
 
 
-```python
-!bacalhau list --id-filter $(cat job_id.txt)
+```bash
+bacalhau list --id-filter ${JOB_ID} --wide
 ```
 
     [92;100m CREATED  [0m[92;100m ID       [0m[92;100m JOB                     [0m[92;100m STATE     [0m[92;100m VERIFIED [0m[92;100m PUBLISHED               [0m
@@ -181,8 +191,8 @@ Where it says "`Completed `", that means the job is done, and we can get the res
 To find out more information about your job, run the following command:
 
 
-```python
-!bacalhau describe $(cat job_id.txt)
+```bash
+bacalhau describe ${JOB_ID}
 ```
 
 Since there is no error we can’t see any error instead we see the state of our job to be complete, that means 
@@ -197,8 +207,9 @@ we create a temporary directory to save our results
 To download the results of your job, run the following command:
 
 
-```python
-! bacalhau get  $(cat job_id.txt)  --output-dir results
+```bash
+rm -rf results && mkdir -p results
+bacalhau get $JOB_ID --output-dir results
 ```
 
     [90m17:38:25.343 |[0m [32mINF[0m [1mbacalhau/get.go:67[0m[36m >[0m Fetching results of job '4f758052-0543-40b5-bd86-6ab41e77389a'...
@@ -211,8 +222,8 @@ After the download has finished you should
 see the following contents in results directory
 
 
-```python
-! ls results/
+```bash
+ls results/
 ```
 
     shards	stderr	stdout	volumes
