@@ -9,11 +9,11 @@ StyleGAN is based on Generative Adversarial Networks (GANs), which includes a ge
 
 ## Prerequisite
 - To run StyleGAN3 you need to match these [requirements](https://github.com/NVlabs/stylegan3#requirements)
-- You need to install the lastest `bacalhau` client by following the the [getting started instructions](../../../getting-started/installation)
+- The Bacalhau client - [Installation instructions](https://docs.bacalhau.org/getting-started/installation)
 
 ## Running StyleGAN3 locally
 
-To run StyleGAN3 locally, you'll need to clone the repo, installing dependencies and download the model weights.
+To run StyleGAN3 locally, you'll need to clone the repo, install dependencies and download the model weights.
 
 ```bash
 git clone https://github.com/NVlabs/stylegan3
@@ -23,7 +23,7 @@ conda activate stylegan3
 wget https://api.ngc.nvidia.com/v2/models/nvidia/research/stylegan3/versions/1/files/stylegan3-r-afhqv2-512x512.pkl
 ```
 
-Generate an image using pre-trained AFHQv2 model
+Generate an image using pre-trained `AFHQv2` model
 
 
 
