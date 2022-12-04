@@ -48,9 +48,7 @@ The code snippet below submits a job that runs an `echo` program within an [Ubun
 
 The job id above is shown in its full form. For convenience, you can use the shortened version, in this case: `3b39baee`. We will store that portion of the job id in an environment variable so that we can reuse it later on.
 
-After the above command is run, a job is sumbitted to the public network, which processes the job as described in the [Job Lifecycle page](../about-bacalhau/architecture#job-lifecycle). To check on the current job's state,  we can use the `list` verb below. A `Published/Completed` state indicates the job has completed successfully and the results are stored in the IPFS location under the `PUBLISHED` column.
-
-For a comprehensive list of flags you can pass to the list command check out [the related CLI Reference page](../all-flags#list).
+After the above command is run, a job is submitted to the public network, which processes the job as described in the [Job Lifecycle page](../about-bacalhau/architecture#job-lifecycle). To check the current job's state, we can use the `list` verb as shown below.
 
 ```
 ❯ export JOB_ID=3b39baee # make sure to use the right job id from the docker run command
@@ -60,14 +58,17 @@ For a comprehensive list of flags you can pass to the list command check out [th
  07:20:32  3b39baee  Docker ubuntu echo H...  Published            /ipfs/bafybeidu4zm6w...
 ```
 
+A `Published/Completed` state indicates the job has completed successfully and the results are stored in the IPFS location under the `PUBLISHED` column.  
+
+For a comprehensive list of flags you can pass to the list command check out [the related CLI Reference page](../all-flags#list).
+
+
 ## Get results
 
 After the job has finished processing, its outputs are stored on IPFS. To download outputs locally, we can use the `get` verb.
 
-
 First, we'll create and move into a directory that will store our job outputs. Next, we use the `get` verb to download the job outputs into the current directory.
 
-_Note: This command prints out a number of verbose logs- these are meant for Bacalhau developers. You can safely ignore them, per [issue #614](https://github.com/filecoin-project/bacalhau/issues/614))._
 
 ```
 ❯ mkdir -p /tmp/myfolder
@@ -78,6 +79,12 @@ _Note: This command prints out a number of verbose logs- these are meant for Bac
 15:44:18.463 | INF ipfs/downloader.go:115 > Found 1 result shards, downloading to temporary folder.
 15:44:21.17 | INF ipfs/downloader.go:195 > Combining shard from output volume 'outputs' to final location: '/tmp/myfolder'
 ```
+
+:::Note
+
+This command prints out a number of verbose logs- these are meant for Bacalhau developers. You can safely ignore them, per [issue #614](https://github.com/filecoin-project/bacalhau/issues/614))
+
+:::
 
 At this point, the outputs have been downloaded locally and we are ready to inspect them. Each job creates 3 useful artifacts: the `stdout` and `stderr` files, as well as a `volumes/` directory. For the scope this of this guide, we will only look at the `stdout` file, but in a real world scenario, you should also look at output data stored within the `volumes/` directory. The `shards/` folder can be ignored.
 
