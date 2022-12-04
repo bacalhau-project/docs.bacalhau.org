@@ -35,7 +35,9 @@ Going further, we will look at some commands to run a simple job. For a complete
 
 ## Submit a "Hello World" job
 
-The easiest way to submit a job is using the `docker run` verb. Let's take a quick look at its syntax:  `bacalhau docker run [FLAGS] IMAGE[:TAG] [COMMAND]` 
+The easiest way to submit a job is using the `docker run` verb. Let's take a quick look at its syntax: 
+
+`bacalhau docker run [FLAGS] IMAGE[:TAG] [COMMAND]` 
 
 While the command is designed to resemble Docker's run command which you may be familiar with, Bacalhau introduces a whole new set of [available flags (see CLI Reference)](../all-flags#docker-run) to support its computing model.
 
@@ -80,13 +82,15 @@ First, we'll create and move into a directory that will store our job outputs. N
 15:44:21.17 | INF ipfs/downloader.go:195 > Combining shard from output volume 'outputs' to final location: '/tmp/myfolder'
 ```
 
-:::Note
+:::note
 
 This command prints out a number of verbose logs- these are meant for Bacalhau developers. You can safely ignore them, per [issue #614](https://github.com/filecoin-project/bacalhau/issues/614))
 
 :::
 
-At this point, the outputs have been downloaded locally and we are ready to inspect them. Each job creates 3 useful artifacts: the `stdout` and `stderr` files, as well as a `volumes/` directory. For the scope this of this guide, we will only look at the `stdout` file, but in a real world scenario, you should also look at output data stored within the `volumes/` directory. The `shards/` folder can be ignored.
+At this point, the outputs have been downloaded locally and we are ready to inspect them. Each job creates 3 useful artifacts: the `stdout` and `stderr` files, as well as a `volumes/` directory. 
+
+For the scope this of this guide, we will only look at the `stdout` file, but in a real world scenario, you should also look at output data stored within the `volumes/` directory. The `shards/` folder can be ignored.
 
 ```
 ❯ ls -l
