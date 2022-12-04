@@ -14,9 +14,14 @@ You can install or update the Bacalhau CLI by running the following command in a
 curl -sL https://get.bacalhau.org/install.sh | bash
 ```
 
+
+:::tip
+
 Windows users can download the [latest release tarball from Github](https://github.com/filecoin-project/bacalhau/releases) and extract `bacalhau.exe` to anywhere that is on the PATH.
 
-Next, make sure the Bacalhau client and server versions are aligned:
+:::
+
+Once your Bacalhau client is installed, it will show the client and server version. Your client and server versions must be aligned before you can run a job with Bacalhau client. You can use the code below to check this:
 
 ```
 ❯ bacalhau version
