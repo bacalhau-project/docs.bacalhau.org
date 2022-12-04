@@ -35,15 +35,11 @@ Going further, we will look at some commands to run a simple job. For a complete
 
 ## Submit a "Hello World" job
 
-The easiest way to submit a job is using the `docker run` verb.
+The easiest way to submit a job is using the `docker run` verb. Let's take a quick look at its syntax:  `bacalhau docker run [FLAGS] IMAGE[:TAG] [COMMAND]` 
 
-Let's take a quick look at its syntax: 
+While the command is designed to resemble Docker's run command which you may be familiar with, Bacalhau introduces a whole new set of [available flags (see CLI Reference)](../all-flags#docker-run) to support its computing model.
 
-`bacalhau docker run [FLAGS] IMAGE[:TAG] [COMMAND]` 
-
-While the command is designed to resemble Docker's run command you may be familiar with, Bacalhau introduces a whole new set of [available flags (see CLI Reference)](../all-flags#docker-run) to support its computing model.
-
-The snipped below sumbits a job that runs an `echo` program within an [Ubuntu container](https://hub.docker.com/_/ubuntu). When a job is sumbitted, Bacalhau prints out the related job id:
+The code snippet below submits a job that runs an `echo` program within an [Ubuntu container](https://hub.docker.com/_/ubuntu). When a job is sumbitted, Bacalhau prints out the related job id:
 
 ```zsh
 ❯ bacalhau docker run ubuntu echo Hello World
