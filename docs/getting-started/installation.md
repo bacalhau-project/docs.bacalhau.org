@@ -29,11 +29,9 @@ Client Version: v0.x.y
 Server Version: v0.x.y
 ```
 
-If you're wondering about which server is being used, the Bacalhau Project has a [public Bacalhau server network](../about-bacalhau/introduction) that's shared with the community. This serves to allow you to launch your jobs from your computer without maintaing whole a compute cluster on your own.
+If you're wondering which server is being used, the Bacalhau Project has a [public Bacalhau server network](../about-bacalhau/introduction) that's shared with the community. This server allows you to launch your jobs from your computer without maintaining a compute cluster on your own.
 
-In this guide, we provide all commands you'll need to get you started. For a complete overview of the `bacalhau` command, take a look at the [CLI Reference page](../all-flags).
-
-If the client and server versions are aligned, you're ready to get started.
+Going further, we will look at some commands to run a simple job. For a complete overview of the `bacalhau` commands, take a look at the [CLI Reference page](../all-flags).
 
 ## Submit a "Hello World" job
 
