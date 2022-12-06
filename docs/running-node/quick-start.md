@@ -4,203 +4,109 @@ sidebar_position: 100
 toc_max_heading_level: 4
 ---
 
-# Join as Compute Provider
+# Start a non-production computer provider
 
 Bacalhau is a peer-to-peer network of compute providers that will run jobs submitted by users. A Compute Provider (CP) is anyone who is running a Bacalhau compute node participating in the Bacalhau compute network, regardless of whether they are hosting any Filecoin data.
 
-This section will show you how to configure and run a bacalhau node and start accepting and running jobs.
+This section will run a bacalhau node and start accepting and running jobs.
 
-To bootstrap your node and join the network as a CP you can leap right into the [Ubuntu 22.04 quick start](#quick-start-ubuntu-2204) below, or find for more setup details in these guides:
+More indepth information can be found in [Running a production compute provider](start-compute-provider.md)
 
-* [Networking](networking)
-* [Storage Providers](storage-providers)
-* [Job Selection Policy](job-selection)
-* [Resource Limits](resource-limits)
-* [GPU Support](gpu)
-* [Windows Support](windows-support) (with limitations)
+
+## Quick start
+
+Estimated time for completion: 1 min.
+
+### Pre-requisite - install Docker
+
+Either install and use [Docker desktop](https://www.docker.com/products/docker-desktop/) 
+or on Linux install [Docker](https://get.docker.com/) using the non-production quick installer:
+
+```bash
+$ curl -fsSL https://get.docker.com -o get-docker.sh
+$ sh get-docker.sh
+```
+
+### Start the Bacalhau quickstart container
+
+```bash
+docker run \
+    -dit \
+    --name bacalhau \
+    --restart always \
+    --net host \
+    --volume bacalhau-data:/data \
+    --volume /run/docker.sock:/run/docker.sock \
+    --volume /tmp:/tmp \
+        bacalhau:quickstart
+```
+
+This will start a `bacalhau-ipfs` container which it will use to communicate with the global ipfs network, and then the `bacalhau` container that you can send jobs to.
 
 :::info
 
-If you run on a different system than Ubuntu, drop us a message on [Slack](https://filecoinproject.slack.com/archives/C02RLM3JHUY)!
-We'll add instructions for your favorite OS.
+The `bacalhau:quickstart` image has been built using ***../Dockerfile and is kept up to date with the latest production release of bacalhau.
 
 :::
-
-## Quick start (Ubuntu 22.04)
-
-Estimated time for completion: 10 min.
-
-Tested on: Ubuntu 22.04 LTS (x86/64) running on a GCP e2-standard-4 (4 vCPU, 16 GB memory) instance with 40 GB disk size.
-
-### Prerequisites
-
-* Docker Engine - to take on Docker workloads
-* Connection to IPFS - for storing job's results
-* Firewall - to ensure your node can communicate with the rest of the network
-
-#### Install docker
-
-To run docker based workloads, you should have docker installed and running.
-
-If you already have it installed and want to configure the connection to Docker with the following environment variables:
-
-* `DOCKER_HOST` to set the url to the docker server.
-* `DOCKER_API_VERSION` to set the version of the API to reach, leave empty for latest.
-* `DOCKER_CERT_PATH` to load the TLS certificates from.
-* `DOCKER_TLS_VERIFY` to enable or disable TLS verification, off by default.
-
-If you do not have Docker on your system, you can follow the official [docker installation instructions](https://docs.docker.com/engine/install/) or just use the snippet below:
-
-```bash
-# install dependencies
-sudo apt-get update
-sudo apt-get install \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
-
-# add package repo and key
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-# install docker
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-```
-
-Now make [Docker manageable by a non-root user](https://docs.docker.com/engine/install/linux-postinstall/#:~:text=The%20Docker%20daemon%20always%20runs,members%20of%20the%20docker%20group):
-
-```bash
-sudo groupadd docker
-sudo usermod -aG docker $USER
-```
 
 #### Ensure IPFS is running
 
 We will need to connect our bacalhau node to an IPFS server so we can run jobs that consume CIDs as inputs.
 
-You can either install IPFS and run it locally or you can connect to a remote IPFS server.
+The following `docker exec` command will use the local `bacalhau-ipfs` container to request the IPFS welcoms document.
 
-In both cases - we should have an [IPFS multiaddress](https://richardschneider.github.io/net-ipfs-core/articles/multiaddress.html) for our IPFS server that should look something like this:
+
+```
+sven@p1:~/src/ipfs/bacalhau$ docker exec -it bacalhau-ipfs  ipfs cat /ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc/readme
+Hello and Welcome to IPFS!
+
+██╗██████╗ ███████╗███████╗
+██║██╔══██╗██╔════╝██╔════╝
+██║██████╔╝█████╗  ███████╗
+██║██╔═══╝ ██╔══╝  ╚════██║
+██║██║     ██║     ███████║
+╚═╝╚═╝     ╚═╝     ╚══════╝
+
+If you're seeing this, you have successfully installed
+IPFS and are now interfacing with the ipfs merkledag!
+
+ -------------------------------------------------------
+| Warning:                                              |
+|   This is alpha software. Use at your own discretion! |
+|   Much is missing or lacking polish. There are bugs.  |
+|   Not yet secure. Read the security notes for more.   |
+ -------------------------------------------------------
+
+Check out some of the other files in this directory:
+
+  ./about
+  ./help
+  ./quick-start     <-- usage examples
+  ./readme          <-- this file
+  ./security-notes
+```
+
+### Test your bacalhau service
+
+# To see that bacalhau is running your docker job locally, you can run 'docker events` in another terminal, and you should see the container 'create', 'start', 'die', and 'destroy' events for a container with a name starting with 'bacalhau'
 
 ```bash
-export IPFS_CONNECT=/ip4/10.1.10.10/tcp/80/p2p/QmVcSqVEsvm5RR9mBLjwpb2XjFVn5bPdPL69mL8PH45pPC
+docker exec -it \
+    --env BACALHAU_API_HOST=127.0.0.1 \
+    --env BACALHAU_API_PORT=1234 \
+    bacalhau \
+     bacalhau docker run ubuntu echo hello
 ```
 
-:::caution
 
-The multiaddress above is just an example - you need to get the multiaddress of the IPFS server you want to connect to.
+### Install the bacalhau binary locally
 
-:::
+TODO: something `docker cp` where we make the container contain all OS&ARCH clients? or a wget/curl? or a `docker exec... ` 
 
-To install a single IPFS node locally on Ubuntu you can follow the [official instructions](https://docs.ipfs.tech/install/ipfs-desktop/#ubuntu), or follow the steps below.
-
-We advise to run the same IPFS version as the Bacalhau main network.
-Pick that with the command below:
-
-```bash
-export IPFS_VERSION=$(wget -q -O - https://raw.githubusercontent.com/filecoin-project/bacalhau/main/ops/terraform/production.tfvars | grep --color=never ipfs_version | awk -F'"' '{print $2}')
-```
-
-Install:
-
-```bash
-wget "https://dist.ipfs.tech/go-ipfs/${IPFS_VERSION}/go-ipfs_${IPFS_VERSION}_linux-amd64.tar.gz"
-tar -xvzf "go-ipfs_${IPFS_VERSION}_linux-amd64.tar.gz"
-cd go-ipfs
-sudo bash install.sh
-ipfs --version
-```
-
-Configure:
-
-```bash
-sudo mkdir -p /data/ipfs
-export IPFS_PATH=/data/ipfs
-sudo chown $(id -un):$(id -gn) ${IPFS_PATH} # change ownership of ipfs directory
-ipfs init
-```
-
-Now launch the IPFS daemon **in a separate terminal** (make sure to export the `IPFS_PATH` environment variable there as well):
-
-```bash
-ipfs daemon
-```
-
-:::info
-
-If you want to run the IPFS daemon as a [systemd](https://en.wikipedia.org/wiki/Systemd) service, here's an example [systemd service file](https://github.com/filecoin-project/bacalhau/blob/main/ops/terraform/remote_files/configs/ipfs-daemon.service).
-
-:::
-
-Don't forget we need to fetch an [IPFS multiaddress](https://richardschneider.github.io/net-ipfs-core/articles/multiaddress.html) pointing to our local node.
-Use the following command to print out a number of addresses.
-
-```bash
-ipfs id
-```
-
-```json
-{
-        "ID": "12D3KooWNhRU6H1eeqvT1jQAXFAdFDvT5H4AEGmHV7N1cYbzYh1F",
-        "PublicKey": "CAESIL9gmDyR6IgM7ym1JmJ8JKL7NvEgIEGaWwssanl1ieuW",
-        "Addresses": [
-                "/ip4/10.128.0.11/tcp/4001/p2p/12D3KooWNhRU6H1eeqvT1jQAXFAdFDvT5H4AEGmHV7N1cYbzYh1F",
-                "/ip4/10.128.0.11/udp/4001/quic/p2p/12D3KooWNhRU6H1eeqvT1jQAXFAdFDvT5H4AEGmHV7N1cYbzYh1F",
-                "/ip4/127.0.0.1/tcp/4001/p2p/12D3KooWNhRU6H1eeqvT1jQAXFAdFDvT5H4AEGmHV7N1cYbzYh1F",
-                "/ip4/127.0.0.1/udp/4001/quic/p2p/12D3KooWNhRU6H1eeqvT1jQAXFAdFDvT5H4AEGmHV7N1cYbzYh1F",
-                ...
-        ],
-        "AgentVersion": "go-ipfs/0.12.2/",
-        "ProtocolVersion": "ipfs/0.1.0",
-        "Protocols": [
-                "/ipfs/bitswap",
-                ...
-                "/p2p/id/delta/1.0.0",
-                "/x/"
-        ]
-}
-```
-
-I pick the record that combines `127.0.0.1` and `tcp` but I replace port `4001` with `5001`:
-
-```bash
-export IPFS_CONNECT=/ip4/127.0.0.1/tcp/5001/p2p/12D3KooWNhRU6H1eeqvT1jQAXFAdFDvT5H4AEGmHV7N1cYbzYh1F
-```
-
-#### Configure firewall
-
-To ensure that our node can communicate with other nodes on the network - we need to make sure the **1235** port is open.
-
-(Optional) To ensure the cli can communicate with our node directly (i.e. `bacalhau --api-host <MY_NODE_PUBLIC_IP> version`) - we need to make sure the **1234** port is open.
-
-Firewall configuration is very specific to your network and we can't provide generic instructions for this step but if you need any help feel free to reach out on [Slack!](https://filecoinproject.slack.com/archives/C02RLM3JHUY)
-
-### Install the bacalhau binary
-
-[Install the bacalhau binary](/getting-started/installation#prerequisite-install-bacalhau-client) to run `bacalhau serve`.
-
-:::info
-
-If you want to run Bacalhau  as a [systemd](https://en.wikipedia.org/wiki/Systemd) service, here's an example [systemd service file](https://github.com/filecoin-project/bacalhau/blob/main/ops/terraform/remote_files/configs/bacalhau-daemon.service).
-
-:::
-
-### Run bacalhau
-
-Now we can run our bacalhau node:
-
-```bash
-LOG_LEVEL=debug bacalhau serve \
-  --ipfs-connect $IPFS_CONNECT
-```
-
-With the command above our node joins the Bacalhau network, congrats! :tada:
 
 ### Check your node works
+
+TODO: adjust this depending on local client, or `docker exec`
 
 Even though the cli (by default) submits jobs to [the bootstrap nodes](/about-bacalhau/architecture.md#job-submission), each node listens for events on the global network and possibly bids for taking a job: your logs should therefore show activity of your node bidding for incoming jobs.
 
@@ -211,6 +117,8 @@ bacalhau docker run ubuntu echo Test
 ```
 
 If you see logs of your computenode bidding for the job above it means you've successfully joined Bacalhau as a Compute Provider!
+
+TODO: this doesn't tell me how to see this, or even if it's likely
 
 ### What's next?
 
