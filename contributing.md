@@ -2,7 +2,7 @@
 
 This guide will walk you through finding an issue, fixing it, and then submitting your fix to the `bacalhau-project/docs.bacalhau.org` project.
 
-There are plenty of small-sized issues around Filecoin documentation that make for easy, helpful contributions to the Filecoin project. Here, we'll walk through:
+There are plenty of small-sized issues around Bacalhau documentation that make for easy, helpful contributions to the Filecoin project. Here, we'll walk through:
 
 1. Finding an issue.
 2. Discussing the issue.
@@ -15,12 +15,12 @@ This may look like a lot of steps for a small issue fix, but they're all necessa
 
 ## Finding an issue
 
-The Filecoin project is hosted in GitHub. There's a bunch of reasons for this, one of them being that GitHub comes with an issue tracker, which enables the core Filecoin team to field problems from the community. All community issues can read the docs, find issues, and raise issues in the docs repository (called a _repo_ for short).
+The Bacalhau project is hosted in GitHub. There's a bunch of reasons for this, one of them being that GitHub comes with an issue tracker, which enables the Bacalhau team to field problems from the community. All community issues can read the docs, find issues, and raise issues in the docs repository (called a _repo_ for short).
 
 All issues involving the Filecoin docs themselves can be found here in the `bacalhau-project/docs.bacalhau.org` repo under the [**Issues** tab](https://github.com/bacalhau-project/docs.bacalhau.org/issues). Here you can see all the issues that are currently open. We try to tag each issue with relevant descriptive tags. 
 Let's jump into finding an issue.
 
-1. Go to the Filecoin Docs repository at [github.com/bacalhau-project/docs.bacalhau.org](https://github.com/bacalhau-project/docs.bacalhau.org).
+1. Go to the Bacalhau Docs repository at [github.com/bacalhau-project/docs.bacalhau.org](https://github.com/bacalhau-project/docs.bacalhau.org).
 2. Select the **Issues** tab.
 3. Select an issue that interests you.
 
@@ -40,7 +40,7 @@ The process goes something like this:
 
    ```shell
    git add .
-   git commit -m "Fixed a broken URL, issue #123."
+   git commit -m "Fixed a broken URL."
    git push
    ```
 
@@ -67,4 +67,4 @@ Once your pull request has been approved, a project member with the correct righ
 
 ## Finishing up
 
-So there you have it! You've successfully completed your first contribution to the Filecoin documentation. We're always on the lookout for great writers and educators to help us improve the Filecoin docs and make the internet better for everyone, so keep up the good work!
+So there you have it! You've successfully completed your first contribution to the Bacalhau documentation. We're always on the lookout for great writers and educators to help us improve the Bacalhau docs and make the internet better for everyone, so keep up the good work!
