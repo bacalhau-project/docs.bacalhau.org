@@ -1,70 +1,80 @@
-## Contribution tutorial
 
-This guide will walk you through finding an issue, fixing it, and then submitting your fix to the `bacalhau-project/docs.bacalhau.org` project.
+## Contributing Guide
 
-There are plenty of small-sized issues around Bacalhau documentation that make for easy, helpful contributions to the Filecoin project. Here, we'll walk through:
+We welcome all contributions to Bacalhau  documentation ❤️
 
-1. Finding an issue.
-2. Discussing the issue.
-3. Creating a fix.
-4. Submitting a _pull request_.
-5. Waiting for a review.
-6. Merging your fix.
-
-This may look like a lot of steps for a small issue fix, but they're all necessary to make sure we keep the docs in this project up to standard. Plus, you're not on your own — half these steps can be completed by Filecoin docs project maintainers!
-
-## Finding an issue
-
-The Bacalhau project is hosted in GitHub. There's a bunch of reasons for this, one of them being that GitHub comes with an issue tracker, which enables the Bacalhau team to field problems from the community. All community issues can read the docs, find issues, and raise issues in the docs repository (called a _repo_ for short).
-
-All issues involving the Filecoin docs themselves can be found here in the `bacalhau-project/docs.bacalhau.org` repo under the [**Issues** tab](https://github.com/bacalhau-project/docs.bacalhau.org/issues). Here you can see all the issues that are currently open. We try to tag each issue with relevant descriptive tags. 
-Let's jump into finding an issue.
-
-1. Go to the Bacalhau Docs repository at [github.com/bacalhau-project/docs.bacalhau.org](https://github.com/bacalhau-project/docs.bacalhau.org).
-2. Select the **Issues** tab.
-3. Select an issue that interests you.
+- [Documentatation structure](#documentatation-structure)
+- [Issues](#issues)
+- [Pull requests](#pull-requests)
+- [Editing Docs Locally](#editing-docs-locally)
+- [Creating a new page](#creating-a-new-page)
+- [Waiting for a review](#waiting-for-a-review)
+- [Merging your fix](#merging-your-fix)
 
 
-## Creating a fix
+## Documentatation Structure
 
-The process goes something like this:
+`docs/` : This is where all the .md files live that control the content of this site. Most contributions happen in this directory.
 
-1. Create a _fork_.
-2. Clone your copy of the project down to your local machine:
+**Note**: All code examples live in a dedicated repository [Bacalhau-project/examples](https://github.com/bacalhau-project/examples) and they are automagically rendered into the `./docs/examples/` folder by github actions.
 
-   ```shell
-   git clone https://github.com/bacalhau-project/docs.bacalhau.org.git
-   ```
-3. Make changes locally on your machine by following this [guide](https://github.com/bacalhau-project/docs.bacalhau.org#develop-docs-locally).
-4. Once all your changes are complete, make sure to push everything back to GitHub:
+## Issues
 
-   ```shell
-   git add .
-   git commit -m "Fixed a broken URL."
-   git push
-   ```
+All issues involving the Bacalhau docs themselves can be found here in the [docs](https://github.com/bacalhau-project/docs.bacalhau.org) repo under the [**Issues** tab](https://github.com/bacalhau-project/docs.bacalhau.org/issues). Here you can see all the issues that are currently open. 
 
-## Create a pull request
+If you spot anything that conflicts in our docs or have feedbacks, suggestions, hints etc, you can create an issue. 
 
-Once you're done making commits, and are ready to get a core team member's review of your work, it's time to create a pull request.
+**Note**: For a step by step process on how to create an issue, please refer to this [Github guide](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue)
 
-1. Go to the `bacalhau-project/docs.bacalhau.org` repository on [GitHub](https://github.com/bacalhau-project/docs.bacalhau.org).
-2. Select the **Pull requests** tab.
-3. Click **New pull request**.
-4. Click **compare across forks** and select your repository from the **head repository** dropdown.
-5. Leave a comment to expand upon your changes.
-6. Click **Create pull request**.
+## Pull Requests
 
-GitHub will check if your changes create any merge conflicts with the branch you are trying to merge into.
+If you want to make documentation changes, you can submit a pull request.
+
+For minor changes like typos, sentence fixes, click **Edit this page**, located at the bottom of each document. This will take you to the source file on GitHub, where you can submit a pull request for your changes. 
+
+For larger edits or new documents, you can choose to edit [docs locally](https://github.com/bacalhau-project/docs.bacalhau.org#develop-docs-locally). 
+ 
+
+## Editing Docs Locally
+
+If you want to submit a pull request to update the docs, you will need to [make a fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) of this repo and clone it.
+
+
+1. Create a branch and switch to it:
+
+    `git checkout -b <branch-name>`
+
+2. Add or modify the Markdown files in these directories according to our style guide.
+
+3. When you are happy with your changes, commit them with a message summarizing what you did:
+
+    `git commit -am "commit message"`
+
+4. Push your branch up:
+
+    `git push origin <branch-name>`
+
+**Note**: Our documentation is written in markdown format.
+
+## Creating a new page
+
+New pages added should be placed under the docs directory. Each new page should contain **front matter** which provides additional metadata for your doc page. For example
+```
+---
+sidebar_position: 3
+sidebar_label: 'Social Media'
+description: 'Find Bacalhau on your favorite social media platform'
+---
+```
 
 ## Waiting for a review
 
 All pull requests from the community must be reviewed by at least one project member before they are merged in. Depending on the size of the pull request, this could take anywhere from a few minutes to a few days to review everything. Depending on the complexity of the pull request, there may be further discussion regarding your changes. Keep returning to GitHub and checking your notifications page to make sure you don't miss anything.
 
-## Merge your fix
+## Merging your fix
 
 Once your pull request has been approved, a project member with the correct rights will merge it. You'll be notified as soon as the merge is complete.
 
 ## Finishing up
 
-So there you have it! You've successfully completed your first contribution to the Bacalhau documentation. We're always on the lookout for great writers and educators to help us improve the Bacalhau docs and make the internet better for everyone, so keep up the good work!
+So there you have it!  We're always on the lookout for contributors to help us improve the Bacalhau docs and make the internet better for everyone, so keep up the good work!
