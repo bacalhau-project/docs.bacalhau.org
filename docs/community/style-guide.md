@@ -133,7 +133,7 @@ bacalhau docker run ubuntu echo Hello World
 
 Do not include the command prompt ($ or #) in the code block
 
-### In-Code Blocks
+### Inline Code Blocks
 
 Use a single backtick (`) at the start and end of a code block. It should be used for:
 
@@ -170,12 +170,12 @@ Here is an example
 
 ### Bold and Italics
 
-Bold text should be used for
+Bold text should be used for:
 
-- In list item
-- For emphasis on words, project names etc
+- list item
+- Emphasis on words, project names etc
 
-Italics should be used in in-list. For example (e.g, _easy_, _simple_, _quick_, etc)
+Italics should be used in inline list. For example (e.g, _easy_, _simple_, _quick_, etc)
 
 ## Need Support?
 
