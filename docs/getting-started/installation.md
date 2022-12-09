@@ -103,9 +103,9 @@ This command prints out a number of verbose logs- these are meant for Bacalhau d
 
 :::
 
-At this point, the outputs have been downloaded locally and we are ready to inspect them. Each job creates 3 subfolders: the *combined_results*, *per_shard* files, and the *raw* directory. In each of these sub_folders, you'll find the *stdout* and *stderr* file
+At this point, the outputs have been downloaded locally and we are ready to inspect them. Each job creates 3 subfolders: the *combined_results*, *per_shard* files, and the *raw* directory. In each of these sub_folders, you'll find the *stdout* and *stderr* file.
 
-For the scope this of this guide, we will only look at the **stdout** file. To inspect the content of the file or use the code belolow
+For the scope this of this guide, we will only look at the **stdout** file. To inspect the content of the file or use the code below:
 
 ```
 ❯ cat /tmp/myfolder/job-id/combined_results/stdout
