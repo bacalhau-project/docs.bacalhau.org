@@ -127,7 +127,3 @@ Here are a few resources that provides a deeper dive into running jobs with Baca
 ## Need Support?
 
 If have questions or need support or guidance, please reach out to the [Bacalhau team via Slack (#bacalhau channel)](https://filecoin.io/slack)
-
-## Contributing
-
-If you have any hints, tips or suggestions to add, check out the different [ways to contribute to Bacalhau](/docs/community/ways-to-contribute.md).
