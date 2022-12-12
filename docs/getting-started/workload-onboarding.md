@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Using Containers with Bacalhau'
 sidebar_position: 2
+meta-description: How to use docker containers with Bacalhau
 ---
 
 # Using Docker with Bacalhau
