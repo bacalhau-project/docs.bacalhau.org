@@ -1,70 +1,75 @@
 ---
-sidebar_label: 'Onboard Your Workload'
+sidebar_label: 'Using Containers with Bacalhau'
 sidebar_position: 2
 ---
-import ReactPlayer from 'react-player'
 
-# Onboarding Your Workloads
+# Using Docker with Bacalhau
 
-This tutorial describes how to convert your workload into a Bacalhau format. To migrate your workload, follow the instructions below for the job format you want to use. Check out the examples for more inspiration on this process.
+Bacalhau executes jobs by running them within containers. This sections describes how to migrate a workload based on a Docker container into a format that will work with the Bacalhau client. 
 
 :::tip
 
-We will be adding more job formats soon!
+You can check out this example tutorial on [how to work with custom containers in Bacalhau](https://docs.bacalhau.org/examples/workload-onboarding/custom-containers/) to see how we used all these steps together. 
 
 :::
 
-## Docker
+## What Containers to Use
+You can always use your own custom container, however there are some things to note:
 
-Here you'll learn how to migrate a workload based on a Docker container into a format that will work with the Bacalhau client.
-
-### Prerequisites and Limitations
-
-To help provide a safe, secure network for all users, we add the following runtime restrictions:
-
-- All ingress/egress networking is disabled. You won't be able to pull data/code/weights/etc. from an external source.
-- Data passing is implemented with Docker volumes, using [Bacalhau's input/output volumes](../about-bacalhau/architecture.md#input--output-volumes).
-
-The following lists current limitations:
-
-* Public container registries only
+* You must publish the container to a public container registry that is accessible from the Bacalhau network.
 * Containers must have an `x86_64` CPU architecture
 * The `--inputs` and `--input-voumes` flags do not support CID subpaths. Directories only.
 * The `--input-urls` flag does not support URL directories. Single files only.
 
-### Onboarding
+:::tip
 
-#### Step 1 - (Optional) Read Data From the `/inputs` Directory
+You can check to see a [list of example public containers](https://github.com/orgs/bacalhau-project/packages?repo_name=examples) used by the Bacalhau team
 
-If you need to pass data into your container you will do this via a Docker volume, so you'll need to modify your code to read from a local directory.
+**Note**: Only about a third of examples have their containers here. The rest are under random docker hub registries (mostly Vedants).
+
+:::
+
+## Runtime Restrictions
+
+To help provide a safe, secure network for all users, we add the following runtime restrictions:
+
+- All ingress/egress networking is disabled. You won't be able to pull `data/code/weights/` etc from an external source.
+- Data passing is implemented with Docker volumes, using [Bacalhau's input/output volumes](https://docs.bacalhau.org/about-bacalhau/architecture#input--output-volumes).
+
+
+## Onboarding Your Workload
+
+### Step 1 - Read Data From Your Directory
+
+If you need to pass data into your container you will do this through a Docker volume. You'll need to modify your code to read from a local directory.
 
 We make the assumption that you are reading from a directory called `/inputs`, which is set as the default.
 
 :::tip
 
-You can specify which directory the data is written to with the `--input-volumes` CLI flag.
+You can specify which directory the data is written to with the [`--input-volumes`](https://docs.bacalhau.org/all-flags#run-python) CLI flag.
 
 :::
 
-#### Step 2 - (Optional) Write Data to the `/outputs` Directory
+### Step 2 - Write Data to the Your Directory
 
-If you need to return data from your container you will do this via a Docker volume, so you'll need to modify your code to write to a local directory.
+If you need to return data from your container you will do this through a Docker volume. You'll need to modify your code to write to a local directory.
 
 We make the assumption that you are writing to a directory called `/outputs`, which is set as the default.
 
 :::tip
 
-You can specify which directory the data is written to with the `--output-volumes` CLI flag.
+You can specify which directory the data is written to with the [`--output-volumes`](https://docs.bacalhau.org/all-flags#run-python) CLI flag.
 
 :::
 
-#### Step 3 - (Optional) Build and Push Your Image To a Public Registry
+### Step 3 - Build and Push Your Image To a Registry
 
 If you haven't already, [build your image](https://docs.docker.com/engine/reference/commandline/build/) and [push it](https://docs.docker.com/engine/reference/commandline/push/) to a publicly accessible container registry.
 
 :::caution
 
-All Bacalhau nodes are of an `x86_64` architecture, therefore containers must be built for `x86_64` systems.
+All Bacalhau nodes are of an `x86_64` architecture, therefore containers must be built for [`x86_64` systems](#what-containers-to-use).
 
 :::
 
@@ -76,7 +81,7 @@ docker build -t ${IMAGE} .
 docker image push ${IMAGE}
 ```
 
-#### Step 4 - Test Your Container
+### Step 4 - Test Your Container
 
 Execute the following command to test your docker image locally, changing the environment variables as necessary:
 
@@ -110,7 +115,7 @@ This snippet results in:
 do something useful
 ```
 
-#### Step 5 - (Optional) Upload the Input Data to IPFS
+### Step 5 - Upload the Input Data
 
 We recommend uploading your data to IPFS for persistent storage, because:
 
@@ -131,7 +136,7 @@ The following guides explain how to store data on the IPFS network.
 
 :::
 
-#### Step 6 - Run the Workload on Bacalhau
+### Step 6 - Run the Workload on Bacalhau
 
 To run your workload using input data stored in IPFS use the following command:
 
@@ -190,15 +195,15 @@ The `--input-urls` flag does not support URL directories.
 
 :::
 
-### Examples
+## Video Tutorials
 
-Here is an example of an onboarded workload leveraging the Surface Ocean CO₂ Atlas (SOCAT) to Bacalhau:
+Here is an video tutorial example of an onboarded workload leveraging the Surface Ocean CO₂ Atlas (SOCAT) to Bacalhau:
 - [Youtube: Bacalhau SOCAT Workload Demo](https://www.youtube.com/watch?v=t2AHD8yJhLY)
 - [Github: bacalhau_socat_test](https://github.com/wesfloyd/bacalhau_socat_test)
+- [Youtube: Bacalhau Intro Video](https://www.youtube.com/watch?v=wkOh05J5qgA)
 
 <!-- <ReactPlayer playing controls url='https://www.youtube.com/watch?v=t2AHD8yJhLY' playing='false'/> -->
 
-Here is an example of running a job live on the Bacalhau network: [Youtube: Bacalhau Intro Video](https://www.youtube.com/watch?v=wkOh05J5qgA)
 
 ## Support
 
