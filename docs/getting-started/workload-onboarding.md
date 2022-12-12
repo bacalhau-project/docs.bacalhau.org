@@ -17,10 +17,10 @@ You can check out this example tutorial on [how to work with custom containers i
 ## What Containers to Use
 You can always use your own custom container, however there are some things to note:
 
-* You must publish the container to a public container registry that is accessible from the Bacalhau network.
+* You must publish the container to a public container registry that is accessible from the Bacalhau network
 * Containers must have an `x86_64` CPU architecture
-* The `--inputs` and `--input-voumes` flags do not support CID subpaths. Directories only.
-* The `--input-urls` flag does not support URL directories. Single files only.
+* The `--inputs` and `--input-voumes` flags do not support CID subpaths only **directories** 
+* The `--input-urls` flag does not support URL directories only **single files** only
 
 :::tip
 
@@ -34,8 +34,8 @@ You can check to see a [list of example public containers](https://github.com/or
 
 To help provide a safe, secure network for all users, we add the following runtime restrictions:
 
-- All ingress/egress networking is disabled. You won't be able to pull `data/code/weights/` etc from an external source.
-- Data passing is implemented with Docker volumes, using [Bacalhau's input/output volumes](https://docs.bacalhau.org/about-bacalhau/architecture#input--output-volumes).
+- All ingress/egress networking is disabled. You won't be able to pull `data/code/weights/` etc from an external source
+- Data passing is implemented with Docker volumes, using [Bacalhau's input/output volumes](https://docs.bacalhau.org/about-bacalhau/architecture#input--output-volumes)
 
 
 ## Onboarding Your Workload
@@ -66,7 +66,7 @@ You can specify which directory the data is written to with the [`--output-volum
 
 ### Step 3 - Build and Push Your Image To a Registry
 
-If you haven't already, [build your image](https://docs.docker.com/engine/reference/commandline/build/) and [push it](https://docs.docker.com/engine/reference/commandline/push/) to a publicly accessible container registry.
+If you haven't already, you'll need to [build your image](https://docs.docker.com/engine/reference/commandline/build/) and [push it](https://docs.docker.com/engine/reference/commandline/push/) to a publicly accessible container registry.
 
 :::caution
 
@@ -84,7 +84,7 @@ docker image push ${IMAGE}
 
 ### Step 4 - Test Your Container
 
-Execute the following command to test your docker image locally, changing the environment variables as necessary:
+To test your docker image locally, you'll need to execute the following command, changing the environment variables as necessary:
 
 ```bash
 export LOCAL_INPUT_DIR=$PWD
@@ -139,7 +139,7 @@ The following guides explain how to store data on the IPFS network.
 
 ### Step 6 - Run the Workload on Bacalhau
 
-To run your workload using input data stored in IPFS use the following command:
+To run your workload using input data stored in IPFS, run the following command:
 
 ```bash
 bacalhau docker run --inputs ${CID} ${IMAGE} ${CMD}
@@ -160,7 +160,7 @@ bacalhau get $job_id
 ls shards
 ```
 
-results in:
+outputs:
 
 ```bash
  CREATED   ID        JOB                      STATE      VERIFIED  PUBLISHED 
@@ -198,7 +198,7 @@ The `--input-urls` flag does not support URL directories.
 
 ## Video Tutorials
 
-Below are video tutorial examples of an onboarded workload leveraging the Surface Ocean CO₂ Atlas (SOCAT) to Bacalhau:
+We have video tutorial examples on how to onboarded workload to Bacalhau:
 - [Youtube: Bacalhau SOCAT Workload Demo](https://www.youtube.com/watch?v=t2AHD8yJhLY)
 - [Github: bacalhau_socat_test](https://github.com/wesfloyd/bacalhau_socat_test)
 - [Youtube: Bacalhau Intro Video](https://www.youtube.com/watch?v=wkOh05J5qgA)
