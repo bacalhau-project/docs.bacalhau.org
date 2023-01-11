@@ -61,7 +61,7 @@ const config = {
       },
       algolia :{
         appId: 'VLYBZRSZSU',
-        apiKey: '798ea99b80d88f0dd8ad5b58eb2d648f',
+        apiKey: '833f6b97e76869f94a4a564c4c67f7d9',
         indexName: 'dev_bac'
       },
       footer: {
