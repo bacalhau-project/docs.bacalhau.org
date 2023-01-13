@@ -15,10 +15,13 @@ Bacalhau is a platform for public, transparent, and optionally verifiable distri
 
 ## Why Bacalhau?
 
-- ⚡️ **Process jobs fast**: Jobs in Bacalhau are processed where the data was created and all jobs are parallel by default.
-- 💸 **Low cost:** You get to save on ingress/egress fees you encounter whenever you move data around since jobs are processed where the data is created.
-- 🔐 **Secure**: Data is not collected in a central location before processing, meaning all scrubbing and security can be applied at the point of collection.
-- 📚 **Large-scale data**: Bacalhau operates on a network of open compute resources made available to serve any data processing workload. With Bacalhau you can batch process petabytes (quadrillion bytes) of data.
+⚡️ **Process jobs fast**: Jobs in Bacalhau are processed where the data was created and all jobs are parallel by default.
+ 
+💸 **Low cost:** You get to save on ingress/egress fees you encounter whenever you move data around since jobs are processed where the data is created.
+
+🔐 **Secure**: Data is not collected in a central location before processing, meaning all scrubbing and security can be applied at the point of collection.
+ 
+📚 **Large-scale data**: Bacalhau operates on a network of open compute resources made available to serve any data processing workload. With Bacalhau you can batch process petabytes (quadrillion bytes) of data.
 
 ## Our Vision
 
@@ -34,8 +37,8 @@ Initially, the Bacalhau project will focus on serving data processing and analyt
 
 Bacalhau has a very friendly community and we are always happy to help you get started:
 
-- [Join the Slack Community](https://filecoin.io/slack) and go to **#bacalhau** channel – it is the easiest way engage with other members in the community and get help.
 - [GitHub Discussions](https://github.com/filecoin-project/bacalhau/discussions) – ask anything about the project, give feedback or answer questions that will help other users.
+- [Join the Slack Community](https://filecoin.io/slack) and go to **#bacalhau** channel – it is the easiest way engage with other members in the community and get help.
 - [Contributing](https://docs.bacalhau.org/community/ways-to-contribute) – learn how to contribute to the Bacalhau project.
 
 ## Next Steps
