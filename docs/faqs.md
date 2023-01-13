@@ -40,3 +40,23 @@ First, you'll need to check that the bacalhau server is up and running on the sa
 ### Can I run Bacalhau in a containerized setup (nested containers)?
 
 We don't support this as it will result in the classic Dind(Docker In Docker) problem. 
+
+### Can I start a bacalhau cluster without connecting to the global network?
+
+### Can I use non-docker jobs?
+
+### Can I just use a script (like python or JavaScript) without building a container?
+
+### How do I run a script that requires installing packages from a package repository like pypi or apt?
+
+### Can I stop a job?
+
+### How do I see a job’s progress while it’s running?
+
+### I keep getting “error, job waiting” - why?
+
+### How do I get an IPFS peer if I want to start  Bacalhau Serve?
+
+### Can I run bacalhau serve on my home machine? What are the requirements?
+
+### Is there payment for running a job?
