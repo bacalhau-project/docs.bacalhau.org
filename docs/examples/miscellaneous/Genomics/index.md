@@ -18,7 +18,7 @@ FROM kipoi/kipoi-veff2:py37
 
 RUN kipoi_veff2_predict ./examples/input/test.vcf ./examples/input/test.fa ./output.tsv -m "DeepSEA/predict" -s "diff" -s "logit"
 ```
-- Next, we will use the python:3.8 docker image to build the docker container to download the models and weights. Before running the command below, replace:
+- Next, we will use the `python:3.8` docker image to build the docker container to download the models and weights. Before running the command below, replace:
     - `hub-user` with your docker hub username. If you don’t have a docker hub account follow these [instructions](https://docs.docker.com/docker-id/) to create docker account and use the username of the account you created
 
     - `repo-name` with the name of the container, you can name it anything you want
