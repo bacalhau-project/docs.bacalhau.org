@@ -99,19 +99,11 @@ const config = {
                 label: "Slack",
                 href: "https://filecoin.io/slack",
               },
-              {
-                label: "Help",
-                href: "https://docs.bacalhau.org/community/ways-to-contribute/",
-              },
             ],
           },
           {
-            title: "More",
+            title: "Develop/Contribute",
             items: [
-              {
-                label: "Blog",
-                href: "https://bacalhau.substack.com/",
-              },
               {
                 label: "GitHub",
                 href: "https://github.com/filecoin-project/bacalhau",
@@ -119,6 +111,10 @@ const config = {
               {
                 label: "Changelog",
                 href: "https://github.com/filecoin-project/bacalhau/releases/",
+              },
+              {
+                label: "Ways To Contribute",
+                href: "https://docs.bacalhau.org/community/ways-to-contribute/",
               },
             ],
           },
@@ -132,6 +128,10 @@ const config = {
               {
                 label: "Twitter",
                 href: "https://twitter.com/BacalhauProject",
+              },
+              {
+                label: "Blog/Newsletter",
+                href: "https://bacalhau.substack.com/",
               },
             ],
           },
