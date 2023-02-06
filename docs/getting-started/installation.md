@@ -15,7 +15,7 @@ The Bacalhau client is a command-line interface (CLI) that allows you to submit 
 
 You can install or update the Bacalhau CLI by running the following command in a terminal:
 
-```
+```bash
 curl -sL https://get.bacalhau.org/install.sh | bash
 ```
 
@@ -49,15 +49,9 @@ If you want to pass files between the Docker Bacalhau CLI and your desktop, don'
 
 Once your Bacalhau client is installed, it will show the client and server version. Your client and server versions must be aligned before you can run a job with Bacalhau client. You can use the code below to check this:
 
+```bash
+bacalhau version
 ```
-❯ bacalhau version
-
-Client Version: v0.x.y
-Server Version: v0.x.y
-```
-
-If you're wondering which server is being used, the Bacalhau Project has a [public Bacalhau server network](https://docs.bacalhau.org/#our-vision) that's shared with the community. This server allows you to launch your jobs from your computer without maintaining a compute cluster on your own.
-
 Going further, we will look at some commands to run a simple job. For a complete overview of the `bacalhau` commands, take a look at the [CLI Reference page](../all-flags).
 
 ## Submit a "Hello World" job
@@ -70,9 +64,11 @@ While the command is designed to resemble Docker's run command which you may be 
 
 The code snippet below submits a job that runs an `echo` program within an [Ubuntu container](https://hub.docker.com/_/ubuntu). When a job is sumbitted, Bacalhau prints out the related job id:
 
-```zsh
-❯ bacalhau docker run ubuntu echo Hello World
-
+```bash
+bacalhau docker run ubuntu echo Hello World
+```
+the output:
+```buttonless
 Job successfully submitted. Job ID: 3b39baee-5714-4f17-aa71-1f5824665ad6
 Checking job status...
 ```
@@ -81,20 +77,16 @@ The job id above is shown in its full form. For convenience, you can use the sho
 
 After the above command is run, a job is submitted to the public network, which processes the job as described in the [Job Lifecycle page](../about-bacalhau/architecture#job-lifecycle). To check the current job's state, we can use the `list` verb as shown below.
 
+```bash
+export JOB_ID=3b39baee # make sure to use the right job id from the docker run command
+
+bacalhau list --id-filter=${JOB_ID}
 ```
-❯ export JOB_ID=3b39baee # make sure to use the right job id from the docker run command
-
-❯ bacalhau list --id-filter=${JOB_ID}
-
+the output:
+```buttonless
  CREATED   ID        JOB                      STATE      VERIFIED  PUBLISHED
  07:20:32  3b39baee  Docker ubuntu echo H...  Published            /ipfs/bafybeidu4zm6w...
 ```
-
-:::info
-
-Replace with your own generated `JOB-ID`
-
-:::
 
 A `Published/Completed` state indicates the job has completed successfully and the results are stored in the IPFS location under the `PUBLISHED` column.  
 
@@ -107,34 +99,32 @@ After the job has finished processing, its outputs are stored on IPFS. To downlo
 
 First, we'll create a directory that will store our job outputs.
 
-```
-❯ mkdir -p /tmp/myfolder
-❯ cd /tmp/myfolder
+```bash
+mkdir -p /tmp/myfolder
+cd /tmp/myfolder
 ```
 
 Next, we use the `get` verb to download the job outputs into the current directory.
 
+```bash
+bacalhau get ${JOB_ID}
 ```
-❯ bacalhau get ${JOB_ID}
-
+the output:
+```buttonless
 15:44:12.278 | INF bacalhau/get.go:67 > Fetching results of job '3b39baee'...
 15:44:18.463 | INF ipfs/downloader.go:115 > Found 1 result shards, downloading to temporary folder.
 15:44:21.17 | INF ipfs/downloader.go:195 > Combining shard from output volume 'outputs' to final location: '/tmp/myfolder'
 ```
 
-:::info
-
-This command prints out a number of verbose logs- these are meant for Bacalhau developers. You can safely ignore them, per [issue #614](https://github.com/filecoin-project/bacalhau/issues/614))
-
-:::
-
 At this point, the outputs have been downloaded locally and we are ready to inspect them. Each job creates 3 subfolders: the *combined_results*, *per_shard* files, and the *raw* directory. In each of these sub_folders, you'll find the *stdout* and *stderr* file.
 
 For the scope this of this guide, we will only look at the **stdout** file. To inspect the content of the file, use the code below:
 
+```bash
+cat /tmp/myfolder/job-id/combined_results/stdout
 ```
-❯ cat /tmp/myfolder/job-id/combined_results/stdout
-
+the output:
+```buttonless
 Hello World
 ```
 
