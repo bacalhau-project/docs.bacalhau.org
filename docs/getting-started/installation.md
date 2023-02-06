@@ -67,7 +67,7 @@ The code snippet below submits a job that runs an `echo` program within an [Ubun
 ```bash
 bacalhau docker run ubuntu echo Hello World
 ```
-the output:
+The output:
 ```buttonless
 Job successfully submitted. Job ID: 3b39baee-5714-4f17-aa71-1f5824665ad6
 Checking job status...
@@ -82,7 +82,7 @@ export JOB_ID=3b39baee # make sure to use the right job id from the docker run c
 
 bacalhau list --id-filter=${JOB_ID}
 ```
-the output:
+The output:
 ```buttonless
  CREATED   ID        JOB                      STATE      VERIFIED  PUBLISHED
  07:20:32  3b39baee  Docker ubuntu echo H...  Published            /ipfs/bafybeidu4zm6w...
@@ -109,7 +109,7 @@ Next, we use the `get` verb to download the job outputs into the current directo
 ```bash
 bacalhau get ${JOB_ID}
 ```
-the output:
+The output:
 ```buttonless
 15:44:12.278 | INF bacalhau/get.go:67 > Fetching results of job '3b39baee'...
 15:44:18.463 | INF ipfs/downloader.go:115 > Found 1 result shards, downloading to temporary folder.
@@ -123,7 +123,7 @@ For the scope this of this guide, we will only look at the **stdout** file. To i
 ```bash
 cat /tmp/myfolder/job-id/combined_results/stdout
 ```
-the output:
+The output:
 ```buttonless
 Hello World
 ```
