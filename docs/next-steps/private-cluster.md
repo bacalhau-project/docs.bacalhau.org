@@ -15,7 +15,7 @@ will use a temporary directory for its repository and so the contents will be lo
 
 ## How to set up In-Process IPFS
 
-The first step is to s
+The first step is to:
 
 - Start up the initial node, which we will use as the `requester node`. This node will connect to nothing but will listen for connections.
 
