@@ -37,6 +37,7 @@ export BACALHAU_API_PORT=1234
 ```
 
 ## Compute Nodes
+
 To connect another node to this private one, run the following command in your shell:
 
 ```
@@ -44,12 +45,13 @@ bacalhau serve --private-internal-ipfs --peer /ip4/<ip-address>/tcp/1235/p2p/<pe
 ```
 
 :::tip
-The exact command will different on each computer and is outputted by the `bacalhau serve --node-type requester ...` command
+The exact command will be different on each computer and is outputted by the `bacalhau serve --node-type requester ...` command
 :::
 
 The command `bacalhau serve --private-internal-ipfs --peer ...` starts up a compute node and adds it to the cluster.
 
 ## Submitting Jobs
+
 To use this cluster from the client, run the following commands in your shell:
 
 ```
@@ -59,7 +61,7 @@ export BACALHAU_API_PORT=1234
 ```
 
 :::tip
-The exact command will different on each computer and is outputted by the `bacalhau serve --node-type requester ...` command
+The exact command will be different on each computer and is outputted by the `bacalhau serve --node-type requester ...` command
 :::
 
 The command `export BACALHAU_IPFS_SWARM_ADDRESSES=...` sends jobs into the cluster from the command line client.
