@@ -15,7 +15,7 @@ In this tutorial, we will first scrape all the links from a public AWS S3 bucket
 ## Getting the URLs from AWS S3 bucket
 
 - Install [Bacalhau](https://docs.bacalhau.org/getting-started/installation/). 
-- If your bucket has more than 1000 files, with the command below you can submit a Bacalhau job to extract the URL list of the files.
+- If your bucket has more than 1000 files, with the command below, you can submit a Bacalhau job to extract the URL list of the files.
 
 ```bash
 bacalhau docker run \
@@ -27,7 +27,7 @@ python \
 -- /bin/bash -c 'python3 extract.py https://noaa-goes16.s3.amazonaws.com/  /inputs'
 ```
 
-- Before running the command below, replace the following:
+- Before running the command above, replace the following:
 
     - `-u  https://noaa-goes16.s3.amazonaws.com/`: we replace the placeholders with `noaa-goes16` which is the name of the bucket we want to extract URLs from
 
@@ -35,7 +35,7 @@ python \
 
     - `-- /bin/bash -c 'python3 extract.py https://noaa-goes16.s3.amazonaws.com/  /inputs'`: Executing the scrapper script
 
-Since the script extracts the path of the file in the bucket, we need to add the URL as a prefix to the path `https://noaa-goes16.s3.amazonaws.com/`  then provide the path where the XML document tree of the URL is mounted which is `/inputs`
+The command above extracts the path of the file in the bucket, we added the URL as a prefix to the path `https://noaa-goes16.s3.amazonaws.com/`  then provided the path where the XML document tree of the URL is mounted which is `/inputs`
 
 :::note
 There are certain limitations to this step, as this only works with datasets that are publicly accessible and don't require an AWS account or pay to use buckets and possibly only limited to first 1000 URLs.
@@ -67,7 +67,9 @@ When it says `Published` or `Completed`, that means the job is done, and we can 
 ```bash
 bacalhau describe ${JOB_ID}
 ```
-- **Job download**: You can download your job results directly by using bacalhau get. You can also choose to create a directory to store your results. In the command below, we created a directory and downloaded our job output to be stored in that directory
+- **Job download**: You can download your job results directly by using `bacalhau get`. Alternatively, you can choose to create a directory to store your results. 
+
+In the command below, we created a directory and downloaded our job output to be stored in that directory
 
 ```bash
 rm -rf results && mkdir -p results
@@ -122,7 +124,7 @@ https://noaa-goes16.s3.amazonaws.com/ABI-L1b-RadC/2000/001/12/OR_ABI-L1b-RadC-M3
 
 ## Copying the Data from AWS S3 to IPFS
 
-From the output of the job we ran above, we have the links that we want, next is to save them to IPFS using Bacalhau.
+From the output of the job we ran above, we extracted the links that we want.next is to save them to IPFS using Bacalhau.
 
 Selecting the first ten links
 
