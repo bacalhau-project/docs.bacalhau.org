@@ -57,7 +57,7 @@ WORKDIR /workspaces/datadex
 ```
 
 :::info
-See more information on how to containerize your script/app[here](https://docs.docker.com/get-started/02_our_app/)
+See more information on how to containerize your script/app [here](https://docs.docker.com/get-started/02_our_app/)
 :::
 
 
@@ -99,7 +99,7 @@ docker push davidgasquez/datadex:v0.2.0
 
 ## Running a Bacalhau Job
 
-To run the container on Bacalhau, we will use the `bacalhau docker run` command.
+After the repo image has been pushed to docker hub, we can now use the container for running on Bacalhau. To submit a job, run the following Bacalhau command:
 
 
 ```bash
@@ -168,7 +168,7 @@ Each job creates 3 subfolders: the **combined_results**,**per_shard files**, and
 
 ```bash
 %%bash
-cat results/combined_results/stdout
+cat results/combined_results/stdout  # displays the contents of the file
 ```
 
     ┌───┐
