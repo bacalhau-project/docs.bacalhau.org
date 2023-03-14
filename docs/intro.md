@@ -31,7 +31,7 @@ Bacalhau seeks to transform data processing for large-scale datasets to improve 
 
 ## How it works
 
-The goal of the Bacalhau project is to make it easy to perform distributed, decentralised computation next to where the data resides. So a key step in this process is making your data accessible. Data is identified by its content identifier (CID) and can be accessed by anyone who knows the CID. To inest your data for use with Bacalhau you can use any of the following method: 
+The goal of the Bacalhau project is to make it easy to perform distributed, decentralised computation next to where the data resides. So a key step in this process is making your data accessible. Data is identified by its content identifier (CID) and can be accessed by anyone who knows the CID. To ingest your data for use with Bacalhau you can use any of the following method: 
 
 - [Copy data from a URL to public storage](https://docs.bacalhau.org/examples/data-ingestion/from-url/)
 - [Pin Data to storage](https://docs.bacalhau.org/examples/data-ingestion/pinning/)
