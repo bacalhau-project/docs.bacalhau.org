@@ -56,13 +56,13 @@ The interface handles the distribution, executiion, storage, verification and pu
 
 ### Transport
 
-The primary fucntion of the transport interface is to broadcast messages about jobs as they are created, bid upon, and executed by compute nodes.
+The primary function of the transport interface is to broadcast messages about jobs as they are created, bid upon, and executed by compute nodes.
 
 In addition to handling the distribution of messages to other nodes, the transport component is also responsible for managing the identity of individual Bacalhau nodes. This ensures that messages are properly authenticated and delivered only to authorized nodes.
 
 In addition to distributing messages, the transport component also manages the identity of individual Bacalhau nodes to ensure that messages are delivered only to authorized nodes, enhancing network security and integrity.
 
-The bprotocol point-to-point scheduling protocol that runs over [libp2p](https://libp2p.io/) transport is the primary implementation of the transport interface in production Bacalhau networks. It employs the [GossipSub](https://docs.libp2p.io/concepts/publish-subscribe/) handler to efficiently distribute job messages to other nodes on the network. This protocol enables scalable and efficient communication between nodes, ensuring messages are delivered to the appropriate nodes without congesting the network.
+The point-to-point scheduling protocol that runs over [libp2p](https://libp2p.io/) transport is the primary implementation of the transport interface in production Bacalhau networks. It employs the [GossipSub](https://docs.libp2p.io/concepts/publish-subscribe/) handler to efficiently distribute job messages to other nodes on the network. This protocol enables scalable and efficient communication between nodes, ensuring messages are delivered to the appropriate nodes without congesting the network.
 
 ### Executor
 
