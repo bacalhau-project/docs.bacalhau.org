@@ -46,7 +46,7 @@ Overall, the Compute node is a crucial component of the Bacalhau network, respon
 
 ## Interface
 
-The interface handles the distribution, executiion, storage, verification and publishing of jobs.
+The interface handles the distribution, execution, storage, verification and publishing of jobs.
 
 - [Transport](#transport)
 - [Executor](#executor)
