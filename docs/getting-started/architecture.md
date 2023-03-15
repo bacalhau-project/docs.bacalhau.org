@@ -56,9 +56,10 @@ The interface handles the distribution, executiion, storage, verification and pu
 
 ### Transport
 
-The transport interface is responsible for sending messages about jobs that as they are created, bid upon, and executed  to other compute nodes. It also manages the identity of individual nodes to ensure that messages are only delivered to authorized nodes, which improves network security.
+The Transport interface is responsible for sending messages about jobs that are created, bid upon, and executed  to other compute nodes. It also manages the identity of individual Bacalhau nodes to ensure that messages are only delivered to authorized nodes, which improves network security.
 
-To achieve this, the transport interface uses a protocol called bprotocol, which is a point-point scheduling protocol that runs over [libp2p](https://libp2p.io/) that is used to distribute job messages efficiently to other nodes on the network. This is an upgrade to the [GossipSub](https://docs.libp2p.io/concepts/publish-subscribe/) handler as it ensures that messages are delivered to the right nodes without causing network congestion, thereby making communication between nodes more scalable and efficient.
+To achieve this, the transport interface uses a protocol called **bprotocol**, which is a point-to- point scheduling protocol that runs over [libp2p](https://libp2p.io/) and
+is used to distribute job messages efficiently to other nodes on the network. This is our upgrade to the [GossipSub](https://docs.libp2p.io/concepts/publish-subscribe/) handler as it ensures that messages are delivered to the right nodes without causing network congestion, thereby making communication between nodes more scalable and efficient.
 
 ### Executor
 
