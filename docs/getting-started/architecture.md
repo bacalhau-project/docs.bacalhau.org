@@ -46,7 +46,7 @@ Overall, the Compute node is a crucial component of the Bacalhau network, respon
 
 ## Interface
 
-The interface handles the distribution, executiion, storage, verification and publishing of jobs
+The interface handles the distribution, executiion, storage, verification and publishing of jobs.
 
 - [Transport](#transport)
 - [Executor](#executor)
@@ -56,13 +56,9 @@ The interface handles the distribution, executiion, storage, verification and pu
 
 ### Transport
 
-The primary function of the transport interface is to broadcast messages about jobs as they are created, bid upon, and executed by compute nodes.
+The transport interface is responsible for sending messages about jobs that as they are created, bid upon, and executed  to other compute nodes. It also manages the identity of individual nodes to ensure that messages are only delivered to authorized nodes, which improves network security.
 
-In addition to handling the distribution of messages to other nodes, the transport component is also responsible for managing the identity of individual Bacalhau nodes. This ensures that messages are properly authenticated and delivered only to authorized nodes.
-
-In addition to distributing messages, the transport component also manages the identity of individual Bacalhau nodes to ensure that messages are delivered only to authorized nodes, enhancing network security and integrity.
-
-The point-to-point scheduling protocol that runs over [libp2p](https://libp2p.io/) transport is the primary implementation of the transport interface in production Bacalhau networks. It employs the [GossipSub](https://docs.libp2p.io/concepts/publish-subscribe/) handler to efficiently distribute job messages to other nodes on the network. This protocol enables scalable and efficient communication between nodes, ensuring messages are delivered to the appropriate nodes without congesting the network.
+To achieve this, the transport interface uses a protocol called bprotocol, which is a point-point scheduling protocol that runs over [libp2p](https://libp2p.io/) which is used to distribute job messages efficiently to other nodes on the network. This is an upgrade to the [GossipSub](https://docs.libp2p.io/concepts/publish-subscribe/) handler that ensures that messages are delivered to the right nodes without causing network congestion, making communication between nodes more scalable and efficient.
 
 ### Executor
 
