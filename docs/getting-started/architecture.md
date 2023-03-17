@@ -38,15 +38,15 @@ Overall, the requestor node plays a crucial role in the Bacalhau network, servin
 
 ### Compute node
 
-In the Bacalhau network, the Compute node plays a critical role in the process of executing jobs and producing results. When a new job is detected on the network, the Compute node will determine whether it wants to bid on that job or not. If a bid is made and accepted by the requester node, the Compute node will run the job using its collection of executors, each of which has its own collection of storage providers.
+In the Bacalhau network, the compute node plays a critical role in the process of executing jobs and producing results. When a new job is detected on the network, the compute node will determine whether it wants to bid on that job or not. If a bid is made and accepted by the requester node, the compute node will run the job using its collection of executors, each of which has its own collection of storage providers.
 
-Once the executor has run the job and produced results, the Compute node will generate a verification proposal. This proposal will be collated by the requester node along with proposals from other compute nodes that ran the same job. These proposals will then be either accepted or rejected, after which the Compute node will publish its raw results via the publisher interface. The Compute node has a collection of named executors, verifiers, and publishers, and it will choose the most appropriate ones based on the job specifications.
+Once the executor has run the job and produced results, the compute node will generate a verification proposal. This proposal will be collated by the requester node along with proposals from other compute nodes that ran the same job. These proposals will then be either accepted or rejected, after which the compute node will publish its raw results via the publisher interface. The compute node has a collection of named executors, verifiers, and publishers, and it will choose the most appropriate ones based on the job specifications.
 
-Overall, the Compute node is a crucial component of the Bacalhau network, responsible for executing jobs and producing results. By efficiently managing the bidding and verification process, the Compute node enables effective communication between nodes in the network, making it a valuable tool for decentralized computing applications.
+Overall, the compute node is a crucial component of the Bacalhau network, responsible for executing jobs and producing results. By efficiently managing the bidding and verification process, the Compute node enables effective communication between nodes in the network, making it a valuable tool for decentralized computing applications.
 
 ## Interface
 
-The interface handles the distribution, executiion, storage, verification and publishing of jobs
+The interface handles the distribution, execution, storage, verification and publishing of jobs.
 
 - [Transport](#transport)
 - [Executor](#executor)
@@ -56,39 +56,35 @@ The interface handles the distribution, executiion, storage, verification and pu
 
 ### Transport
 
-The primary fucntion of the transport interface is to broadcast messages about jobs as they are created, bid upon, and executed by compute nodes.
+The transport interface is responsible for sending messages about jobs that are created, bid upon, and executed  to other compute nodes. It also manages the identity of individual Bacalhau nodes to ensure that messages are only delivered to authorized nodes, which improves network security.
 
-In addition to handling the distribution of messages to other nodes, the transport component is also responsible for managing the identity of individual Bacalhau nodes. This ensures that messages are properly authenticated and delivered only to authorized nodes.
-
-In addition to distributing messages, the transport component also manages the identity of individual Bacalhau nodes to ensure that messages are delivered only to authorized nodes, enhancing network security and integrity.
-
-The bprotocol point-to-point scheduling protocol that runs over [libp2p](https://libp2p.io/) transport is the primary implementation of the transport interface in production Bacalhau networks. It employs the [GossipSub](https://docs.libp2p.io/concepts/publish-subscribe/) handler to efficiently distribute job messages to other nodes on the network. This protocol enables scalable and efficient communication between nodes, ensuring messages are delivered to the appropriate nodes without congesting the network.
+To achieve this, the transport interface uses a protocol called **bprotocol**, which is a point-to-point scheduling protocol that runs over [libp2p](https://libp2p.io/) and is used to distribute job messages efficiently to other nodes on the network. This is our upgrade to the [GossipSub](https://docs.libp2p.io/concepts/publish-subscribe/) handler as it ensures that messages are delivered to the right nodes without causing network congestion, thereby making communication between nodes more scalable and efficient.
 
 ### Executor
 
-The Executor is a critical component of the Bacalhau network that handles the execution of jobs and ensures that the storage used by the job is local. One of its main responsibilities is to present the input and output storage volumes into the job when it is run.
+The executor is a critical component of the Bacalhau network that handles the execution of jobs and ensures that the storage used by the job is local. One of its main responsibilities is to present the input and output storage volumes into the job when it is run.
 
-It is important to note that storage can differ between Docker and WebAssembly (wasm). Therefore, if a job references a specific IPFS cid, two different storage providers may be used based on the executor used for the job.
+It is important to note that storage can differ between Docker and WebAssembly (wasm). Therefore, if a job references a specific CID (Content IDentifier), two different storage providers may be used based on the executor used for the job.
 
-The Executor performs two primary functions: 
+The executor performs two primary functions: 
 - presenting the storage volumes in a format that is suitable for the executor, and,
 - running the job. 
 
 When the job is completed, the executor will merge the stdout, stderr, and named output volumes into a results folder. This results folder is used to generate a verification proposal that is sent to the requester.
 
-Once the proposal is accepted or rejected, the results folder is then forwarded to the publisher for publication. Overall, the Executor plays a crucial role in the Bacalhau network by ensuring that jobs are executed properly, and their results are published accurately.
+Once the proposal is accepted or rejected, the results folder is then forwarded to the publisher for publication. Overall, the executor plays a crucial role in the Bacalhau network by ensuring that jobs are executed properly, and their results are published accurately.
 
 ### Storage Provider
 
-In a peer-to-peer network like Bacalhau, Storage Providers play a crucial role in presenting an upstream storage source, such as an IPFS cid, into an Executor in a specific way. There can be different storage providers available in the network, each with its own way of manifesting the CID to the executor.
+In a peer-to-peer network like Bacalhau, storage providers play a crucial role in presenting an upstream storage source. There can be different storage providers available in the network, each with its own way of manifesting the CI to the executor.
 
-For instance, there can be an IPFS posix storage provider that presents the CID as a POSIX filesystem, or an IPFS library storage provider that streams the contents of the CID via a library call.
+For instance, there can be a posix storage provider that presents the CID as a POSIX filesystem, or a library storage provider that streams the contents of the CID (Content IDentifier) via a library call.
 
-On the other hand, there can be different Executor implementations, such as Docker or WASM, that are responsible for running the job. When a job is submitted to these executors with a volume of type ipfs, the Executor should select the appropriate Storage Provider to work with, depending on the implementation.
+On the other hand, there can be different executor implementations, such as Docker or WASM, that are responsible for running the job. When a job is submitted to these executors, the executor should select the appropriate storage provider to work with, depending on the implementation.
 
-For instance, the Docker Executor might use the IPFS posix storage provider to manifest the CID as a POSIX filesystem, while the WASM Executor might use the IPFS library storage provider to stream the contents of the CID via a library call.
+For instance, the Docker executor might use the posix storage provider to manifest the CID as a POSIX filesystem, while the WASM executor might use a library storage provider to stream the contents of the CID (Content IDentifier) via a library call.
 
-Therefore, the Storage providers and Executor implementations are loosely coupled, allowing the IPFS posix and library storage providers to be used across multiple executors, wherever it is deemed appropriate.
+Therefore, the storage providers and Executor implementations are loosely coupled, allowing the POSIX and library storage providers to be used across multiple executors, wherever it is deemed appropriate.
 
 ### Verifier
 
@@ -118,7 +114,7 @@ Jobs submitted via the Bacalhau CLI are forwarded to a Bacalhau network node at 
 
 When jobs are submitted to the requestor node, all compute nodes hear of this new job and can choose to `bid` on it. The job deal will have a `concurrency` setting, which refers to how many different nodes you may want to run this job. It will also have `confidence` and `min-bids` properties.  Confidence is how many verification proposals must agree for the job to be deemed successful. `Min-bids` is how many bids must have been made before we will choose to accept any.
 
-The job might also mention the use of `volumes` (for example some IPFS CIDs). The compute node can choose to bid on the job if the data for the volumes resides locally to the compute node, or it can choose to bid anyway. Bacalhau supports the use of external http or exec hooks to decide if a node wants to bid on a job. This means that a node operator can give granular rules about the jobs they are willing to run.
+The job might also mention the use of `volumes` (for example some CIDs). The compute node can choose to bid on the job if the data for the volumes resides locally to the compute node, or it can choose to bid anyway. Bacalhau supports the use of external http or exec hooks to decide if a node wants to bid on a job. This means that a node operator can give granular rules about the jobs they are willing to run.
 
 ![image](../../static/img/architecture/architecture-bid-on-job.jpeg)
 
@@ -134,7 +130,7 @@ As bids from compute nodes arrive back at the originating requester node, it can
 
 As accepted bids are received by compute nodes, they will `execute` the job using the executor for that job, and the storage providers that executor has mapped in.
 
-For example, a job could use the `docker` executor and `ipfs` storage volumes. This would result in a POSIX mount of the IPFS storage into a running container. Alternately, a job could use the `WASM` executor and “ipfs” storage volumes. This would result in a WASM style `syscall` to stream the storage bytes into the WASM runtime. Each executor will deal with storage in a different way, so even though each job mentions `ipfs` storage volumes, they would both end up with different implementations at runtime.
+For example, a job could use the `docker` executor, `WASM` executor or a library storage volumes. This would result in a POSIX mount of the storage into a running container or a WASM style `syscall` to stream the storage bytes into the WASM runtime. Each executor will deal with storage in a different way, so even though each job mentions the storage volumes, they would both end up with different implementations at runtime.
 
 
 ![image](../../static/img/architecture/architecture-execute-job.jpeg)
@@ -169,12 +165,12 @@ The default publisher is `Estuary` (if no API key is provided this falls back to
 
 ### Networking
 
-It is possible to run Bacalhau completely disconnected from the main Bacalhau network, so that you can run private workloads without risking running on public nodes or inadvertantly sharing your data outside of your organization. The isolated network will not connect to the public Bacalhau network nor connect to the public IPFS network. To do this, we will run IPFS in-process rather than externally. Read more on [networking](https://docs.bacalhau.org/next-steps/private-cluster)
+It is possible to run Bacalhau completely disconnected from the main Bacalhau network, so that you can run private workloads without risking running on public nodes or inadvertantly sharing your data outside of your organization. The isolated network will not connect to the public Bacalhau network nor connect to a public network. Read more on [networking](https://docs.bacalhau.org/next-steps/private-cluster)
 
 
 ### Input / Output Volumes
 
-A job includes the concept of input and output volumes, and the Docker executor implements support for these. This means you can specify ipfs CIDs, URLs, as input paths and also write results to an output volume. This can be seen by the following example:
+A job includes the concept of input and output volumes, and the Docker executor implements support for these. This means you can specify your CIDs, URLs, as input paths and also write results to an output volume. This can be seen by the following example:
 
 ```
 cid=$(ipfs add file.txt)
@@ -189,4 +185,4 @@ The above example demonstrates an input volume flag `-v $cid:/file.txt`, which m
 
 Output volumes are mounted to the Docker container at the location specified. In the example above, any content written to `/output_folder` will be made available within the apples folder in the job results CID.
 
-Once the job has run on the executor, the contents of `stdout` and `stderr` will be added to any named output volumes the job has used (in this case apples), and all those entities will be packaged into the results folder which is then published to IPFS via the verifier.
+Once the job has run on the executor, the contents of `stdout` and `stderr` will be added to any named output volumes the job has used (in this case apples), and all those entities will be packaged into the results folder which is then published to your storage location via the verifier.
