@@ -41,6 +41,11 @@ The goal of the Bacalhau project is to make it easy to perform distributed, dece
 The options are not limited to the above mentioned. You can mount your data anywhere on your machine, and Bacalhau will be able to run against that data
 :::
 
+## Use Cases
+
+Bacalhau shines when it comes to data-intensive applications like _data engineering_, _model training_, _model inference_, _model training_, _model dynanmics_, etc.
+Here are some examples we have covered 
+
 ## Roadmap
 
 Initially, the Bacalhau project will focus on serving data processing and analytics use cases. Over time, Bacalhau will expand to other Compute workloads. You can find Bacalhau's [Public Roadmap here](https://starmap.site/roadmap/github.com/bacalhau-project/bacalhau/issues/1151)!
