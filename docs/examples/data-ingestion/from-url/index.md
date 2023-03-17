@@ -2,21 +2,19 @@
 sidebar_label: "From A URL"
 sidebar_position: 1
 ---
-# Copy Data from a URL to Filecoin
+# Copy Data from a URL to a Public Storage
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/data-ingestion/from-url/index.ipynb)
 [![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=data-ingestion/from-url/index.ipynb)
 
 
-In this example tutorial, we will show how to use Bacalhau to copy data from a URL to Filecoin and expose on IPFS for use with Bacalhau. IPFS is a set of protocols that allow data to be discovered and accessed in a decentralised way. Data is identified by its content identifier (CID) and can be accessed by anyone who knows the CID.
-
-The goal of the Bacalhau project is to make it easy to perform distributed, decentralised computation next to where the data resides. So a key step in this process is making your data accessible.
-
-
+In this example tutorial, we will show how to use Bacalhau to copy data from a URL to public storage for use with Bacalhau. 
 
 ## Prerequisites
 
-To get started, you need to install the Bacalhau client, see more information [here](https://docs.bacalhau.org/getting-started/installation)
+To get started, you need to:
+- Install the Bacalhau client, see more information [here](https://docs.bacalhau.org/getting-started/installation).
+- Any public URL
 
 ## Running a Bacalhau Job 
 
@@ -34,7 +32,7 @@ bacalhau docker run \
 
 The job has been submitted and Bacalhau has printed out the related job id. We store that in an environment variable so that we can reuse it later on.
 
-The `bacalhau docker run` command takes advantage of the `--input-urls` parameter. This will download a file from a public URL and place it in the `/inputs` directory of the container (by default). Then we will use a helper container to move that data to the `/outputs` directory so that it is published to Filecoin via Estuary.
+The `bacalhau docker run` command takes advantage of the `--input-urls` parameter. This will download a file from a public URL and place it in the `/inputs` directory of the container (by default). Then we will use a helper container to move that data to the `/outputs` directory so that it is published to your public storage via Estuary. In our case we are using Filecoin as our public storage.
 
 :::tip
 You can find out more about the [helper container in the examples repository](https://github.com/bacalhau-project/examples/tree/main/tools/upload).
@@ -55,12 +53,12 @@ When it says `Published` or `Completed`, that means the job is done, and we can 
 - **Job information**: You can find out more information about your job by using `bacalhau describe`.
 
 
-All Bacalhau jobs are published to a Filecoin contract via Estuary. All data that is located in the `/outputs` directory is published.
+All Bacalhau jobs are published via Estuary. All data that is located in the `/outputs` directory is published.
 
 
 ### Get the CID From the Completed Job
 
-The job will upload the CID to the Filecoin network via Estuary. Let's get the CID from the output.
+The job will upload the CID to your public storage via Estuary. Let's get the CID from the output.
 
 
 ```bash

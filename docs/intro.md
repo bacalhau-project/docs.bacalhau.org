@@ -11,21 +11,53 @@ hide_title: true
 
 ## Overview
 
-Bacalhau is a platform for fast, cost efficient, and secure computation by running jobs where the data is generated and stored. With Bacalhau, you can streamline your existing workflows without the need of extensive rewriting by running  arbitrary Docker containers and WebAssembly (wasm) images as tasks. This architecture is also referred to as **Compute Over Data** (or CoD). _[Bacalhau](https://translate.google.com/?sl=pt&tl=en&text=bacalhau&op=translate) was coined from the Portuguese word for salted Cod fish_.  **At the moment we are free volunteer network, enjoy;)**
+Bacalhau is a platform for fast, cost efficient, and secure computation by running jobs where the data is generated and stored. With Bacalhau, you can streamline your existing workflows without the need of extensive rewriting by running  arbitrary Docker containers and WebAssembly (wasm) images as tasks. This architecture is also referred to as **Compute Over Data** (or CoD). _[Bacalhau](https://translate.google.com/?sl=pt&tl=en&text=bacalhau&op=translate) was coined from the Portuguese word for salted Cod fish_. 
+
+Bacalhau seeks to transform data processing for large-scale datasets to improve cost and efficiency, and to open up data processing to larger audiences. Our goals with the project center around creating an open, collaborative Compute ecosystem. We believe that the same benefits of open collaboration on datasets should be available to generic storage compute tasks.  **At the moment we are free volunteer network, enjoy;)**
 
 ## Why Bacalhau?
 
-⚡️ **Process jobs fast**: Jobs in Bacalhau are processed where the data was created and all jobs are parallel by default.
+⚡️ Jobs in Bacalhau are processed where the data was created and all **jobs are parallel by default**.
 
-💸 **Low cost:** Reduce (or eliminate) ingress/egress costs since jobs are processed closer to the source. Take advantage of as well idle computation capabilities at the edge.
+🔐 You can run [private workloads](https://docs.bacalhau.org/next-steps/private-cluster) to **reduce the chance of leaking private information** or inadvertently sharing your data outside of your organization.
 
-🔐 **Secure**: Data scrubbing and security can before migration to reduce the chance of leaking private information, and with a far more granular, code-based permission model.
+💸 Bacalhau **eliminates ingress/egress costs** since jobs are processed closer to the source. 
 
-📚 **Large-scale data**: Bacalhau operates on a network of open compute resources made available to serve any data processing workload. With Bacalhau you can batch process petabytes (quadrillion bytes) of data.
+🤓  You can [mount your data anywhere](https://docs.bacalhau.org/#how-it-works) on your machine, and Bacalhau will be able to run against that data 
 
-## Our Vision
+💥 You can integrate with Bacalhau and run a job on a [database](https://docs.bacalhau.org/examples/data-engineering/DuckDB/)
 
-Bacalhau seeks to transform data processing for large-scale datasets to improve cost and efficiency, and to open up data processing to larger audiences. Our goals with the project center around creating an open, collaborative Compute ecosystem. We created Bacalhau to bring useful Compute resources to data stored in Filecoin. We believe that the same benefits of open collaboration on datasets should be available to generic storage compute tasks.
+📚 Bacalhau operates on a network of **open compute resources** made available to serve any data processing workload. With Bacalhau you can batch process petabytes (quadrillion bytes) of data.
+
+
+## Fast Track ⏱️
+
+Understand Bacalhau in 1 minute 
+
+Go to the folder directory that you want to store your job results
+
+Install the bacalhau client
+
+```bash
+curl -sL https://get.bacalhau.org/install.sh | bash
+```
+
+Submit a "Hello World" job
+
+```bash
+bacalhau docker run ubuntu echo Hello World
+```
+
+Download your result
+
+```bash
+bacalhau get 63d08ff0..... # make sure to use the right job id from the docker run command
+```
+
+:::info
+For a more detailed tutorial, check out our [Getting Started tutorial](https://docs.bacalhau.org/getting-started/installation).
+:::
+
 
 ## How it works
 
@@ -39,7 +71,7 @@ The goal of the Bacalhau project is to make it easy to perform distributed, dece
 The options are not limited to the above mentioned. You can mount your data anywhere on your machine, and Bacalhau will be able to run against that data
 :::
 
-## Use Cases
+### Use Cases
 
 Bacalhau shines when it comes to data-intensive applications like [data engineering](https://docs.bacalhau.org/examples/data-engineering/), [model training](https://docs.bacalhau.org/examples/model-training/), [model inference](https://docs.bacalhau.org/examples/model-inference/), [model training](https://docs.bacalhau.org/examples/model-training/), [model dynanmics](https://docs.bacalhau.org/examples/molecular-dynamics/), etc.
 
