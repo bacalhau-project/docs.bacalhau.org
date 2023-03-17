@@ -775,7 +775,7 @@ Watch the logs:
 journalctl -u prysm -f
 ```
 
-Prysm will need to finish synchronising before geth will start syncronising.
+Prysm will need to finish synchronising before geth will start synchronising.
 
 In Prysm you will see lots of log messages saying: `Synced new block`, and in Geth you will see: `Syncing beacon headers    downloaded=11,920,384 left=4,054,753  eta=2m25.903s`. This tells you how long it will take to sync the beacons. Once that's done, get will start synchronising the blocks.
 
