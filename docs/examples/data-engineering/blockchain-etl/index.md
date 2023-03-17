@@ -89,7 +89,7 @@ pip install pandas
 
 
 ```python
-# Use pandas to read in transation data and clean up the columns
+# Use pandas to read in transaction data and clean up the columns
 import pandas as pd
 import glob
 
