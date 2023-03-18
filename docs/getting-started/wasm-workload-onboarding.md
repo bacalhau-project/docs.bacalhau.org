@@ -34,23 +34,16 @@ You will need to compile your program to WebAssembly that expects WASI. Check th
 
 For example, Rust users can specify the `wasm32-wasi` target to `rustup` and `cargo` to get programs compiled for WASI WebAssembly. See [the Rust example](../examples/workload-onboarding/rust-wasm/index.md) for more information on this.
 
-### Step 3: Upload the input data to IPFS (optional)
+### Step 3: Upload the input data
 
-We recommend uploading your data to IPFS for persistent storage, because:
+Data is identified by its content identifier (CID) and can be accessed by anyone who knows the CID. You can use either of these methods to upload your data:
 
-* Bacalhau is designed to perform the computation next to the data
-* Distributing data across the solar system with IPFS distributes the Bacalhau computation
-* Distributing computation improves performance by scaling, and improves resiliency via redundancy
-* Using IPFS CIDs as inputs enables repeatable and cacheable execution
+- [Copy data from a URL to public storage](https://docs.bacalhau.org/examples/data-ingestion/from-url/)
+- [Pin Data to public storage](https://docs.bacalhau.org/examples/data-ingestion/pinning/)
+- [Copy Data from S3 Bucket to public storage](https://docs.bacalhau.org/examples/data-ingestion/s3-to-ipfs/)
 
-:::tip
-The following guides explain how to store data on the IPFS network.
-
-- Leverage an IPFS “pinning service” such as:
-  - [Web3.Storage](https://web3.storage/account/)
-  - [Estuary](https://estuary.tech/sign-in)
-  - [Manually pin your files to IPFS](https://docs.ipfs.io/how-to/pin-files/) with your own IPFS server.
-- If uploading a folder of input files, consider [uploading with this script](https://web3.storage/docs/#create-the-upload-script). However, please note that any content uploaded to Web3.storage is [also wrapped in a parent directory](https://web3.storage/docs/how-tos/store/#directory-wrapping). You will need to take care to reference the inner directory CID in your bacalhau command.
+:::info
+You can mount your data anywhere on your machine, and Bacalhau will be able to run against that data
 :::
 
 ### Step 4: Run your program
@@ -60,10 +53,11 @@ You can run a WebAssembly program on Bacalhau using the `bacalhau wasm run` comm
 To run a locally compiled WASM program, specify it as an argument. For example, running `bacalhau wasm run main.wasm` will upload and execute the `main.wasm` program.
 
 :::caution
-The program you specify will be uploaded to a Bacalhau IPFS node and will be publicly available.
+The program you specify will be uploaded to a Bacalhau storage node and will be publicly available.
 :::
 
-Alternatively, you can specify a WASM program already on IPFS by using a CID, like `bacalhau wasm run Qmajb9T3jBdMSp7xh2JruNrqg3hniCnM6EUVsBocARPJRQ`.
+Alternatively, you can specify a WASM program by 
+using a CID, like `bacalhau wasm run Qmajb9T3jBdMSp7xh2JruNrqg3hniCnM6EUVsBocARPJRQ`.
 
 Make sure to specify any input data using the `--input-volumes` or `--input-urls` flags.
 
@@ -106,4 +100,5 @@ See [the Rust example](../examples/workload-onboarding/rust-wasm/index.md) for a
 
 ## Support
 
-Please reach out to the [Bacalhau team via Slack](https://filecoinproject.slack.com/archives/C02RLM3JHUY) if you would like help pinning data to IPFS for your job or for any issues you encounter.
+
+If have questions or need support or guidance, please reach out to the [Bacalhau team via Slack](https://filecoinproject.slack.com/archives/C02RLM3JHUY)(#bacalhau channel)
