@@ -70,11 +70,13 @@ The command `export BACALHAU_IPFS_SWARM_ADDRESSES=...` sends jobs into the clust
 Instructions for connecting to the public IPFS network via private Bacalhau cluster:
 
 On all nodes, start ipfs:
+
 ```
 export IPFS_CONNECT=$(ipfs id |grep tcp |grep 127.0.0.1 |sed s/4001/5001/|sed s/,//g |sed 's/"//g')
 ```
 
 On the **first node** execute the following:
+
 ```
 export LOG_LEVEL=debug
 bacalhau serve --peer none --ipfs-connect $IPFS_CONNECT --node-type requester,compute
@@ -84,6 +86,7 @@ Monitor the output log for:
 
 
 On **all other nodes** execute the following:
+
 ```
 export PEER_ADDR=/ip4/<public-ip>/tcp/1235/p2p/<above>
 export PEER_ADDR=/ip4/192.18.129.124/tcp/1235/p2p/QmWXAaSHbbP7mU4GrqDhkgUkX9EscfAHPMCHbrBSUi4A35
@@ -91,6 +94,7 @@ bacalhau serve --peer $PEER_ADDR --ipfs-connect $IPFS_CONNECT --node-type comput
 ```
 
 Then from any client set the following before invoking your Bacalhau job:
+
 ```
 export BACALHAU_API_HOST=address-of-first-node
 ```
