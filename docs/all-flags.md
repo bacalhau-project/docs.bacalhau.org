@@ -205,6 +205,7 @@ Flags:
       --dry-run                        Do not submit the job, but instead print out what will be submitted
       --engine string                  What executor engine to use to run the job (default "docker")
   -e, --env strings                    The environment variables to supply to the job (e.g. --env FOO=bar --env BAR=baz)
+  -id, --id-only                       Output the job ID. Used to pipe the output of the command into another command.
   -g, --gettimeout int                 Timeout for getting the results of a job in --wait (default 10)
       --gpu string                     Job GPU requirement (e.g. 1, 2, 8).
   -h, --help                           help for run
@@ -221,9 +222,6 @@ Flags:
       --output-dir string              Directory to write the output to. (default ".")
   -o, --output-volumes strings         name:path of the output data volumes. 'outputs:/outputs' is always added.
       --publisher string               What publisher engine to use to publish the job results (default "estuary")
-      --sharding-base-path string      Where the sharding glob pattern starts from - useful when you have multiple volumes. (default "/inputs")
-      --sharding-batch-size int        Place results of the sharding glob pattern into groups of this size. (default 1)
-      --sharding-glob-pattern string   Use this pattern to match files to be sharded.
       --skip-syntax-checking           Skip having 'shellchecker' verify syntax of the command
       --verifier string                What verification engine to use to run the job (default "noop")
       --wait                           Wait for the job to finish.
