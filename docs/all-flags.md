@@ -324,7 +324,7 @@ Flags:
 ## Serve
 
 ```
-Start the bacalhau campute node.
+Start the bacalhau compute node.
 
 Usage:
   bacalhau serve [flags]
