@@ -46,6 +46,6 @@ These are external programs that are passed the following data structure, so tha
 }
 ```
 
-The `exec` probe is a script to run that will be given the job data on `stdin`, and must exit with status code 0 if the job should be run.
+The `exec` probe will run a script that will be given the job data on `stdin`. It must exit with status code 0 if the job should be run.
 
-The `http` probe is a URL to POST the job data to, and must return a 200 status code if the job should be run.
+The `http` probe will POST the job data to a URL. It must return a 200 status code if the job should be run.
