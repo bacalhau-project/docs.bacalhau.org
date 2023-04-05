@@ -1,17 +1,21 @@
 ---
 sidebar_label: "csv-to-avro-or-parquet"
-sidebar_position: 10
+sidebar_position: 2
 ---
 # Convert CSV To Parquet Or Avro
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/data-engineering/csv-to-avro-or-parquet/index.ipynb)
 [![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=data-engineering/csv-to-avro-or-parquet/index.ipynb)
+[![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 ## Introduction
 
 Converting from csv to parquet or avro reduces the size of file and allows for faster read and write speeds. With Bacalhau, you can convert your csv files stored on ipfs or on the web without the need to download files and install dependencies locally.
 
 In this example tutorial we will convert a csv file from a url to parquet format and save the converted parquet file to IPFS
+
+## TD;LR
+Converting CSV stored in public storage with Bacalhau
 
 
 ## Prerequisites

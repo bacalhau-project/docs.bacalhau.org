@@ -1,11 +1,12 @@
 ---
 sidebar_label: "CUDA"
-sidebar_position: 10
+sidebar_position: 2
 ---
 # Run CUDA programs on Bacalhau
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/workload-onboarding/CUDA/index.ipynb)
 [![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=workload-onboarding/CUDA/index.ipynb)
+[![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 ### What is CUDA
 
@@ -18,6 +19,8 @@ Architecturally, the CPU is composed of just a few cores with lots of cache memo
 
 Computations like matrix multiplication could be done much faster on GPU than on CPU
 
+## TD;LR
+Running CUDA programs on Bacalhau
 
 ## Prerequisite
 
