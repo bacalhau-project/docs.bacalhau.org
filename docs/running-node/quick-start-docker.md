@@ -71,10 +71,10 @@ Notes about the command:
 * It mounts the `/tmp` directory
 * It exposes the Bacalhau API ports to the world
 * The container version should match that of the current release
-* The IPFS connect string points to the RPC port of the IPFS node in Docker. Because Bacalhau is running in the same network, it can use DNS to find the IPFS container IP. If you're running your own node, replace it.
+* The IPFS connect string points to the RPC port of the IPFS node in Docker. Because Bacalhau is running in the same network, it can use DNS to find the IPFS container IP. If you're running your own node, replace it
 * The `--node-type` flag is set to `compute` because we only want to run a compute node
 * The `--labels` flag is used to set a human-readable label for the node, and so we can run jobs on our machine later
-* We specify the `--peer env` flag, so it defaults to using the public bootstrap nodes (see `BACALHAU_ENVIRONMENT=production`)
+* We specify the `--peer env` flag so that it uses the environment specified by `BACALHAU_ENVIRONMENT=production` and therefore connects to the public network peers
 
 ```bash
 sudo docker run \
@@ -199,7 +199,7 @@ Bacalhau consists of two parts: a "requester" that is responsible for operating 
 Notes about the command:
 
 * It runs the Bacalhau container in the specified Docker network
-* It uses the `root` user, which is the default system user that has access to the Docker socket on a mac. You may need to change this to suit your environment.
+* It uses the `root` user, which is the default system user that has access to the Docker socket on a mac. You may need to change this to suit your environment
 * It mounts the Docker Socket
 * It mounts the `/tmp` directory
 * It exposes the Bacalhau API ports to the local host only, to prevent accidentally exposing the API to the public internet

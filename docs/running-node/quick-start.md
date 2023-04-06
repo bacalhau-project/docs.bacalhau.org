@@ -195,10 +195,12 @@ If you want to run Bacalhau  as a [systemd](https://en.wikipedia.org/wiki/System
 Now we can run our bacalhau node:
 
 ```bash
-LOG_LEVEL=debug BACALHAU_ENVIRONMENT=production bacalhau serve \
-  --ipfs-connect $IPFS_CONNECT \
-  --private-internal-ipfs=false \
-  --peer env
+LOG_LEVEL=debug BACALHAU_ENVIRONMENT=production \
+  bacalhau serve \
+    --node-type compute \
+    --ipfs-connect $IPFS_CONNECT \
+    --private-internal-ipfs=false \
+    --peer env
 ```
 
 Alternatively, you can run the following Docker command:
@@ -208,6 +210,7 @@ docker run -it --rm \
   -e LOG_LEVEL=debug \
   -e BACALHAU_ENVIRONMENT=production \
   ghcr.io/bacalhau-project/bacalhau:latest serve \
+    --node-type compute \
     --ipfs-connect $IPFS_CONNECT \
     --private-internal-ipfs=false \
     --peer env
