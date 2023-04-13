@@ -1,15 +1,19 @@
 ---
 sidebar_label: "EasyOCR"
-sidebar_position: 10
+sidebar_position: 1
 ---
 # EasyOCR (Optical Character Recognition) on bacalhau
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/model-inference/EasyOCR/index.ipynb)
 [![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=model-inference/EasyOCR/index.ipynb)
+[![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 ## Introduction
 
 In this example tutorial, we use Bacalhau and Easy OCR to digitize paper records or for recognizing characters or extract text data from images stored on IPFS/Filecoin or on the web. [EasyOCR](https://www.jaided.ai/) is a ready-to-use OCR with 80+ supported languages and all popular writing scripts including Latin, Chinese, Arabic, Devanagari, Cyrillic and etc. With easy OCR you use the pretrained models or use your own fine tuned model.
+
+## TD:LR
+Using Bacalhau and Easy OCR to extract text data from images stored on the web.
 
 ## Prerequisite
 

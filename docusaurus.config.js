@@ -60,11 +60,12 @@ const config = {
           // { to: "/blog", label: "Blog", position: "left" },
           {
             href: "https://github.com/bacalhau-project/bacalhau",
-            label: "GitHub",
             position: "right",
+            className: "header-github-link",
           },
         ],
       },
+      metadata: [{name: 'keywords', content: 'Bacalhau Docs contains ifnormation for fast, cost efficient, and secure computation by explaining how to run jobs where the data is generated and stored.'}],
       blog: false,
       algolia :{
         appId: 'VLYBZRSZSU',

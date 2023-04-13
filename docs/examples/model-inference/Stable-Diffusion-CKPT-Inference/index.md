@@ -1,17 +1,21 @@
 ---
-sidebar_label: "Stable Diffusion -CKPT"
-sidebar_position: 3
+sidebar_label: Stable Diffusion -CKPT
+sidebar_position: 4
 ---
 # Stable Diffusion Checkpoint Inference
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/model-inference/Stable-Diffusion-CKPT-Inference/index.ipynb)
 [![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=model-inference/Stable-Diffusion-CKPT-Inference/index.ipynb)
+[![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 ## Introduction 
 
 [Stable Diffusion](https://github.com/CompVis/stable-diffusion) is a state of the art text-to-image model that generates images from text and was developed as an open source alternative to [DALL·E 2](https://openai.com/dall-e-2/). It is based on a [Diffusion Probabilistic Model](https://arxiv.org/abs/2102.09672) and uses a [Transformer](https://arxiv.org/abs/1706.03762) to generate images from text.
 
 This example demonstrates how to use stable diffusion using a finetuned model and run inference on it. The first section describes the development of the code and the container - it is optional as users don't need to build their own containers to use their own custom model. The second section demonstrates how to convert your model weights to ckpt. The third section demonstrates how to run the job using Bacalhau. 
+
+## TD;LR
+Running fine tuned stable diffusion model converted to ckpt on Bacalhau.
 
 ## Prerequisite
 
