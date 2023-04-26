@@ -194,50 +194,72 @@ Examples:
 Runs a job using the Docker executor on the node.
 
 Usage:
-  bacalhau docker run [flags]
+  bacalhau docker run [flags] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
+
+Examples:
+  # Run a Docker job, using the image 'dpokidov/imagemagick', with a CID mounted at /input_images and an output volume mounted at /outputs in the container. All flags after the '--' are passed directly into the container for execution.
+  bacalhau docker run \
+  -i src=ipfs://QmeZRGhe4PmjctYVSVHuEiA9oSXnqmYa4kQubSHgWbjv72,dst=/input_images \
+  dpokidov/imagemagick:7.1.0-47-ubuntu \
+  -- magick mogrify -resize 100x100 -quality 100 -path /outputs '/input_images/*.jpg'
+
+  # Dry Run: check the job specification before submitting it to the bacalhau network
+  bacalhau docker run --dry-run ubuntu echo hello
+
+  # Save the job specification to a YAML file
+  bacalhau docker run --dry-run ubuntu echo hello > job.yaml
+
+  # Specify an image tag (default is 'latest' - using a specific tag other than 'latest' is recommended for reproducibility)
+  bacalhau docker run ubuntu:bionic echo hello
+
+  # Specify an image digest
+  bacalhau docker run ubuntu@sha256:35b4f89ec2ee42e7e12db3d107fe6a487137650a2af379bbd49165a1494246ea echo hello
 
 Flags:
-  -c, --concurrency int                How many nodes should run the job (default 1)
-      --confidence int                 The minimum number of nodes that must agree on a verification result
-      --cpu string                     Job CPU cores (e.g. 500m, 2, 8).
-      --download                       Download the results and print stdout once the job has completed (implies --wait).
-      --download-timeout-secs int      Timeout duration for IPFS downloads. (default 10)
-      --dry-run                        Do not submit the job, but instead print out what will be submitted
-      --engine string                  What executor engine to use to run the job (default "docker")
-  -e, --env strings                    The environment variables to supply to the job (e.g. --env FOO=bar --env BAR=baz)
-  -id, --id-only                       Output the job ID. Used to pipe the output of the command into another command.
-  -g, --gettimeout int                 Timeout for getting the results of a job in --wait (default 10)
-      --gpu string                     Job GPU requirement (e.g. 1, 2, 8).
-  -h, --help                           help for run
-  -u, --input-urls strings             URL:path of the input data volumes downloaded from a URL source. Mounts data at 'path' (e.g. '-u http://foo.com/bar.tar.gz:/app/bar.tar.gz'
-                                       		mounts 'http://foo.com/bar.tar.gz' at '/app/bar.tar.gz'). URL can specify a port number (e.g. 'https://foo.com:443/bar.tar.gz:/app/bar.tar.gz')
-                                       		and supports HTTP and HTTPS.
-  -v, --input-volumes strings          CID:path of the input data volumes, if you need to set the path of the mounted data.
-  -i, --inputs strings                 CIDs to use on the job. Mounts them at '/inputs' in the execution.
-      --ipfs-swarm-addrs string        Comma-separated list of IPFS nodes to connect to.
-  -l, --labels strings                 List of labels for the job. Enter multiple in the format '-l a -l 2'. All characters not matching /a-zA-Z0-9_:|-/ and all emojis will be stripped.
-      --local                          Run the job locally. Docker is required
-      --memory string                  Job Memory requirement (e.g. 500Mb, 2Gb, 8Gb).
-      --min-bids int                   Minimum number of bids that must be received before concurrency-many bids will be accepted (at random)
-      --output-dir string              Directory to write the output to. (default ".")
-  -o, --output-volumes strings         name:path of the output data volumes. 'outputs:/outputs' is always added.
-      --publisher string               What publisher engine to use to publish the job results (default "estuary")
-      --skip-syntax-checking           Skip having 'shellchecker' verify syntax of the command
-      --verifier string                What verification engine to use to run the job (default "noop")
-      --wait                           Wait for the job to finish.
-      --wait-timeout-secs int          When using --wait, how many seconds to wait for the job to complete before giving up. (default 600)
-  -w, --workdir string                 Working directory inside the container. Overrides the working directory shipped with the image (e.g. via WORKDIR in Dockerfile).
-```
+  -c, --concurrency int                  How many nodes should run the job (default 1)
+      --confidence int                   The minimum number of nodes that must agree on a verification result
+      --cpu string                       Job CPU cores (e.g. 500m, 2, 8).
+      --domain stringArray               Domain(s) that the job needs to access (for HTTP networking)
+      --download                         Should we download the results once the job is complete?
+      --download-timeout-secs duration   Timeout duration for IPFS downloads. (default 5m0s)
+      --dry-run                          Do not submit the job, but instead print out what will be submitted
+      --engine string                    What executor engine to use to run the job (default "docker")
+  -e, --env strings                      The environment variables to supply to the job (e.g. --env FOO=bar --env BAR=baz)
+      --filplus                          Mark the job as a candidate for moderation for FIL+ rewards.
+  -f, --follow                           When specified will follow the output from the job as it runs
+  -g, --gettimeout int                   Timeout for getting the results of a job in --wait (default 10)
+      --gpu string                       Job GPU requirement (e.g. 1, 2, 8).
+  -h, --help                             help for run
+      --id-only                          Print out only the Job ID on successful submission.
+  -i, --input storage                    Mount URIs as inputs to the job. Can be specified multiple times. Format: src=URI,dst=PATH[,opt=key=value]
+                                         Examples:
+                                         # Mount IPFS CID to /inputs directory
+                                         -i ipfs://QmeZRGhe4PmjctYVSVHuEiA9oSXnqmYa4kQubSHgWbjv72
 
-#### Example
+                                         # Mount S3 object to a specific path
+                                         -i s3://bucket/key,dst=/my/input/path
 
-```
-# Run a Docker job, using the image 'dpokidov/imagemagick', with a CID mounted at /input_images and an output volume mounted at /outputs in the container.
-# All flags after the '--' are passed directly into the container for execution.
-bacalhau docker run \
--v QmeZRGhe4PmjctYVSVHuEiA9oSXnqmYa4kQubSHgWbjv72:/input_images \
-dpokidov/imagemagick:7.1.0-47-ubuntu \
--- magick mogrify -resize 100x100 -quality 100 -path /outputs '/input_images/*.jpg'
+                                         # Mount S3 object with specific endpoint and region
+                                         -i src=s3://bucket/key,dst=/my/input/path,opt=endpoint=https://s3.example.com,opt=region=us-east-1
+
+      --ipfs-swarm-addrs string          Comma-separated list of IPFS nodes to connect to. (default "/ip4/35.245.115.191/tcp/1235/p2p/QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL,/ip4/35.245.61.251/tcp/1235/p2p/QmXaXu9N5GNetatsvwnTfQqNtSeKAD6uCmarbh3LMRYAcF,/ip4/35.245.251.239/tcp/1235/p2p/QmYgxZiySj3MRkwLSL4X2MF5F9f2PMhAE3LV49XkfNL1o3")
+  -l, --labels strings                   List of labels for the job. Enter multiple in the format '-l a -l 2'. All characters not matching /a-zA-Z0-9_:|-/ and all emojis will be stripped.
+      --local                            Run the job locally. Docker is required
+      --memory string                    Job Memory requirement (e.g. 500Mb, 2Gb, 8Gb).
+      --min-bids int                     Minimum number of bids that must be received before concurrency-many bids will be accepted (at random)
+      --network network-type             Networking capability required by the job (default None)
+      --node-details                     Print out details of all nodes (overridden by --id-only).
+      --output-dir string                Directory to write the output to.
+  -o, --output-volumes strings           name:path of the output data volumes. 'outputs:/outputs' is always added.
+  -p, --publisher publisher              Where to publish the result of the job (default Estuary)
+      --raw                              Download raw result CIDs instead of merging multiple CIDs into a single result
+  -s, --selector string                  Selector (label query) to filter nodes on which this job can be executed, supports '=', '==', and '!='.(e.g. -s key1=value1,key2=value2). Matching objects must satisfy all of the specified label constraints.
+      --skip-syntax-checking             Skip having 'shellchecker' verify syntax of the command
+      --timeout float                    Job execution timeout in seconds (e.g. 300 for 5 minutes and 0.1 for 100ms) (default 1800)
+      --verifier string                  What verification engine to use to run the job (default "noop")
+      --wait                             Wait for the job to finish. (default true)
+      --wait-timeout-secs int            When using --wait, how many seconds to wait for the job to complete before giving up. (default 600)
+  -w, --workdir string                   Working directory inside the container. Overrides the working directory shipped with the image (e.g. via WORKDIR in Dockerfile).
 ```
 
 ## Get
@@ -304,20 +326,46 @@ Runs a job by compiling language file to WASM on the node.
 Usage:
   bacalhau run python [flags]
 
+Examples:
+  # Run a simple "Hello, World" script within the current directory
+  bacalhau run python -- hello-world.py
+
 Flags:
-  -c, --command string           Program passed in as string (like python)
-      --concurrency int          How many nodes should run the job (default 1)
-      --confidence int           The minimum number of nodes that must agree on a verification result
-      --context-path string      Path to context (e.g. python code) to send to server (via public IPFS network) for execution (max 10MiB). Set to empty string to disable (default ".")
-      --deterministic            Enforce determinism: run job in a single-threaded wasm runtime with no sources of entropy. NB: this will make the python runtime executein an environment where only some libraries are supported, see https://pyodide.org/en/stable/usage/packages-in-pyodide.html (default true)
-  -e, --env strings              The environment variables to supply to the job (e.g. --env FOO=bar --env BAR=baz)
-  -h, --help                     help for python
-  -v, --input-volumes strings    CID:path of the input data volumes
-  -i, --inputs strings           CIDs to use on the job. Mounts them at '/inputs' in the execution.
-  -l, --labels strings           List of labels for the job. Enter multiple in the format '-l a -l 2'. All characters not matching /a-zA-Z0-9_:|-/ and all emojis will be stripped.
-  -o, --output-volumes strings   name:path of the output data volumes
-  -r, --requirement string       Install from the given requirements file. (like pip)
-      --verifier string          What verification engine to use to run the job (default "ipfs")
+  -c, --command string                   Program passed in as string (like python)
+      --concurrency int                  How many nodes should run the job (default 1)
+      --confidence int                   The minimum number of nodes that must agree on a verification result
+      --context-path string              Path to context (e.g. python code) to send to server (via public IPFS network) for execution (max 10MiB). Set to empty string to disable (default ".")
+      --deterministic                    Enforce determinism: run job in a single-threaded wasm runtime with no sources of entropy. NB: this will make the python runtime executein an environment where only some libraries are supported, see https://pyodide.org/en/stable/usage/packages-in-pyodide.html (default true)
+      --download                         Should we download the results once the job is complete?
+      --download-timeout-secs duration   Timeout duration for IPFS downloads. (default 5m0s)
+  -e, --env strings                      The environment variables to supply to the job (e.g. --env FOO=bar --env BAR=baz)
+  -f, --follow                           When specified will follow the output from the job as it runs
+  -g, --gettimeout int                   Timeout for getting the results of a job in --wait (default 10)
+  -h, --help                             help for python
+      --id-only                          Print out only the Job ID on successful submission.
+  -i, --input storage                    Mount URIs as inputs to the job. Can be specified multiple times. Format: src=URI,dst=PATH[,opt=key=value]
+                                         Examples:
+                                         # Mount IPFS CID to /inputs directory
+                                         -i ipfs://QmeZRGhe4PmjctYVSVHuEiA9oSXnqmYa4kQubSHgWbjv72
+
+                                         # Mount S3 object to a specific path
+                                         -i s3://bucket/key,dst=/my/input/path
+
+                                         # Mount S3 object with specific endpoint and region
+                                         -i src=s3://bucket/key,dst=/my/input/path,opt=endpoint=https://s3.example.com,opt=region=us-east-1
+
+      --ipfs-swarm-addrs string          Comma-separated list of IPFS nodes to connect to. (default "/ip4/35.245.115.191/tcp/1235/p2p/QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL,/ip4/35.245.61.251/tcp/1235/p2p/QmXaXu9N5GNetatsvwnTfQqNtSeKAD6uCmarbh3LMRYAcF,/ip4/35.245.251.239/tcp/1235/p2p/QmYgxZiySj3MRkwLSL4X2MF5F9f2PMhAE3LV49XkfNL1o3")
+  -l, --labels strings                   List of labels for the job. Enter multiple in the format '-l a -l 2'. All characters not matching /a-zA-Z0-9_:|-/ and all emojis will be stripped.
+      --local                            Run the job locally. Docker is required
+      --min-bids int                     Minimum number of bids that must be received before concurrency-many bids will be accepted (at random)
+      --node-details                     Print out details of all nodes (overridden by --id-only).
+      --output-dir string                Directory to write the output to.
+  -o, --output-volumes strings           name:path of the output data volumes
+      --raw                              Download raw result CIDs instead of merging multiple CIDs into a single result
+  -r, --requirement string               Install from the given requirements file. (like pip)
+      --timeout float                    Job execution timeout in seconds (e.g. 300 for 5 minutes and 0.1 for 100ms) (default 1800)
+      --wait                             Wait for the job to finish. (default true)
+      --wait-timeout-secs int            When using --wait, how many seconds to wait for the job to complete before giving up. (default 600)
 ```
 
 
@@ -330,20 +378,20 @@ Usage:
   bacalhau serve [flags]
 
 Examples:
-  # Start a private bacalhau hybrid node that acts as both compute and requester
+  # Start a private bacalhau requester node
   bacalhau serve
   # or
+  bacalhau serve --node-type requester
+  
+  # Start a private bacalhau hybrid node that acts as both compute and requester
   bacalhau serve --node-type compute --node-type requester
   # or
   bacalhau serve --node-type compute,requester
   
-  # Start a private bacalhau requester node
-  bacalhau serve --node-type requester
-  
-  # Start a private bacalhau node with a persistent local Ipds node
+  # Start a private bacalhau node with a persistent local IPFS node
   BACALHAU_SERVE_IPFS_PATH=/data/ipfs bacalhau serve
   
-  # Start a (public!) bacalhau node
+  # Start a public bacalhau requester node
   bacalhau serve --peer env --private-internal-ipfs=false
 
 Flags:
@@ -370,7 +418,7 @@ Flags:
       --lotus-path-directory string                      Location of the Lotus Filecoin configuration directory.
       --lotus-storage-duration duration                  Duration to store data in Lotus Filecoin for.
       --lotus-upload-directory string                    Directory to use when uploading content to Lotus Filecoin.
-      --node-type strings                                Whether the node is a compute, requester or both. (default [requester,compute])
+      --node-type strings                                Whether the node is a compute, requester or both. (default [requester])
       --peer string                                      A comma-separated list of libp2p multiaddress to connect to. Use "none" to avoid connecting to any peer, "env" to connect to the default peer list of your active environment (see BACALHAU_ENVIRONMENT env var). (default "none")
       --private-internal-ipfs                            Whether the in-process IPFS node should auto-discover other nodes, including the public IPFS network - cannot be used with --ipfs-connect. Use "--private-internal-ipfs=false" to disable. To persist a local Ipfs node, set BACALHAU_SERVE_IPFS_PATH to a valid path. (default true)
       --swarm-port int                                   The port to listen on for swarm connections. (default 1235)
@@ -378,7 +426,7 @@ Flags:
 Global Flags:
       --api-host string         The host for the client and server to communicate on (via REST).
                                 Ignored if BACALHAU_API_HOST environment variable is set. (default "bootstrap.production.bacalhau.org")
-      --api-port int            The port for the client and server to communicate on (via REST).
+      --api-port uint16         The port for the client and server to communicate on (via REST).
                                 Ignored if BACALHAU_API_PORT environment variable is set. (default 1234)
       --log-mode logging-mode   Log format: 'default','station','json','combined','event' (default default)
 ```

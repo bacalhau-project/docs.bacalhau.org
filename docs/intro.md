@@ -17,7 +17,11 @@ Bacalhau seeks to transform data processing for large-scale datasets to improve 
 
 ## Why Bacalhau?
 
-⚡️ Jobs in Bacalhau are processed where the data was created and all **jobs are parallel by default**.
+⚡️ Bacalhau simplifies the process of managing compute jobs by providing a **unified platform** for managing jobs across different regions, clouds, and edge devices.
+
+🤝 Bacalhau provides **reliable and network-partition** resistant orchestration, ensuring that your jobs will complete even if there are network disruptions.
+
+🚨 Bacalhau provides a **complete and permanent audit log** of exactly what happened, so you can be confident that your jobs are being executed securely.
 
 🔐 You can run [private workloads](https://docs.bacalhau.org/next-steps/private-cluster) to **reduce the chance of leaking private information** or inadvertently sharing your data outside of your organization.
 
@@ -27,7 +31,7 @@ Bacalhau seeks to transform data processing for large-scale datasets to improve 
 
 💥 You can integrate with services running on nodes to run a jobs, such as on [DuckDB](https://docs.bacalhau.org/examples/data-engineering/DuckDB/).
 
-📚 Bacalhau operates on a network of **open compute resources** made available to serve any data processing workload. With Bacalhau you can batch process petabytes (quadrillion bytes) of data.
+📚 Bacalhau operates at scale over parallel jobs. You can batch process petabytes (quadrillion bytes) of data.
 
 🎆 You can auto-generate art using a [Stable Diffusion AI model](https://www.waterlily.ai/) trained on the chosen artist’s original works.
 

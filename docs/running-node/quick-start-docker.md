@@ -71,10 +71,10 @@ Notes about the command:
 * It mounts the `/tmp` directory
 * It exposes the Bacalhau API ports to the world
 * The container version should match that of the current release
-* The IPFS connect string points to the RPC port of the IPFS node in Docker. Because Bacalhau is running in the same network, it can use DNS to find the IPFS container IP. If you're running your own node, replace it.
+* The IPFS connect string points to the RPC port of the IPFS node in Docker. Because Bacalhau is running in the same network, it can use DNS to find the IPFS container IP. If you're running your own node, replace it
 * The `--node-type` flag is set to `compute` because we only want to run a compute node
 * The `--labels` flag is used to set a human-readable label for the node, and so we can run jobs on our machine later
-* We do not specify the `peer` flag, so it defaults to using the public bootstrap nodes
+* We specify the `--peer env` flag so that it uses the environment specified by `BACALHAU_ENVIRONMENT=production` and therefore connects to the public network peers
 
 ```bash
 sudo docker run \
@@ -88,7 +88,9 @@ sudo docker run \
     serve \
         --ipfs-connect /dns4/localhost/tcp/5001 \
         --node-type compute \
-        --labels "owner=docs-quick-start"
+        --labels "owner=docs-quick-start" \
+        --private-internal-ipfs=false \
+        --peer env
 ```
 
 There are several ways to ensure that the Bacalhau compute node is connected to the network.
@@ -131,7 +133,7 @@ You can also check that the node is connected by listing the current network pee
 Finally, submit a job with the label you specified when you ran the compute node. If this label is unique, there should be only one node with this label. The job should succeed. Run the following:
 
 ```bash
-bacalhau docker run --input-urls=http://example.org/index.html --selector owner=docs-quick-start ghcr.io/bacalhau-project/examples/upload:v1
+bacalhau docker run --input=http://example.org/index.html --selector owner=docs-quick-start ghcr.io/bacalhau-project/examples/upload:v1
 ```
 
 If instead your job fails with the following error, it means that the compute node is not connected to the network:
@@ -197,13 +199,12 @@ Bacalhau consists of two parts: a "requester" that is responsible for operating 
 Notes about the command:
 
 * It runs the Bacalhau container in the specified Docker network
-* It uses the `root` user, which is the default system user that has access to the Docker socket on a mac. You may need to change this to suit your environment.
+* It uses the `root` user, which is the default system user that has access to the Docker socket on a mac. You may need to change this to suit your environment
 * It mounts the Docker Socket
 * It mounts the `/tmp` directory
 * It exposes the Bacalhau API ports to the local host only, to prevent accidentally exposing the API to the public internet
 * The container version should match that of the Bacalhau installed on your system
 * The IPFS connect string points to the RPC port of the IPFS node. Because Bacalhau is running in the same network, it can use DNS to find the IPFS container IP.
-* The `--peer` flag is set to `none` because we don't want to bootstrap to the public network
 * The `--node-type` flag is set to `requester,compute` because we want to run both a requester and a compute node
 
 ```bash
@@ -216,7 +217,6 @@ docker run \
     ghcr.io/bacalhau-project/bacalhau:latest \
     serve \
         --ipfs-connect /dns4/ipfs_host/tcp/5001 \
-        --peer "none" \
         --node-type requester,compute
 ```
 
@@ -227,13 +227,13 @@ You can now [test that Bacalhau is working](#test-bacalhau).
 Now it's time to run a job. Recall that you exposed the Bacalhau API on the default ports to the local host only. So you'll need to use the `--api-host` flag to tell Bacalhau where to find the API. Everything else is a standard part of the Bacalhau CLI.
 
 ```bash
-bacalhau docker run --api-host=localhost --input-urls=http://example.org/index.html ghcr.io/bacalhau-project/examples/upload:v1
+bacalhau docker run --api-host=localhost --input=http://example.org/index.html ghcr.io/bacalhau-project/examples/upload:v1
 ```
 
 The job should succeed. Run it again but this time capture the job ID to make it easier to retrieve the results.
 
 ```bash
-export JOB_ID=$(bacalhau docker run --api-host=localhost --input-urls=http://example.org/index.html --wait --id-only ghcr.io/bacalhau-project/examples/upload:v1)
+export JOB_ID=$(bacalhau docker run --api-host=localhost --input=http://example.org/index.html --wait --id-only ghcr.io/bacalhau-project/examples/upload:v1)
 ```
 
 ### Retrieve the Results on the Private Network (Insecure)
@@ -407,3 +407,20 @@ bacalhau --api-host=localhost list
 ```
 
 It should return empty.
+
+### <a id="authenticate-with-dockerhub">Authenticate with docker hub</a>
+
+If you are retrieving and running images from [docker hub](https://hub.docker.com/) you
+may encounter issues with rate-limiting. Docker provide higher limits when authenticated, the size of the limit based on the type of your account.
+
+Should you wish to authenticate with docker hub when pulling images, you can do so
+by specifying credentials as environment variables wherever your compute node is running.
+
+|Environment variable|Description|
+|---|---|
+|DOCKER_USERNAME|The username with which you are registered at <https://hub.docker.com/>|
+|DOCKER_PASSWORD|A read-only access token, generated from the page at <https://hub.docker.com/settings/security> |
+
+:::info
+Currently this authentication is only available (and required) by the [docker hub](https://hub.docker.com/)
+:::
