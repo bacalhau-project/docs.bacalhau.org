@@ -7,6 +7,30 @@ sidebar_position: 1
 
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
+<style>
+  .hidden-radio {
+    position: absolute;
+    opacity: 0;
+  }
+</style>
+
+<form>
+  <label>
+    <input type="radio" class="hidden-radio" name="vote" value="option1" onclick="vote('option1')" /> 👍
+  </label>
+  <label>
+    <input type="radio" class="hidden-radio" name="vote" value="option2" onclick="vote('option2')" /> 👎
+  </label>
+</form>
+
+<script>
+  function vote(option) {
+    // Implement your voting logic here, such as sending the vote to your server
+    console.log("Voted for:", option);
+    alert("You voted for: " + option);
+  }
+</script>
+
 Mature blockchains are difficult to analyze because of their size. Ethereum-ETL is a tool that makes it easy to extract information from an Ethereum node, but it's not easy to get working in a batch manner. It takes approximately 1 week for an Ethereum node to download the entire chain (event more in my experience) and importing and exporting data from the Ethereum node is slow.
 
 For this example, we ran an Ethereum node for a week and allowed it to synchronise. We then ran ethereum-etl to extract the information and pinned it on Filecoin. This means that we can both now access the data without having to run another ethereum node.
