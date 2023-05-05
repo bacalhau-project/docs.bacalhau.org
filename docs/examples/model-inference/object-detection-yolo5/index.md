@@ -4,8 +4,6 @@ sidebar_position: 2
 ---
 # Object Detection with YOLOv5 on Bacalhau
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/model-inference/object-detection-yolo5/index.ipynb)
-[![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=model-inference/object-detection-yolo5/index.ipynb)
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 The identification and localization of objects in images and videos is a computer vision task called object detection. Several algorithms have emerged in the past few years to tackle the problem. One of the most popular algorithms to date for real-time object detection is [YOLO (You Only Look Once)](https://towardsdatascience.com/yolo-you-only-look-once-real-time-object-detection-explained-492dc9230006), initially proposed by Redmond et al.[[1]](https://arxiv.org/abs/1506.02640)
@@ -42,7 +40,7 @@ The model requires pre-trained weights to run and by default downloads them from
 
 The container has its own options that we must specify:
 
-* `--input-urls` to select which pre-trained weights you desire with details on the [yolov5 release page](https://github.com/ultralytics/yolov5/releases)
+* `--input` to select which pre-trained weights you desire with details on the [yolov5 release page](https://github.com/ultralytics/yolov5/releases)
 * `--project` specifies the output volume that the model will save its results to. Bacalhau defaults to using `/outputs` as the output directory, so we save to there.
 
 For more container flags refer to the [`yolov5/detect.py` file in the YOLO repository](https://github.com/ultralytics/yolov5/blob/master/detect.py#L3-#L25).
@@ -58,7 +56,7 @@ bacalhau docker run \
 --wait-timeout-secs 3600 \
 --wait \
 --id-only \
---input-urls https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5s.pt \
+--input https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5s.pt \
 ultralytics/yolov5:v6.2 \
 -- /bin/bash -c 'find /inputs -type f -exec cp {} /outputs/yolov5s.pt \; ; python detect.py --weights /outputs/yolov5s.pt --source $(pwd)/data/images --project /outputs'
 ```
@@ -103,8 +101,8 @@ After the download has finished we can see the results:
 
 ```python
 import IPython.display as display
-display.Image("results/combined_results/outputs/exp/bus.jpg")
-display.Image("results/combined_results/outputs/exp/zidane.jpg")
+display.Image("results/outputs/exp/bus.jpg")
+display.Image("results/outputs/exp/zidane.jpg")
 ```
 
 ## Using custom Images as an input
@@ -126,8 +124,8 @@ bacalhau docker run \
 --wait-timeout-secs 3600 \
 --wait \
 --id-only \
---input-urls https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5s.pt \
---input-volumes bafybeicyuddgg4iliqzkx57twgshjluo2jtmlovovlx5lmgp5uoh3zrvpm:/datasets \
+--input https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5s.pt \
+--input ipfs://bafybeicyuddgg4iliqzkx57twgshjluo2jtmlovovlx5lmgp5uoh3zrvpm:/datasets \
 ultralytics/yolov5:v6.2 \
 -- /bin/bash -c 'find /inputs -type f -exec cp {} /outputs/yolov5s.pt \; ; python detect.py --weights /outputs/yolov5s.pt --source /datasets --project /outputs'
 ```
@@ -159,6 +157,6 @@ bacalhau get ${JOB_ID} --output-dir custom-results
 ```python
 import glob
 from IPython.display import Image, display
-for file in glob.glob('custom-results/combined_results/outputs/exp/*.jpg'):
+for file in glob.glob('custom-results/outputs/exp/*.jpg'):
     display(Image(filename=file))
 ```

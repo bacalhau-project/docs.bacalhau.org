@@ -4,8 +4,7 @@ sidebar_position: 6
 ---
 # Running Pandas on Bacalhau
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/workload-onboarding/python-pandas/index.ipynb)
-[![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=workload-onboarding/python-pandas/index.ipynb)
+
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 ### Introduction
@@ -66,15 +65,6 @@ Now let's run the script to read in the CSV file. The output will be a DataFrame
 python3 read_csv.py
 ```
 
-                                                    hash  ...  transaction_type
-    0  0x04cbcb236043d8fb7839e07bbc7f5eed692fb2ca55d8...  ...                 0
-    1  0xcea6f89720cc1d2f46cc7a935463ae0b99dd5fad9c91...  ...                 0
-    2  0x463d53f0ad57677a3b430a007c1c31d15d62c37fab5e...  ...                 0
-    3  0x05287a561f218418892ab053adfb3d919860988b1945...  ...                 0
-    
-    [4 rows x 15 columns]
-
-
 ## Ingesting data
 
 To run pandas on Bacalhau you must store your assets in a location that Bacalhau has access to. We usually default to storing data on IPFS and code in a container, but you can also easily upload your script to IPFS too.
@@ -92,13 +82,13 @@ Now we're ready to run a Bacalhau job, whilst mounting the Pandas script and dat
 
 ```bash
 %%bash --out job_id
- bacalhau docker run \
---wait \
---id-only \
--v QmfKJT13h5k1b23ja3ZCVg5nFL9oKz2bVXc8oXgtwiwhjz:/files \
--w /files \
-amancevice/pandas \
--- python read_csv.py
+bacalhau docker run \
+    --wait \
+    --id-only \
+    -i ipfs://QmfKJT13h5k1b23ja3ZCVg5nFL9oKz2bVXc8oXgtwiwhjz:/files \
+    -w /files \
+    amancevice/pandas \
+    -- python read_csv.py
 ```
 
 ### Structure of the command
@@ -107,9 +97,7 @@ amancevice/pandas \
 
 - `amancevice/pandas `: Using the official pytorch Docker image
 
-- `-v QmfKJT13h5k1b23ja3Z .....`: Mounting the uploaded dataset to path
-
-- `-u https://raw.githubusercontent.com/py..........`: Mounting our training script we will use the URL to this [Pytorch example](https://github.com/pytorch/examples/blob/main/mnist_rnn/main.py) 
+- ``-i ipfs://QmfKJT13h5k1b23ja3Z .....`: Mounting the uploaded dataset to path
 
 - `-w /files` Our working directory is /outputs. This is the folder where we will to save the model as it will automatically gets uploaded to IPFS as outputs
 
@@ -150,11 +138,10 @@ bacalhau get ${JOB_ID}  --output-dir results
 
 ## Viewing your Job Output
 
-Each job creates 3 subfolders: the **combined_results**,**per_shard files**, and the **raw** directory. To view the file, run the following command:
+To view the file, run the following command:
 
 
 ```bash
 %%bash
-ls results/combined_results/stdout # list the contents of the current directory 
-cat results/combined_results/stdout # displays the contents of the file
+cat results/stdout # displays the contents of the file
 ```

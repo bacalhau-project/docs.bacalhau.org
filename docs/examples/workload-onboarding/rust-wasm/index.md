@@ -4,8 +4,7 @@ sidebar_position: 10
 ---
 # Running Rust programs as WebAssembly (WASM)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/workload-onboarding/rust-wasm/index.ipynb)
-[![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=workload-onboarding/rust-wasm/index.ipynb)
+
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 Bacalhau supports running jobs as a [WebAssembly (WASM)](https://webassembly.org/) program rather than using a Docker container. This examples demonstrates how to compile a [Rust](https://www.rust-lang.org/) project into WebAssembly and run the program on Bacalhau.
@@ -120,9 +119,6 @@ version = "0.23.0"
 default-features = false
 ```
 
-    Overwriting ./my-program/Cargo.toml
-
-
 We can now build the Rust program into a WASM blob using `cargo`.
 
 
@@ -136,24 +132,30 @@ This will generate a WASM file at `./my-program/target/wasm32-wasi/my-program.wa
 ## Running WASM on Bacalhau
 Now that we have a WASM binary, we can upload it to IPFS and use it as input to a Bacalhau job.
 
-The -v switch allows specifying an IPFS CID to mount as a named volume in the job. There is also a -u switch which can download inputs via HTTP.
+The -i switch allows specifying a URI to be mounted as named volume in the job, which can be an IPFS CID, HTTP URL or S3 object.
 
 For this example, we are using an image of the Statue of Liberty that has been pinned to a storage facility.
 
 
 ```bash
-%%bash
+%%bash --out job_id
 bacalhau wasm run ./my-program/target/wasm32-wasi/release/my-program.wasm _start \
-    -v bafybeifdpl6dw7atz6uealwjdklolvxrocavceorhb3eoq6y53cbtitbeu:inputs | tee job.txt
+    --id-only \
+    -i ipfs://bafybeifdpl6dw7atz6uealwjdklolvxrocavceorhb3eoq6y53cbtitbeu:/inputs
 ```
 
 We can now get the results. When we view the files, we can see the original image, the resulting shrunk image, and the seams that were removed.
 
 
+```python
+%env JOB_ID={job_id}
+```
+
+
 ```bash
 %%bash
 rm -rf wasm_results && mkdir -p wasm_results
-bacalhau get $(grep "Job ID:" job.txt | cut -f2 -d:) --output-dir wasm_results
+bacalhau get ${JOB_ID} --output-dir wasm_results
 ```
 
 ## Viewing Job Output
@@ -161,21 +163,7 @@ bacalhau get $(grep "Job ID:" job.txt | cut -f2 -d:) --output-dir wasm_results
 
 ```python
 import IPython.display as display
-display.Image("./wasm_results/combined_results/outputs/original.png")
-```
-
-
-
-
-    
-![png](index_files/index_17_0.png)
-    
-
-
-
-
-```python
-display.Image("./wasm_results/combined_results/outputs/annotated_gradients.png")
+display.Image("./wasm_results/outputs/original.png")
 ```
 
 
@@ -189,7 +177,7 @@ display.Image("./wasm_results/combined_results/outputs/annotated_gradients.png")
 
 
 ```python
-display.Image("./wasm_results/combined_results/outputs/shrunk.png")
+display.Image("./wasm_results/outputs/annotated_gradients.png")
 ```
 
 
@@ -197,6 +185,20 @@ display.Image("./wasm_results/combined_results/outputs/shrunk.png")
 
     
 ![png](index_files/index_19_0.png)
+    
+
+
+
+
+```python
+display.Image("./wasm_results/outputs/shrunk.png")
+```
+
+
+
+
+    
+![png](index_files/index_20_0.png)
     
 
 

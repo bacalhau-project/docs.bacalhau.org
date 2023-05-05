@@ -1,7 +1,6 @@
 # Scripting Bacalhau with Python
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/workload-onboarding/python-script/index.ipynb)
-[![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=workload-onboarding/python-script/index.ipynb)
+
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 Bacalhau allows you to easily execute batch jobs via the CLI. But sometimes you need to do more than that. You might need to execute a script that requires user input, or you might need to execute a script that requires a lot of parameters. In any case, you probably want to execute your jobs in a repeatable manner.
@@ -68,8 +67,8 @@ def submitJob(cid: str) -> str:
             "run",
             "--id-only",
             "--wait=false",
-            "--input-volumes",
-            cid + ":/inputs/data.tar.gz",
+            "--input",
+            "ipfs://" + cid + ":/inputs/data.tar.gz",
             "ghcr.io/bacalhau-project/examples/blockchain-etl:0.0.6",
         ],
         stdout=subprocess.PIPE,
@@ -116,15 +115,7 @@ def parseJobStatus(result: str) -> str:
         return ""
     r = json.loads(result)
     if len(r) > 0:
-        for _, v in r[0]["Status"]["JobState"]["Nodes"].items():
-            state = v["Shards"]["0"]["State"]
-            if state == "Completed":
-                return state
-        for _, v in r[0]["Status"]["JobState"]["Nodes"].items():
-            state = v["Shards"]["0"]["State"]
-            if state != "Cancelled":
-                return state
-        return "Error"
+        return r[0]["State"]["State"]
     return ""
 
 
@@ -162,7 +153,7 @@ def main(file: str, num_files: int = -1):
         shutil.rmtree("results", ignore_errors=True)
         os.makedirs("results", exist_ok=True)
         for r in results:
-            path = os.path.join(r, "combined_results", "outputs", "*.csv")
+            path = os.path.join(r, "outputs", "*.csv")
             csv_file = glob.glob(path)
             for f in csv_file:
                 print("moving %s to results" % f)

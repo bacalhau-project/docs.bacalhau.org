@@ -4,8 +4,7 @@ sidebar_position: 2
 ---
 # Convert CSV To Parquet Or Avro
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/data-engineering/csv-to-avro-or-parquet/index.ipynb)
-[![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=data-engineering/csv-to-avro-or-parquet/index.ipynb)
+
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 ## Introduction
@@ -32,12 +31,57 @@ Installing dependencies
 ```bash
 %%bash
 git clone https://github.com/js-ts/csv_to_avro_or_parquet/
-pip3 install -r csv_to_avro_or_parquet/requirements.txt
+```
+
+    fatal: destination path 'csv_to_avro_or_parquet' already exists and is not an empty directory.
+
+
+
+    ---------------------------------------------------------------------------
+
+    CalledProcessError                        Traceback (most recent call last)
+
+    Cell In[1], line 1
+    ----> 1 get_ipython().run_cell_magic('bash', '', 'git clone https://github.com/js-ts/csv_to_avro_or_parquet/\n')
+
+
+    File ~/.pyenv/versions/3.11.1/lib/python3.11/site-packages/IPython/core/interactiveshell.py:2430, in InteractiveShell.run_cell_magic(self, magic_name, line, cell)
+       2428 with self.builtin_trap:
+       2429     args = (magic_arg_s, cell)
+    -> 2430     result = fn(*args, **kwargs)
+       2432 # The code below prevents the output from being displayed
+       2433 # when using magics with decodator @output_can_be_silenced
+       2434 # when the last Python token in the expression is a ';'.
+       2435 if getattr(fn, magic.MAGIC_OUTPUT_CAN_BE_SILENCED, False):
+
+
+    File ~/.pyenv/versions/3.11.1/lib/python3.11/site-packages/IPython/core/magics/script.py:153, in ScriptMagics._make_script_magic.<locals>.named_script_magic(line, cell)
+        151 else:
+        152     line = script
+    --> 153 return self.shebang(line, cell)
+
+
+    File ~/.pyenv/versions/3.11.1/lib/python3.11/site-packages/IPython/core/magics/script.py:305, in ScriptMagics.shebang(self, line, cell)
+        300 if args.raise_error and p.returncode != 0:
+        301     # If we get here and p.returncode is still None, we must have
+        302     # killed it but not yet seen its return code. We don't wait for it,
+        303     # in case it's stuck in uninterruptible sleep. -9 = SIGKILL
+        304     rc = p.returncode or -9
+    --> 305     raise CalledProcessError(rc, cell)
+
+
+    CalledProcessError: Command 'b'git clone https://github.com/js-ts/csv_to_avro_or_parquet/\n'' returned non-zero exit status 128.
+
+
+
+```bash
+%%bash
+pip install -r csv_to_avro_or_parquet/requirements.txt
 ```
 
 
 ```python
-%%cd csv_to_avro_or_parquet
+%cd csv_to_avro_or_parquet
 ```
 
 Downloading the test dataset
@@ -56,6 +100,12 @@ Running the conversion script arguments
 python3 src/converter.py ./movies.csv  ./movies.parquet parquet
 
 # python converter.py path_to_csv path_to_result_file extension
+```
+
+
+```bash
+%%bash
+pip install pandas
 ```
 
 Viewing the parquet file
@@ -139,7 +189,7 @@ With the command below, we are gmounting the CSV file for transactions from IPFS
 ```bash
 %%bash --out job_id
 bacalhau docker run \
--i QmTAQMGiSv9xocaB4PUCT5nSBHrf9HZrYj21BAZ5nMTY2W  \
+-i ipfs://QmTAQMGiSv9xocaB4PUCT5nSBHrf9HZrYj21BAZ5nMTY2W  \
 --wait \
 --id-only \
 jsacex/csv-to-arrow-or-parquet \
@@ -152,7 +202,7 @@ Let's look closely at the command above:
 
 * `bacalhau docker run`: call to bacalhau 
   
-* `-i QmTAQMGiSv9xocaB4PUCT5nSBHrf9HZrYj21BAZ5nMTY2W`: CIDs to use on the job. Mounts them at '/inputs' in the execution.
+* `-i ipfs://QmTAQMGiSv9xocaB4PUCT5nSBHrf9HZrYj21BAZ5nMTY2W`: CIDs to use on the job. Mounts them at '/inputs' in the execution.
 
 * `jsacex/csv-to-arrow-or-parque`: the name and the tag of the docker image we are using
 
@@ -166,7 +216,7 @@ Let's look closely at the command above:
 
 ```
 bacalhau docker run \
--u https://raw.githubusercontent.com/js-ts/csv_to_avro_or_parquet/master/movies.csv   
+-i https://raw.githubusercontent.com/js-ts/csv_to_avro_or_parquet/master/movies.csv   
 jsacex/csv-to-arrow-or-parquet \
 -- python3 src/converter.py ../inputs/movies.csv  ../outputs/movies.parquet parquet
 ```
@@ -177,7 +227,7 @@ Let's look closely at the command above:
 
 * `bacalhau docker run`: call to bacalhau 
   
-* `-u https://raw.githubusercontent.com/js-ts/csv_to_avro_or_parquet/master/movies.csv`: URL:path of the input data volumes downloaded from a URL source
+* `-i https://raw.githubusercontent.com/js-ts/csv_to_avro_or_parquet/master/movies.csv`: URL:path of the input data volumes downloaded from a URL source
 
 * `jsacex/csv-to-arrow-or-parque`: the name and the tag of the docker image we are using
 
@@ -191,7 +241,7 @@ When a job is submitted, Bacalhau prints out the related `job_id`. We store that
 
 
 ```python
-%%env JOB_ID={job_id}
+%env JOB_ID={job_id}
 ```
 
 ## Checking the State of your Jobs
@@ -226,12 +276,12 @@ bacalhau get $JOB_ID --output-dir results
 
 ## Viewing your Job Output
 
-Each job creates 3 subfolders: the **combined_results**, **per_shard files**, and the **raw** directory. To view the file, run the following command:
+To view the file, run the following command:
 
 
 ```bash
 %%bash
-ls results/combined_results/stdout
+ls results/outputs
 ```
 
 Alternatively, you can do this.
@@ -240,7 +290,7 @@ Alternatively, you can do this.
 ```python
 import pandas as pd
 import os
-pd.read_parquet('results/combined_results/stdout/transactions.parquet')
+pd.read_parquet('results/outputs/transactions.parquet')
 ```
 
 ## Need Support?

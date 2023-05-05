@@ -1,13 +1,10 @@
 ---
 sidebar_label: Speech Recognition using Whisper
-sidebar_position: 3
+sidebar_position: 9
 ---
-
 # Speech Recognition using Whisper
 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/model-inference/Openai-Whisper/index.ipynb)
-[![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=model-inference/Openai-Whisper/index.ipynb)
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 Whisper is an automatic speech recognition (ASR) system trained on 680,000 hours of multilingual and multitask supervised data collected from the web. We show that the use of such a large and diverse dataset leads to improved robustness to accents, background noise and technical language. Moreover, it enables transcription in multiple languages, as well as translation from those languages into English. We are open-sourcing models and inference code to serve as a foundation for building useful applications and for further research on robust speech processing. In this example we will transcribe an audio clip locally, containerize the script and then run the container on bacalhau
@@ -311,28 +308,33 @@ After the dataset has been uploaded, copy the CID:
 
 To submit a job, run the following Bacalhau command:
 
-```
+
+```bash
 %%bash --out job_id
-bacalhau docker run \ 
---wait \
---id-only \
---gpu 1 \
---timeout 3600 \
---wait-timeout-secs 3600 \
-jsacex/whisper \
--i bafybeielf6z4cd2nuey5arckect5bjmelhouvn5rhbjlvpvhp7erkrc4nu \
--- python openai-whisper.py -p inputs/Apollo_11_moonwalk_montage_720p.mp4 -o outputs
+bacalhau docker run \
+    --id-only \
+    --gpu 1 \
+    --timeout 3600 \
+    --wait-timeout-secs 3600 \
+    jsacex/whisper \
+    -i ipfs://bafybeielf6z4cd2nuey5arckect5bjmelhouvn5rhbjlvpvhp7erkrc4nu \
+    -- python openai-whisper.py -p inputs/Apollo_11_moonwalk_montage_720p.mp4 -o outputs
 ```
+
+
+```python
+%env JOB_ID={job_id}
+```
+
 ### Structure of the command
 
 Let's look closely at the command above:
 
-* `-i bafybeielf6z4cd2nuey5arckect5bjmelhouvn5r`: flag to mount the CID which contains our file to the container at the path `/inputs`
+* `-i ipfs://bafybeielf6z4cd2nuey5arckect5bjmelhouvn5r`: flag to mount the CID which contains our file to the container at the path `/inputs`
 * `-p inputs/Apollo_11_moonwalk_montage_720p.mp4 `: the input path of our file
 * `-o outputs`: the path where to store the outputs
 * `--gpu` : here we request 1 GPU
 * `jsacex/whisper`: the name and the tag of the docker image we are using
-
 
 ## Checking the State of your Jobs
 
@@ -365,10 +367,10 @@ bacalhau get $JOB_ID --output-dir results
 
 ## Viewing your Job Output
 
-Each job creates 3 subfolders: the **combined_results**,**per_shard files**, and the **raw** directory. To view the file, run the following command:
+To view the file, run the following command:
 
 
 ```bash
 %%bash
-cat results/combined_results/outputs/Apollo_11_moonwalk_montage_720p.vtt
+cat results/outputs/Apollo_11_moonwalk_montage_720p.vtt
 ```

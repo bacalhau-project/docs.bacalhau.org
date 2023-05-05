@@ -4,8 +4,7 @@ sidebar_position: 2
 ---
 # Training Pytorch Model with Bacalhau
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/model-training/Training-Tensorflow-Model/index.ipynb)
-[![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=model-training/Training-Tensorflow-Model/index.ipynb)
+
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 In this example tutorial, we will show you how to train a Pytorch RNN MNIST neural network model with Bacalhau. PyTorch is a framework developed by Facebook AI Research for deep learning, featuring both beginner-friendly debugging tools and a high-level of customization for advanced users, with researchers and practitioners using it across companies like Facebook and Tesla. Applications include computer vision, natural language processing, cryptography, and more.
@@ -19,6 +18,13 @@ Running any type of Pytorch models with Bacalhau
 To get started, you need to install the Bacalhau client, see more information [here](https://docs.bacalhau.org/getting-started/installation)
 
 
+
+```python
+!command -v bacalhau >/dev/null 2>&1 || (export BACALHAU_INSTALL_DIR=.; curl -sL https://get.bacalhau.org/install.sh | bash)
+path=!echo $PATH
+%env PATH=./:{path[0]}
+```
+
 ## Training the Model Locally
 
 To train our model locally, we will start by cloning the Pytorch examples [repo](https://github.com/pytorch/examples)
@@ -29,6 +35,20 @@ To train our model locally, we will start by cloning the Pytorch examples [repo]
 git clone https://github.com/pytorch/examples
 ```
 
+Install the following
+
+
+```bash
+%%bash
+pip install torch
+```
+
+
+```bash
+%%bash
+pip install torchvision
+```
+
 Next, we run the command below to begin training of the _mnist_rnn_ model. We added the `--save-model` flag to save the model
 
 
@@ -37,32 +57,7 @@ Next, we run the command below to begin training of the _mnist_rnn_ model. We ad
 python ./examples/mnist_rnn/main.py --save-model
 ```
 
-Next, we will download the MNIST dataset by creating a folder `data` where we will save the downloaded dataset
-
-
-```bash
-%%bash
-mkdir ../data
-```
-
-If you inspect the code [here](https://github.com/pytorch/examples/blob/main/mnist_rnn/main.py) you'll see the folder referenced in the code. Here is the a small section of the code that references the folder
-
-
-```python
-    train_loader = torch.utils.data.DataLoader(
-        datasets.MNIST('../data', train=True, download=True,
-                       transform=transforms.Compose([
-                           transforms.ToTensor(),
-                           transforms.Normalize((0.1307,), (0.3081,))
-                       ])),
-        batch_size=args.batch_size, shuffle=True, **kwargs)
-    test_loader = torch.utils.data.DataLoader(
-        datasets.MNIST('../data', train=False, transform=transforms.Compose([
-            transforms.ToTensor(),
-            transforms.Normalize((0.1307,), (0.3081,))
-        ])),
-        batch_size=args.test_batch_size, shuffle=True, **kwargs)
-```
+Next, the downloaded MNIST dataset is saved in the `data` folder.
 
 ## Uploading Dataset to IPFS
 
@@ -86,8 +81,8 @@ bacalhau docker run \
 --id-only \
 pytorch/pytorch \
 -w /outputs \
- -v QmdeQjz1HQQdT9wT2NHX86Le9X6X6ySGxp8dfRUKPtgziw:/data \
--u https://raw.githubusercontent.com/pytorch/examples/main/mnist_rnn/main.py \
+ -i ipfs://QmdeQjz1HQQdT9wT2NHX86Le9X6X6ySGxp8dfRUKPtgziw:/data \
+-i https://raw.githubusercontent.com/pytorch/examples/main/mnist_rnn/main.py \
 -- python ../inputs/main.py --save-model
 ```
 
@@ -99,9 +94,9 @@ pytorch/pytorch \
 
 - `pytorch/pytorch`: Using the official pytorch Docker image
 
-- `-v QmdeQjz1HQQd.....`: Mounting the uploaded dataset to path
+- `-i ipfs://QmdeQjz1HQQd.....`: Mounting the uploaded dataset to path
 
-- `-u https://raw.githubusercontent.com/py..........`: Mounting our training script we will use the URL to this [Pytorch example](https://github.com/pytorch/examples/blob/main/mnist_rnn/main.py) 
+- `-i https://raw.githubusercontent.com/py..........`: Mounting our training script we will use the URL to this [Pytorch example](https://github.com/pytorch/examples/blob/main/mnist_rnn/main.py) 
 
 - `-w /outputs:` Our working directory is /outputs. This is the folder where we will to save the model as it will automatically gets uploaded to IPFS as outputs
 
@@ -143,12 +138,12 @@ After the download has finished you should see the following contents in results
 
 ## Viewing your Job Output
 
-Each job creates 3 subfolders: the **combined_results**, **per_shard files**, and the **raw** directory. To view the file, run the following command:
+To view the file, run the following command:
 
 
 ```bash
 %%bash
 ls results/ # list the contents of the current directory 
-cat results/combined_results/stdout # displays the contents of the file given to it as a parameter.
-ls results/combined_results/outputs/ # list the successfully trained model
+cat results/stdout # displays the contents of the file given to it as a parameter.
+ls results/outputs/ # list the successfully trained model
 ```

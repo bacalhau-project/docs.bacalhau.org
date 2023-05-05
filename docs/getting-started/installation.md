@@ -155,10 +155,11 @@ bacalhau describe ${JOB_ID}
 
 
 ```bash
+$ cd Downloads
 $ mkdir -p /tmp/myfolder
 $ cd /tmp/myfolder
 
-bacalhau get $JOB_ID --output-dir results
+bacalhau get $JOB_ID
 ```
 
 After the download has finished you should see the following contents in results directory
@@ -168,7 +169,7 @@ After the download has finished you should see the following contents in results
 Each job creates 3 subfolders: the **combined_results**, **per_shard files**, and the **raw** directory. To view the file, run the following command:
 
 ```shell
-$ cat /tmp/myfolder/job-id/combined_results/stdout
+$ cat /tmp/myfolder/job-id/stdout
 ```
 
 That should print out the string `Hello World`.
@@ -187,4 +188,4 @@ Here are a few resources that provides a deeper dive into running jobs with Baca
 
 ## Need Support?
 
-If have questions or need support or guidance, please reach out to the [Bacalhau team via Slack (#bacalhau channel)](https://filecoin.io/slack)
+If have questions or need support or guidance, please reach out to the [Bacalhau team via Slack (#bacalhau channel)](https://join.slack.com/t/bacalhauproject/shared_invite/zt-1sihp4vxf-TjkbXz6JRQpg2AhetPzYYQ)

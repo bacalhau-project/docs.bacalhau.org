@@ -5,8 +5,7 @@ description: "How to process images stored in IPFS with Bacalhau"
 ---
 # Simple Image Processing
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/data-engineering/image-processing/index.ipynb)
-[![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=data-engineering%2Fimage-processing%2Findex.ipynb)
+
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 In this example tutorial, we will show you how to use Bacalhau to process images on a [Landsat dataset](https://ipfs.io/ipfs/QmeZRGhe4PmjctYVSVHuEiA9oSXnqmYa4kQubSHgWbjv72/). 
@@ -20,6 +19,13 @@ Processing of images from a dataset using Bacalhau
 
 To get started, you need to install the Bacalhau client, see more information [here](https://docs.bacalhau.org/getting-started/installation)
 
+
+```python
+!command -v bacalhau >/dev/null 2>&1 || (export BACALHAU_INSTALL_DIR=.; curl -sL https://get.bacalhau.org/install.sh | bash)
+path=!echo $PATH
+%env PATH=./:{path[0]}
+```
+
 ## Running a Bacalhau Job
 
 To submit a workload to Bacalhau, we will use the `bacalhau docker run` command. 
@@ -31,7 +37,7 @@ bacalhau docker run \
   --wait \
   --wait-timeout-secs 100 \
   --id-only \
-  -v QmeZRGhe4PmjctYVSVHuEiA9oSXnqmYa4kQubSHgWbjv72:/input_images \
+  -i ipfs://QmeZRGhe4PmjctYVSVHuEiA9oSXnqmYa4kQubSHgWbjv72:/input_images \
   dpokidov/imagemagick:7.1.0-47-ubuntu \
   -- magick mogrify -resize 100x100 -quality 100 -path /outputs '/input_images/*.jpg'
 ```
@@ -43,7 +49,10 @@ The job has been submitted and Bacalhau has printed out the related job id. We s
 %env JOB_ID={job_id}
 ```
 
-The `bacalhau docker run` command allows to pass input data volume with a `-v CID:path` argument just like Docker, except the left-hand side of the argument is a [content identifier (CID)](https://github.com/multiformats/cid). This results in Bacalhau mounting a *data volume* inside the container. By default, Bacalhau mounts the input volume at the path `/inputs` inside the container.
+    env: JOB_ID=bf785b4d-dcac-4f4a-9c63-cf9906aa2941
+
+
+The `bacalhau docker run` command allows to pass input data volume with a `-i ipfs://CID:path` argument just like Docker, except the left-hand side of the argument is a [content identifier (CID)](https://github.com/multiformats/cid). This results in Bacalhau mounting a *data volume* inside the container. By default, Bacalhau mounts the input volume at the path `/inputs` inside the container.
 
 Bacalhau also mounts a data volume to store output data. The `bacalhau docker run` command creates an output data volume mounted at `/outputs`. This is a convenient location to store the results of your job. 
 
@@ -56,6 +65,10 @@ Bacalhau also mounts a data volume to store output data. The `bacalhau docker ru
 %%bash
 bacalhau list --id-filter=${JOB_ID} --no-style
 ```
+
+     CREATED   ID        JOB                      STATE      VERIFIED  PUBLISHED               
+     00:26:44  bf785b4d  Docker dpokidov/imag...  Completed            ipfs://QmQnern37ueHr... 
+
 
 When it says `Published` or `Completed`, that means the job is done, and we can get the results.
 
@@ -80,27 +93,13 @@ After the download has finished you should see the following contents in results
 
 ## Viewing your Job Output
 
-Each job creates 3 subfolders: the **combined_results**, **per_shard files**, and the **raw** directory. To view the file, run the following command:
+To view the file, run the following command:
 
 
 ```bash
 %%bash
-ls -lah results/combined_results/outputs
+ls -lah results/outputs
 ```
-
-    total 196K
-    drwxr-xr-x 2 gitpod gitpod 4.0K Dec 14 13:22 .
-    drwxr-xr-x 3 gitpod gitpod   49 Dec 14 13:22 ..
-    -rw-r--r-- 3 gitpod gitpod  15K Dec 14 13:22 cafires_vir_2021231_lrg.jpg
-    -rw-r--r-- 3 gitpod gitpod  34K Dec 14 13:22 greatsaltlake_oli_2017210_lrg.jpg
-    -rw-r--r-- 3 gitpod gitpod  13K Dec 14 13:22 greecefires_oli_2021222_lrg.jpg
-    -rw-r--r-- 3 gitpod gitpod  17K Dec 14 13:22 haitiearthquake_oli_20212_lrg.jpg
-    -rw-r--r-- 3 gitpod gitpod  42K Dec 14 13:22 iwojima_tmo_2021225_lrg.jpg
-    -rw-r--r-- 3 gitpod gitpod  11K Dec 14 13:22 lakemead_etm_2000220_lrg.jpg
-    -rw-r--r-- 3 gitpod gitpod  14K Dec 14 13:22 lapalma_oli_2021141_lrg.jpg
-    -rw-r--r-- 3 gitpod gitpod  14K Dec 14 13:22 spainfire_oli_2021227_lrg.jpg
-    -rw-r--r-- 3 gitpod gitpod  16K Dec 14 13:22 sulphursprings_oli_2019254_lrg.jpg
-
 
 ### Display the image
 
@@ -110,61 +109,61 @@ To view the images, we will use **glob** to return all file paths that match a s
 ```python
 import glob
 from IPython.display import Image, display
-for imageName in glob.glob('results/combined_results/outputs/*.jpg'):
+for imageName in glob.glob('results/outputs/*.jpg'):
     display(Image(filename=imageName))
 ```
 
 
     
-![jpeg](index_files/index_20_0.jpg)
+![jpeg](index_files/index_21_0.jpg)
     
 
 
 
     
-![jpeg](index_files/index_20_1.jpg)
+![jpeg](index_files/index_21_1.jpg)
     
 
 
 
     
-![jpeg](index_files/index_20_2.jpg)
+![jpeg](index_files/index_21_2.jpg)
     
 
 
 
     
-![jpeg](index_files/index_20_3.jpg)
+![jpeg](index_files/index_21_3.jpg)
     
 
 
 
     
-![jpeg](index_files/index_20_4.jpg)
+![jpeg](index_files/index_21_4.jpg)
     
 
 
 
     
-![jpeg](index_files/index_20_5.jpg)
+![jpeg](index_files/index_21_5.jpg)
     
 
 
 
     
-![jpeg](index_files/index_20_6.jpg)
+![jpeg](index_files/index_21_6.jpg)
     
 
 
 
     
-![jpeg](index_files/index_20_7.jpg)
+![jpeg](index_files/index_21_7.jpg)
     
 
 
 
     
-![jpeg](index_files/index_20_8.jpg)
+![jpeg](index_files/index_21_8.jpg)
     
 
 

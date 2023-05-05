@@ -4,8 +4,7 @@ sidebar_position: 4
 ---
 # Running a Prolog Script
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/workload-onboarding/Prolog-Hello-World/index.ipynb)
-[![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=workload-onboarding/Prolog-Hello-World/index.ipynb)
+
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 ## Introduction
@@ -95,7 +94,7 @@ To submit a job, run the following Bacalhau command:
 ```bash
 %%bash --out job_id
 bacalhau docker run \
--v QmYq9ipYf3vsj7iLv5C67BXZcpLHxZbvFAJbtj7aKN5qii:/helloworld.pl \
+-i ipfs://QmYq9ipYf3vsj7iLv5C67BXZcpLHxZbvFAJbtj7aKN5qii:/helloworld.pl \
 --wait \
 --id-only \
 swipl \
@@ -105,7 +104,7 @@ swipl \
 ### Structure of the Command
 
 
-`-v: < CID >:/< name-of-the-script >`: we will mount the script to the container using the -v flag
+`-i: ipfs://< CID >:/< name-of-the-script >`: we will mount the script to the container using the -v flag
 
 `Swipl`: flag
 
@@ -148,10 +147,10 @@ bacalhau get $JOB_ID --output-dir results
 
 ## Viewing your Job Output
 
-Each job creates 3 subfolders: the **combined_results**,**per_shard files**, and the **raw** directory. To view the file, run the following command:
+To view the file, run the following command:
 
 
 ```bash
 %%bash
-cat results/combined_results/stdout
+cat results/stdout
 ```

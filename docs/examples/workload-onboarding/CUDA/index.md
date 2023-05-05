@@ -1,11 +1,10 @@
 ---
 sidebar_label: "CUDA"
-sidebar_position: 2
+sidebar_position: 10
 ---
 # Run CUDA programs on Bacalhau
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/workload-onboarding/CUDA/index.ipynb)
-[![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=workload-onboarding/CUDA/index.ipynb)
+
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 ### What is CUDA
@@ -102,7 +101,7 @@ To submit a job, run the following Bacalhau command:
 --gpu 1 \
 --timeout 3600 \
 --wait-timeout-secs 3600 \
- -u https://raw.githubusercontent.com/tristanpenman/cuda-examples/master/02-cuda-hello-world-faster.cu \
+ -i https://raw.githubusercontent.com/tristanpenman/cuda-examples/master/02-cuda-hello-world-faster.cu \
  --id-only \
  --wait \
  nvidia/cuda:11.2.0-cudnn8-devel-ubuntu18.04 \
@@ -113,7 +112,7 @@ To submit a job, run the following Bacalhau command:
 
 Let's look closely at the command above:
 
-* `-u < Link-To-The-Program >`: The program is mounted by using the `-u` flag you can specify the link there
+* `-i < Link-To-The-Program >`: The program is mounted by using the `-i` flag you can specify the link there
 
 * `nvidia/cuda:11.2.0-cudnn8-devel-ubuntu18.04`: Docker container for executing CUDA programs you need to choose the right CUDA docker container the container should have the tag of devel in them
 
@@ -123,11 +122,7 @@ Let's look closely at the command above:
 * You can combine compilation and execution commands. Note that there is `;` between the commands:
 `-- /bin/bash -c 'nvcc --expt-relaxed-constexpr  -o ./outputs/hello ./inputs/02-cuda-hello-world-faster.cu; ./outputs/hello `
 
-
-
-```python
 When a job is submitted, Bacalhau prints out the related `job_id`. We store that in an environment variable so that we can reuse it later on.
-```
 
 ## Checking the State of your Jobs
 
@@ -161,10 +156,10 @@ bacalhau get $JOB_ID --output-dir results
 
 ## Viewing your Job Output
 
-Each job creates 3 subfolders: the **combined_results**, **per_shard files**, and the **raw** directory. To view the file, run the following command:
+To view the file, run the following command:
 
 
 ```bash
 %%bash
-cat results/combined_results/stdout # displays the contents of the file
+cat results/stdout # displays the contents of the file
 ```

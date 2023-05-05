@@ -4,8 +4,7 @@ sidebar_position: 8
 ---
 # Building and Running your Custom R Containers on Bacalhau
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/workload-onboarding/r-custom-docker-prophet/index.ipynb)
-[![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=workload-onboarding/r-custom-docker-prophet/index.ipynb)
+
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
 ## Introduction
@@ -17,7 +16,7 @@ This example will walk you through building Time Series Forecasting using [Proph
 Quick script to run custom R container in Bacalhau
 
 ```bash
-bacalhau docker run -v QmY8BAftd48wWRYDf5XnZGkhwqgjpzjyUG3hN1se6SYaFt:/example_wp_log_R.csv ghcr.io/bacalhau-project/examples/r-prophet:0.0.2 -- Rscript Saturating-Forecasts.R "/example_wp_log_R.csv" "/outputs/output0.pdf" "/outputs/output1.pdf"
+bacalhau docker run -i ipfs://QmY8BAftd48wWRYDf5XnZGkhwqgjpzjyUG3hN1se6SYaFt:/example_wp_log_R.csv ghcr.io/bacalhau-project/examples/r-prophet:0.0.2 -- Rscript Saturating-Forecasts.R "/example_wp_log_R.csv" "/outputs/output0.pdf" "/outputs/output1.pdf"
 ```
 
 ## Prerequisites
@@ -96,9 +95,6 @@ plot(m, fcst)
 dev.off()
 ```
 
-    Writing Saturating-Forecasts.R
-
-
 
 ```bash
 %%bash
@@ -171,7 +167,7 @@ The following command passes a prompt to the model and generates the results in 
 bacalhau docker run \
     --wait \
     --id-only \
-    -v QmY8BAftd48wWRYDf5XnZGkhwqgjpzjyUG3hN1se6SYaFt:/example_wp_log_R.csv \
+    -i ipfs://QmY8BAftd48wWRYDf5XnZGkhwqgjpzjyUG3hN1se6SYaFt:/example_wp_log_R.csv \
     ghcr.io/bacalhau-project/examples/r-prophet:0.0.2 \
     -- Rscript Saturating-Forecasts.R "/example_wp_log_R.csv" "/outputs/output0.pdf" "/outputs/output1.pdf"
 ```
@@ -182,7 +178,7 @@ Let's look closely at the command above:
 
 * `bacalhau docker run`: call to bacalhau 
   
-* `-v QmY8BAftd48wWRYDf5XnZGkhwqgjpzjyUG3hN1se6SYaFt`: CIDs to use on the job. Mounts them at '/inputs' in the execution.
+* `-i ipfs://QmY8BAftd48wWRYDf5XnZGkhwqgjpzjyUG3hN1se6SYaFt`: CIDs to use on the job. Mounts them at '/inputs' in the execution.
 
 * `ghcr.io/bacalhau-project/examples/r-prophet:0.0.2`: the name and the tag of the docker image we are using
 
@@ -225,17 +221,13 @@ bacalhau get $JOB_ID --output-dir results
 
 ## Viewing your Job Output
 
-Each job creates 3 subfolders: the **combined_results**, **per_shard files**, and the **raw** directory. To view the file, run the following command:
+To view the file, run the following command:
 
 
 ```bash
 %%bash
-ls results/combined_results/outputs
+ls results/outputs
 ```
-
-    output0.pdf
-    output1.pdf
-
 
 You can't natively display PDFs in notebooks, so here are some static images of the PDFS:
 
