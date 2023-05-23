@@ -8,8 +8,10 @@ sidebar_position: 1
 
 To deploy the infrastructure, follow these steps:
 
-1. Install Terraform if you haven’t already: **[https://www.terraform.io/downloads.html](https://www.terraform.io/downloads.html)**
-2. Create a service account on GCP
+1. Access your [GCP project you want to deploy to](https://console.cloud.google.com/home/dashboard) and take not of the Project ID.
+2. Install Terraform on your local hmachine if you haven’t already: **[https://www.terraform.io/downloads.html](https://www.terraform.io/downloads.html)**
+3. Create a new directory for your terraform files and account, and save the service account key and terrafrom files. `cd` into this file. 
+4. Create a service account on GCP
     1. Go to the Google Cloud Console: **[https://console.cloud.google.com/](https://console.cloud.google.com/)**
     2. Make sure you have the correct project selected at the top.
     3. Navigate to **`IAM & Admin > Service Accounts`** from the sidebar.
@@ -19,7 +21,7 @@ To deploy the infrastructure, follow these steps:
     7. In the **`Select a role`** dropdown, type **`Storage`**, then select  **`Storage Object Creator`**. Click **`SAVE`**.
     8. Again Navigate to [https://console.cloud.google.com/iam-admin/serviceaccounts](https://console.cloud.google.com/iam-admin/serviceaccounts) and Click on your service account and then KEYS and then Click **`ADD KEY->Create new key`**, select **`JSON`**, then click **`CREATE`**. This will download a JSON file with your credentials to your computer. **Save this file in a secure place**, because Google will not keep a copy.
     9. Click **`DONE`**.
-3. Save the script in a file named **`main.tf, variables.tf`** in a new directory called **terraform**.
+5. Save the scripta in files named **`main.tf, variables.tf`** in the same directory
 
 main.tf
 
@@ -165,12 +167,19 @@ variable "disk_sizes" {
 }
 ```
 
-commands to run
+## Run Terraform Scripts
 
+First, you will need to init terraform and add the access token that you downloaded when you created your IAM service account.
+ 
 ```bash
 terraform init
 export GOOGLE_CLOUD_ACCESS_TOKEN=$(gcloud auth application-default print-access-token)
-terraform plan -out=tfplan
+```
+
+Next you are going to the terraform execution plan and set the project id variable which you can [find on the GCP project dashboard](https://console.cloud.google.com/home/dashboard, then apply the 
+
+``
+terraform plan -out=tfplan -var=project_id=<your_project_id>
 terraform apply tfplan
 ```
 
