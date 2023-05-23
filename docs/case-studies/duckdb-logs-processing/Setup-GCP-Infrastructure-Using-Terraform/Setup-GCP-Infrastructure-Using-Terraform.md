@@ -176,6 +176,7 @@ terraform apply tfplan
 
 After the resources have been deployed, we can now reserve a static IP for the requestor node
 
+```
 1. **Reserve a Static IP Address**:
 
 You'll first need to reserve a static IP address to use for your instance.
@@ -195,5 +196,6 @@ f. **Assign the Static IP Address to an Instance**
 g. Click **`Reserve`** to reserve the IP.
 
 That's it! Your GCP node should now have a static IP address.
+```
 
 ![StaticIP](./StaticIP.png)
