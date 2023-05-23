@@ -91,7 +91,7 @@ resource "google_compute_instance" "gcp_instance" {
     apt-get install -y golang python3 python3-pip curl unzip awscli git
     # Install Python packages
     pip3 install Faker
-    git clone https://github.com/js-ts/logrotate
+    git clone https://github.com/bacalhau-project/logrotate
     cd logrotate
     chmod +x ./log-rotate.sh
     sudo ./log-rotate.sh
