@@ -4,6 +4,8 @@ sidebar_position: 1
 ---
 # MotherDuck/DuckDB
 
+## Deprecated 3/23/23, [see version on Notion for up to date copy](DuckDB is an embedded SQL database tool that is simple to install and is designed to analyze any size set of data without external dependencies or state, that can be embedded locally on any machine.)
+
 ## Overview
 
 DuckDB is an embedded SQL database tool that is simple to install and is designed to analyze any size set of data without external dependencies or state, that can be embedded locally on any machine.
