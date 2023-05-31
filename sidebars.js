@@ -32,6 +32,128 @@ module.exports = {
         'getting-started/resources'
       ],
     },
-  ],
-
-};
+    {
+      type: 'category',
+      label: 'Examples',
+      link: {
+        type: 'generated-index',
+        title: 'Examples',
+        slug: '/examples',
+        description: "Bacalhau comes pre-loaded with exciting examples to showcase its abilities and help get you started.",
+      },
+      items: [
+        {
+          type: 'category',
+          label: 'Workload Onboarding',
+          link: {
+            type: 'generated-index',
+            slug: 'examples/workload-onboarding/',
+            description: "This directory contains examples relating to performing common tasks with Bacalhau.",
+          },
+          items: [
+            'examples/workload-onboarding/bacalhau-docker-image/index',
+            'examples/workload-onboarding/Reading-From-Multiple-S3-Buckets/index',
+            'examples/workload-onboarding/Running-Jupyter-Notebook/index',
+            'examples/workload-onboarding/Prolog-Hello-World/index',
+            'examples/workload-onboarding/Python-Custom-Container/index',
+            'examples/workload-onboarding/python-pandas/index',
+            'examples/workload-onboarding/r-custom-docker-prophet/index',
+            'examples/workload-onboarding/r-hello-world/index',
+            'examples/workload-onboarding/CUDA/index',
+            'examples/workload-onboarding/rust-wasm/index',
+            'examples/workload-onboarding/Sparkov-Data-Generation/index',
+            'examples/workload-onboarding/custom-containers/index',
+            'examples/workload-onboarding/CUDA/index',
+            'examples/workload-onboarding/trivial-python/index',
+            'examples/workload-onboarding/python-script/index',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Data Engineering',
+          link: {
+            type: 'generated-index',
+            slug: 'examples/data-engineering/',
+            description: "This directory contains examples relating to data engineering workloads. The goal is to provide a range of examples that show you how to work with Bacalhau in a variety of use cases.",  
+          },
+          items: [
+            'examples/data-engineering/blockchain-etl/index',
+            'examples/data-engineering/csv-to-avro-or-parquet/index',
+            'examples/data-engineering/DuckDB/index',
+            'examples/data-engineering/image-processing/index',
+            'examples/data-engineering/oceanography-conversion/index',
+            'examples/data-engineering/simple-parallel-workloads/index',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Model Inference',
+          link: {
+            type: 'generated-index',
+            slug: 'examples/model-inference/',
+            description: "This directory contains examples relating to model inference workloads.",
+          },
+          items: [
+            'examples/model-inference/Huggingface-Model-Inference/index',
+            'examples/model-inference/object-detection-yolo5/index',
+            'examples/model-inference/S3-Model-Inference/index',
+            'examples/model-inference/Stable-Diffusion-CKPT-Inference/index',
+            'examples/model-inference/stable-diffusion-cpu/index',
+            'examples/model-inference/stable-diffusion-gpu/index',
+            'examples/model-inference/StyleGAN3/index',
+            'examples/model-inference/EasyOCR/index',
+            'examples/model-inference/Openai-Whisper/index',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Model Training',
+          link: {
+            type: 'generated-index',
+            slug: 'examples/model-training/',
+            description: "This directory contains examples relating to model training workloads.",
+          },
+          items: [
+            'examples/model-training/Stable-Diffusion-Dreambooth/index',
+            'examples/model-training/Training-Pytorch-Model/index',
+            'examples/model-training/Training-Tensorflow-Model/index',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Molecular Dynamics',
+          link: {
+            type: 'generated-index',
+            slug: 'examples/molecular-dynamics/',
+            description: "This directory contains examples relating to performing common tasks with Bacalhau.",
+          },
+          items: [
+            'examples/molecular-dynamics/BIDS/index',
+            'examples/molecular-dynamics/Coreset/index',
+            'examples/molecular-dynamics/Genomics/index',
+            'examples/molecular-dynamics/Gromacs/index',
+            'examples/molecular-dynamics/openmm/index',
+          ],
+        },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Data Ingestion',
+      link: {
+        type: 'generated-index',
+        slug: '/data-ingestion',
+        title: 'Data Ingestion',
+        description: "Get Started with Bacalhau!",
+      },
+      collapsed: false,
+      items: [
+        'data-ingestion/from-url',
+        'data-ingestion/pin',
+        'data-ingestion/s3',
+        'getting-started/wasm-workload-onboarding',
+        'getting-started/resources'
+      ],
+    },
+  ]
+}
