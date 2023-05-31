@@ -41,6 +41,7 @@ module.exports = {
         slug: '/examples',
         description: "Bacalhau comes pre-loaded with exciting examples to showcase its abilities and help get you started.",
       },
+      collapsed: true,
       items: [
         {
           type: 'category',
@@ -144,15 +145,129 @@ module.exports = {
         type: 'generated-index',
         slug: '/data-ingestion',
         title: 'Data Ingestion',
-        description: "Get Started with Bacalhau!",
+        description: "Data ingestion",
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         'data-ingestion/from-url',
         'data-ingestion/pin',
         'data-ingestion/s3',
         'getting-started/wasm-workload-onboarding',
         'getting-started/resources'
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Process',
+      link: {
+        type: 'generated-index',
+        slug: '/process',
+        title: 'Process',
+        description: "Bacalhau process",
+      },
+      collapsed: true,
+      items: [
+        'next-steps/gpu',
+        'next-steps/networking',
+        'next-steps/private-cluster',
+        'getting-started/wasm-workload-onboarding',
+        'getting-started/resources'
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Process',
+      link: {
+        type: 'generated-index',
+        title: 'Process',
+        description: "Bacalhau process",
+      },
+      collapsed: true,
+      items: [
+        'quick-start-pvt-cluster',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Running Node',
+      link: {
+        type: 'generated-index',
+        title: 'Running node',
+        slug: '/running-node',
+        description: "Running Node",
+      },
+      collapsed: true,
+      items: [
+        'running-node/quick-start',
+        'running-node/quick-start-docker',
+        'running-node/networking',
+        'running-node/storage-providers',
+        'running-node/job-selection',
+        'running-node/resource-limits',
+        'running-node/test-network',
+        'running-node/gpu',
+        'running-node/windows-support',
+        'running-node/observability'
+      ],
+    },
+    {
+      type: 'category',
+      label: 'SDK',
+      link: {
+        type: 'generated-index',
+        title: 'Running node',
+        slug: '/sdk',
+        description: "Bacalhau SDK",
+      },
+      collapsed: true,
+      items: [
+        'sdk/python-sdk'
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Troubleshooting',
+      link: {
+        type: 'generated-index',
+        title: 'Troubleshooting',
+        slug: '/troubleshooting',
+        description: "Troubleshooting",
+      },
+      collapsed: true,
+      items: [
+        'troubleshooting/debugging',
+        'troubleshooting/faqs',   
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Integration',
+      link: {
+        type: 'generated-index',
+        title: 'Integration',
+        slug: '/integration',
+        description: "Integration",
+      },
+      collapsed: true,
+      items: [
+        'integration/apache-airflow',
+        'integration/amplify'
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Community',
+      link: {
+        type: 'generated-index',
+        title: 'Community',
+        slug: '/community',
+      },
+      collapsed: true,
+      items: [
+        'community/compute-landscape',
+        'community/development',
+        'community/style-guide',
+        'community/ways-to-contribute',
       ],
     },
   ]
