@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbacalhau_docs=self.webpackChunkbacalhau_docs||[]).push([[8267],{1119:s=>{s.exports=JSON.parse('{"title":"Process","slug":"/process","permalink":"/process","navigation":{"previous":{"title":"From S3","permalink":"/data-ingestion/s3"},"next":{"title":"GPU Workloads","permalink":"/next-steps/gpu"}}}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbacalhau_docs=self.webpackChunkbacalhau_docs||[]).push([[7601],{3631:a=>{a.exports=JSON.parse('{"title":"Running node","slug":"/sdk","permalink":"/sdk","navigation":{"previous":{"title":"Observability","permalink":"/running-node/observability"},"next":{"title":"Bacalhau Python SDK","permalink":"/sdk/python-sdk"}}}')}}]);
