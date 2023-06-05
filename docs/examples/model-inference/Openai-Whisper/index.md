@@ -290,7 +290,7 @@ docker push <hub-user>/<repo-name>:<tag>
 In our case
 
 ```bash
-docker push jsacex/whisper
+docker push jsacex/whisper .
 ```
 
 
