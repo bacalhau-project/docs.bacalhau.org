@@ -68,7 +68,7 @@ const config = {
       metadata: [{name: 'keywords', content: 'Bacalhau Docs contains ifnormation for fast, cost efficient, and secure computation by explaining how to run jobs where the data is generated and stored.'}],
       blog: false,
       algolia :{
-        appId: 'VLYBZRSZSU',
+        appId: '15JCWQAGM1',
         apiKey: '39072848f0a096cfb14729dd0ece6ce7',
         indexName: 'dev_bac'
       },
