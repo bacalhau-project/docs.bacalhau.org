@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Architecture'
 sidebar_position: 1
-meta-description: 'Discover the architecture of Bacalhau, a groundbreaking decentralized peer-to-peer network facilitating seamless communication between computers, revolutionizing the way we connect.'
+description: 'Discover the architecture of Bacalhau, a groundbreaking decentralized peer-to-peer network facilitating seamless communication between computers, revolutionizing the way we connect.'
 ---
 
 # Architecture

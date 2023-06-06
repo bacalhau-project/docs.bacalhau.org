@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Installation'
 sidebar_position: 2
-meta- description: Learn how to install and run a job with the Bacalhau client using the Bacalhau CLI or Docker in this tutorial.
+description: Learn how to install and run a job with the Bacalhau client using the Bacalhau CLI or Docker in this tutorial.
 ---
 
 # Getting Started with Bacalhau
