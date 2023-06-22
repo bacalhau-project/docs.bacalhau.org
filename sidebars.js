@@ -10,28 +10,26 @@
 module.exports = {
   // By default, Docusaurus generates a sidebar from the docs folder structure
   documentationSidebar: [
-    { 
-    
-    },
     'intro',
+    'getting-started',
     {
       type: 'category',
-      label: 'Getting Started',
+      label: 'Using the CLI',
       link: {
         type: 'generated-index',
-        slug: '/getting-started',
-        title: 'Getting Started',
-        description: "Get Started with Bacalhau!",
+        title: 'Using the CLI',
+        slug: '/using-cli',
+        description: "Bacalhau comes pre-loaded with exciting examples to showcase its abilities and help get you started.",
       },
-      collapsed: false,
+      collapsed: true,
       items: [
-        'getting-started/architecture',
-        'getting-started/installation',
-        'getting-started/docker-workload-onboarding',
-        'getting-started/wasm-workload-onboarding',
-        'getting-started/resources'
+        'using-cli/inputs-outputs',
+        'using-cli/docker-workload-onboarding',
+        'using-cli/tutorial-s3-input',
+        'using-cli/networking'
       ],
     },
+    'architecture',
     {
       type: 'category',
       label: 'Examples',
@@ -142,21 +140,6 @@ module.exports = {
             'examples/molecular-dynamics/openmm/index',
           ],
         },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Data Ingestion',
-      link: {
-        type: 'generated-index',
-        slug: '/data-ingestion',
-        title: 'Data Ingestion',
-      },
-      collapsed: true,
-      items: [
-        'data-ingestion/from-url',
-        'data-ingestion/pin',
-        'data-ingestion/s3',
       ],
     },
     {
