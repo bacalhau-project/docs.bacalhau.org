@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Architecture
 
-Bacalhau is a peer-to-peer network of nodes that allows for decentralized communication between computers. Each node in the network has two components: a **requestor** component and a **compute** component.
+Bacalhau is a peer-to-peer network of nodes that allows for decentralized communication between computers. Each node in the network has two components: a **requester** component and a **compute** component.
 
 ![image](../../static/img/architecture/architecture-purpose.jpeg 'Bacalhau Architecture')
 
@@ -24,18 +24,18 @@ Bacalhau's architecture involves two main sections which are the **core componen
 
 The core components are responsible for handling requests and connecting different nodes. It consists of:
 
-- [Requester node](#requestor-node)
+- [Requester node](#requester-node)
 - [Compute node](#compute-node)
 
 ### Requester node
 
-In the Bacalhau network, the requestor node is responsible for handling requests from clients using JSON over HTTP. This node serves as the main custodian of jobs that are submitted to it.
+In the Bacalhau network, the requester node is responsible for handling requests from clients using JSON over HTTP. This node serves as the main custodian of jobs that are submitted to it.
 
-When a job is submitted to a requestor node, it broadcasts the job to the network and accepts or rejects the bids that come back for that job. It is important to note that there is only ever a single requestor node for a given job, which is the node that the job was originally submitted to.
+When a job is submitted to a requester node, it broadcasts the job to the network and accepts or rejects the bids that come back for that job. It is important to note that there is only ever a single requester node for a given job, which is the node that the job was originally submitted to.
 
-Once the compute nodes in the network have executed the job, they will produce verification proposals. These proposals will be collated and combined by the requestor node when enough have been proposed. At this point, the proposals will be either accepted or rejected, and the compute nodes will then publish their raw results.
+Once the compute nodes in the network have executed the job, they will produce verification proposals. These proposals will be collated and combined by the requester node when enough have been proposed. At this point, the proposals will be either accepted or rejected, and the compute nodes will then publish their raw results.
 
-Overall, the requestor node plays a crucial role in the Bacalhau network, serving as the main point of contact for clients and the primary handler of jobs that are submitted to the network. By effectively managing job requests and verification proposals, the requestor node enables efficient and effective communication between nodes in the network, making it a valuable tool for decentralized computing applications.
+Overall, the requester node plays a crucial role in the Bacalhau network, serving as the main point of contact for clients and the primary handler of jobs that are submitted to the network. By effectively managing job requests and verification proposals, the requester node enables efficient and effective communication between nodes in the network, making it a valuable tool for decentralized computing applications.
 
 ### Compute node
 
@@ -111,9 +111,9 @@ The job lifecycle involves several steps that are handled by different component
 
 ### Job Submission
 
-Jobs submitted via the Bacalhau CLI are forwarded to a Bacalhau network node at `bootstrap.production.bacalhau.org` via port 1234 by default. This Bacalhau node will act as the requestor node for the duration of the job lifecycle. Jobs can also be submitted to any requestor node on the Bacalhau network.
+Jobs submitted via the Bacalhau CLI are forwarded to a Bacalhau network node at `bootstrap.production.bacalhau.org` via port 1234 by default. This Bacalhau node will act as the requester node for the duration of the job lifecycle. Jobs can also be submitted to any requester node on the Bacalhau network.
 
-When jobs are submitted to the requestor node, all compute nodes hear of this new job and can choose to `bid` on it. The job deal will have a `concurrency` setting, which refers to how many different nodes you may want to run this job. It will also have `confidence` and `min-bids` properties.  Confidence is how many verification proposals must agree for the job to be deemed successful. `Min-bids` is how many bids must have been made before we will choose to accept any.
+When jobs are submitted to the requester node, all compute nodes hear of this new job and can choose to `bid` on it. The job deal will have a `concurrency` setting, which refers to how many different nodes you may want to run this job. It will also have `confidence` and `min-bids` properties.  Confidence is how many verification proposals must agree for the job to be deemed successful. `Min-bids` is how many bids must have been made before we will choose to accept any.
 
 The job might also mention the use of `volumes` (for example some CIDs). The compute node can choose to bid on the job if the data for the volume resides locally in the compute node, or it can choose to bid anyway. Bacalhau supports the use of external HTTP or exec hooks to decide if a node wants to bid on a job. This means that a node operator can give granular rules about the jobs they are willing to run.
 
@@ -122,7 +122,7 @@ The job might also mention the use of `volumes` (for example some CIDs). The com
 
 ### Job Acceptance
 
-As bids from compute nodes arrive back at the originating requester node, it can choose which bids to accept and which ones to reject. This can be based on the previous reputation of each compute node or any other factors the requestor node might take into account (like locality, hardware resources, cost, etc). The requestor node will also have the same HTTP or exec hooks to decide if it wants to accept a bid from a given compute node. The `min-bids` setting is useful to ensure that we don’t accept bids on a first bid first accepted basis.
+As bids from compute nodes arrive back at the originating requester node, it can choose which bids to accept and which ones to reject. This can be based on the previous reputation of each compute node or any other factors the requester node might take into account (like locality, hardware resources, cost, etc). The requester node will also have the same HTTP or exec hooks to decide if it wants to accept a bid from a given compute node. The `min-bids` setting is useful to ensure that we don’t accept bids on a first bid first accepted basis.
 
 ![image](../../static/img/architecture/architecture-accept-job-bid.jpeg 'Bacalhau Architecture Accept Job Bid')
 
@@ -150,7 +150,7 @@ Once the executor has completed the running of the job, a verification proposal 
 - The requester node will wait for enough proposals before comparing the results hashes
 - It will then broadcast “results accepted” and “results rejected” events based on its decision for verification
 
-In the case of a deterministic job, a user can guard against malicious compute nodes that join the network, bids, and propose wrong results by using `--verifier deterministic --min-bids N --concurrency 3` (where N is, say, >half of the size of the network, currently 9). This will require that _N_ bids are received before the requestor node chooses between them randomly. So when you submit WASM jobs (which are deterministic) this can give you a good level of confidence the jobs are evenly spread across nodes and malicious nodes will be, on average, caught out.
+In the case of a deterministic job, a user can guard against malicious compute nodes that join the network, bids, and propose wrong results by using `--verifier deterministic --min-bids N --concurrency 3` (where N is, say, >half of the size of the network, currently 9). This will require that _N_ bids are received before the requester node chooses between them randomly. So when you submit WASM jobs (which are deterministic) this can give you a good level of confidence the jobs are evenly spread across nodes and malicious nodes will be, on average, caught out.
 
 It’s possible to use other types of verification methods by re-implementing the verification interface and using another technique.
 
