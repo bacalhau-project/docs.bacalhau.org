@@ -1,8 +1,7 @@
 ---
-sidebar_label: "Examples"
-sidebar_position: 3
+sidebar_label: 'Bacalhau in a nutshell'
+sidebar_position: 1
 ---
-# Examples
 
 Bacalhau comes pre-loaded with exciting examples to showcase its abilities and help get you started.
 
@@ -33,7 +32,7 @@ First read through an example to grasp its objectives and syntax, once you feel 
 Right at the top you'll see colorful badges reading "Open in Colab" or "launch binder". These are shortcuts to execute an example in interactive mode (more on this below).
 
 After a brief introduction, each example lists a number of prerequistes. These can span from a simple Bacalhau client installation to installing a Docker daemon or NVIDIA drivers.
-Clearly, there's a limit as in what you can install on a machine to just try out a Bacalhau example. 
+Clearly, there's a limit as in what you can install on a machine to just try out a Bacalhau example.
 For instance, you cannot install NVIDIA driver on a Macbook Pro simply because they don't ship with NVIDIA GPUs.
 Luckily, that is no problem because for the vast majority of the examples are provided with pre-packaged cloud runtime environments (more on this in the interactive mode section).
 
@@ -57,7 +56,7 @@ Hello reader, I'm a block!
 Our examples are written in [Jupyter notebooks](https://jupyterlab.readthedocs.io/en/stable/index.html), a rich format that pulls together descriptive text, various **blocks** and the possibility to run bash commands from within a notebook.
 This gives you the power to interactively run our examples (more on this below - last teaser about this, promised :smile:)!
 An advantage of notebooks is that once you "run it", it'll store the bash commands' output in a dedicated block.
-Thanks to that, the static webpages you find in https://docs.bacalhau.org/examples/ are effectively "snapshots" of previous runs. 
+Thanks to that, the static webpages you find in https://docs.bacalhau.org/examples/ are effectively "snapshots" of previous runs.
 This way, you don't necessarily need to run an example to see what it outputs!
 
 :::info

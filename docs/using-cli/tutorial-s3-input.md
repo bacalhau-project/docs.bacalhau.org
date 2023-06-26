@@ -1,5 +1,5 @@
 ---
-sidebar_label: "(Tutorial) Specifying S3 inputs"
+sidebar_label: "Specifying S3 inputs"
 sidebar_position: 3
 ---
 # Running a Job over S3 data

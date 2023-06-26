@@ -22,3 +22,146 @@
     display: block;
     margin: auto;
 }
+
+.intro-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/1946/1946436.png');
+    content: '';
+}
+
+.category-icon .menu__list-item-collapsible a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/4669/4669966.png');
+    content: '';
+}
+
+.public-network-icon .menu__list-item-collapsible a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/10515/10515609.png');
+    content: '';
+}
+
+.getting-started-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/2285/2285551.png');
+    content: '';
+}
+
+.architecture-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/4067/4067986.png');
+    content: '';
+}
+
+.private-cluster-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/7358/7358460.png');
+    content: '';
+}
+
+.lecture-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/171/171322.png');
+    content: '';
+}
+
+.tutorial-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/711/711284.png');
+    content: '';
+}
+
+.docker-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/5969/5969059.png');
+    content: '';
+}
+
+.wasm-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/WebAssembly_Logo.svg/2048px-WebAssembly_Logo.svg.png');
+    content: '';
+}
+
+.sdk-icon .menu__list-item-collapsible a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/5331/5331596.png');
+    content: '';
+}
+
+.faqs-icon .menu__list-item-collapsible a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/10870/10870247.png');
+    content: '';
+}
+
+.integrations-icon .menu__list-item-collapsible a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/7082/7082748.png');
+    content: '';
+}

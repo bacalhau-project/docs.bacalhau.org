@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Input and output'
+title: 'Inputs and Outputs'
 sidebar_position: 3
 description: How to use docker containers with Bacalhau
 ---
@@ -56,10 +56,9 @@ values={[
 
 The external location must specify what kind of data you want to provide:
 
-- HTTP(s): `--input=https://<ANY_WEBSITE>`
-- IPFS: `--input=ipfs://<CID>`
-- S3: `--input=s3://<BUCKET>`
-
+- **HTTP(s):** `--input=https://<ANY_WEBSITE>`. URL directories are NOT supported, only **single files**
+- **IPFS:** `--input=ipfs://<CID>`. CID subpaths are NOT supported, only **directories**
+- **S3:** `--input=s3://<BUCKET>`. S3 keys and prefixes are supported (e.g. `s3://bucket/logs-2023-04*` for all April 2023 logs)
 
 For example, the following command creates a Docker job that executes a Python script provided as input.
 The Python script is hosted on an external website, so you provide the URL.
