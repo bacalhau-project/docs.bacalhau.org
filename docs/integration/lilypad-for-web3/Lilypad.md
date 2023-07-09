@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Lilypad'
+sidebar_label: 'Lilypad for Web3'
 sidebar_position: 3
 description: Lilypad is a distributed compute network for web3 based on Bacalhau. It currently enables the running of Bacalhau jobs from smart contracts.
 ---
