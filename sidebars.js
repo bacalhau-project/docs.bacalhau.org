@@ -11,6 +11,9 @@ module.exports = {
   // By default, Docusaurus generates a sidebar from the docs folder structure
   documentationSidebar: [
     {
+
+    },
+    {
       type: 'doc',
       id: 'intro',
       className: 'intro-icon',
@@ -52,8 +55,17 @@ module.exports = {
           id: 'using-cli/tutorial-s3-input',
           className: 'tutorial-icon'
         },
-        'using-cli/networking',
-        'using-cli/resources',
+        {type: 'ref', id: 'tutorials/workload-onboarding/bacalhau-docker-image/index'},
+        {
+          type: 'doc',
+          id: 'using-cli/networking',
+          className: 'lecture-icon'
+        },
+        {
+          type: 'doc',
+          id: 'using-cli/resources',
+          className: 'lecture-icon'
+        },
         'using-cli/gpu'
       ],
     },
@@ -151,4 +163,105 @@ module.exports = {
       ],
     },
   ],
+  tutorials: [
+    {
+      type: 'category',
+      label: 'Case Studies',
+      link: {
+        type: 'generated-index',
+        description: "Case Studies",
+      },
+      items: [
+        'tutorials/case-studies/duckdb-log-processing/index',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Workload Onboarding',
+      link: {
+        type: 'generated-index',
+        description: "This directory contains examples relating to performing common tasks with Bacalhau.",
+      },
+      items: [
+        'tutorials/workload-onboarding/bacalhau-docker-image/index',
+        'tutorials/workload-onboarding/Reading-From-Multiple-S3-Buckets/index',
+        'tutorials/workload-onboarding/Running-Jupyter-Notebook/index',
+        'tutorials/workload-onboarding/Prolog-Hello-World/index',
+        'tutorials/workload-onboarding/Python-Custom-Container/index',
+        'tutorials/workload-onboarding/python-pandas/index',
+        'tutorials/workload-onboarding/r-custom-docker-prophet/index',
+        'tutorials/workload-onboarding/r-hello-world/index',
+        'tutorials/workload-onboarding/CUDA/index',
+        'tutorials/workload-onboarding/rust-wasm/index',
+        'tutorials/workload-onboarding/Sparkov-Data-Generation/index',
+        'tutorials/workload-onboarding/custom-containers/index',
+        'tutorials/workload-onboarding/CUDA/index',
+        'tutorials/workload-onboarding/trivial-python/index',
+        'tutorials/workload-onboarding/python-script/index',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Data Engineering',
+      link: {
+        type: 'generated-index',
+        description: "This directory contains examples relating to data engineering workloads. The goal is to provide a range of examples that show you how to work with Bacalhau in a variety of use cases.",
+      },
+      items: [
+        'tutorials/data-engineering/blockchain-etl/index',
+        'tutorials/data-engineering/csv-to-avro-or-parquet/index',
+        'tutorials/data-engineering/DuckDB/index',
+        'tutorials/data-engineering/image-processing/index',
+        'tutorials/data-engineering/oceanography-conversion/index',
+        'tutorials/data-engineering/simple-parallel-workloads/index',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Model Inference',
+      link: {
+        type: 'generated-index',
+        description: "This directory contains examples relating to model inference workloads.",
+      },
+      items: [
+        'tutorials/model-inference/Huggingface-Model-Inference/index',
+        'tutorials/model-inference/object-detection-yolo5/index',
+        'tutorials/model-inference/S3-Model-Inference/index',
+        'tutorials/model-inference/Stable-Diffusion-CKPT-Inference/index',
+        'tutorials/model-inference/stable-diffusion-cpu/index',
+        'tutorials/model-inference/stable-diffusion-gpu/index',
+        'tutorials/model-inference/StyleGAN3/index',
+        'tutorials/model-inference/EasyOCR/index',
+        'tutorials/model-inference/Openai-Whisper/index',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Model Training',
+      link: {
+        type: 'generated-index',
+        description: "This directory contains examples relating to model training workloads.",
+      },
+      items: [
+        'tutorials/model-training/Stable-Diffusion-Dreambooth/index',
+        'tutorials/model-training/Training-Pytorch-Model/index',
+        'tutorials/model-training/Training-Tensorflow-Model/index',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Molecular Dynamics',
+      link: {
+        type: 'generated-index',
+        description: "This directory contains examples relating to performing common tasks with Bacalhau.",
+      },
+      items: [
+        'tutorials/molecular-dynamics/BIDS/index',
+        'tutorials/molecular-dynamics/Coreset/index',
+        'tutorials/molecular-dynamics/Genomics/index',
+        'tutorials/molecular-dynamics/Gromacs/index',
+        'tutorials/molecular-dynamics/openmm/index',
+      ],
+    }
+  ]
 }

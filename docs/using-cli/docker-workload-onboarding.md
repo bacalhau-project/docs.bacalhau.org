@@ -20,9 +20,6 @@ Here are some few things to note before getting started:
 * You must publish the container to a public container registry that is accessible from the Bacalhau network
 * Bacalhau supports only `amd64` images. Does not support `arm64` images
 * Containers must have an `x86_64` CPU architecture
-* The `--input ipfs://...` flag does not support CID subpaths only **directories** 
-* The `--input https://...` flag does not support URL directories only **single files** only
-* The `--input s3://...` flag does support S3 keys and prefixes. e.g. `s3://bucket/logs-2023-04*` for all April 2023 logs 
 
 :::tip
 

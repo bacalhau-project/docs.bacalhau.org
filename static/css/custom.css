@@ -111,6 +111,24 @@
     content: '';
 }
 
+.menu__list li.tutorial-icon::before {
+    position: relative;
+    top: 10px;
+    left: 12px;
+    display: flex;
+    padding: 0px;
+    font-family: "Arial";
+    font-weight: bold;
+    font-size: 14px;
+    content: 'TUTORIAL';
+    color: #006194;
+}
+
+.menu__list li.tutorial-icon {
+    padding: 0px;
+    margin: 0px;
+}
+
 .docker-icon.menu__list-item a::before {
     padding-right: 0.5rem;
     display: inline;
@@ -165,3 +183,28 @@
     background-image: url('https://cdn-icons-png.flaticon.com/128/7082/7082748.png');
     content: '';
 }
+
+
+.intro1-icon::before {
+    padding-right: 1.3rem;
+    display: inline;
+    width: 50px;
+    height: 50px;
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/2991/2991108.png');
+    content: '';
+}
+
+.tutorials-icon::before {
+    padding-right: 1.3rem;
+    display: inline;
+    width: 50px;
+    height: 50px;
+    overflow: visible;
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/759/759823.png');
+    content: '';
+}
+

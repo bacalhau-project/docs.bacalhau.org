@@ -2,6 +2,7 @@
 title: 'Inputs and Outputs'
 sidebar_position: 3
 description: How to use docker containers with Bacalhau
+slug: /using-cli
 ---
 
 import Tabs from '@theme/Tabs';
@@ -21,7 +22,7 @@ However, with that approach you can not dynamically provide files to the script.
 Therefore, you can not the reuse the Docker image.
 
 The Bacalhau CLI solves this problem by providing the `--input` option, which allows you to specify several inputs files.
-These inputs are passed to the Docker container (or the WASM program) at runtime (in Docker terminology, _mounted_).
+These inputs are passed to the Docker container (or the WASM program) at runtime (in Docker terminology, _mounting_).
 You can specify input files from different sources: **your local filesystem, an external URL, IPFS or AWS S3**.
 
 <img src="/img/using-cli/inputs-outputs/inputs-sources.svg" width="600" className="img-center" />
@@ -43,13 +44,13 @@ values={[
 <TabItem value="Docker">
 
     bacalhau docker run \
-    --input <EXTERNAL_LOCATION>:<INTERNAL_LOCATION>
+    --input <EXTERNAL_LOCATION>:<INTERNAL_LOCATION> <CONTAINER>
 
 </TabItem>
 <TabItem value="WASM">
 
     bacalhau wasm run \
-    --input <EXTERNAL_LOCATION>:<INTERNAL_LOCATION>
+    --input <EXTERNAL_LOCATION>:<INTERNAL_LOCATION> <CONTAINER>
 
 </TabItem>
 </Tabs>

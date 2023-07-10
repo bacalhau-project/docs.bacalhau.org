@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Bacalhau in a nutshell'
 sidebar_position: 1
+hide_title: true
 ---
 
 Bacalhau comes pre-loaded with exciting examples to showcase its abilities and help get you started.

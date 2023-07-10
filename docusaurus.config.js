@@ -40,7 +40,7 @@ const config = {
       },
     ],
   ],
-  plugins: [
+  /*plugins: [
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -51,7 +51,7 @@ const config = {
         // ... other options
       },
     ],
-  ],
+  ],*/
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -68,6 +68,14 @@ const config = {
             docId: "intro",
             position: "left",
             label: "Documentation",
+            className: 'intro1-icon',
+          },
+          {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'tutorials',
+            label: 'Tutorials',
+            className: 'tutorials-icon',
           },
           // { to: "/blog", label: "Blog", position: "left" },
           {
@@ -77,7 +85,7 @@ const config = {
           },
         ],
       },
-      metadata: [{name: 'keywords', content: 'Bacalhau Docs contains ifnormation for fast, cost efficient, and secure computation by explaining how to run jobs where the data is generated and stored.'}],
+      metadata: [{name: 'keywords', content: 'Bacalhau Docs contains information for fast, cost efficient, and secure computation by explaining how to run jobs where the data is generated and stored.'}],
       image: 'img/logo.png',
       blog: false,
       algolia :{

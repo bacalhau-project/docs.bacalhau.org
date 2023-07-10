@@ -1,6 +1,7 @@
 ---
-sidebar_label: 'Bacalhau in a nutshell'
+sidebar_label: 'Bacalhau in a Nutshell'
 sidebar_position: 1
+slug: /
 hide_title: true
 ---
 

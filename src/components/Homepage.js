@@ -7,7 +7,7 @@ const Homepage = () => {
       fontSize: '20px',
       padding: "2rem"
     }}>
-    <h1>Bacalhau is a network that runs your computations</h1>
+    <h1>Let Bacalhau run your computations!</h1>
     <div className="explanation">
       <div style={{padding: '10px'}}>
 
@@ -18,8 +18,8 @@ const Homepage = () => {
           </div>
           <div className="subtitle">What do you want to execute in Bacalhau? It can really be anything!</div>
           <div className="items">
-            <div className="item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png" width={60} height={70} /></div>
-            <div className="item"><img src="https://linube.com/blog/wp-content/uploads/bash-logo.png" width={60} height={70} /></div>
+            <div className="item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png" width={60} /></div>
+            <div className="item"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Rust_programming_language_black_logo.svg/2048px-Rust_programming_language_black_logo.svg.png" width={60}/></div>
           </div>
         </div>
         <div className="explanation-step">

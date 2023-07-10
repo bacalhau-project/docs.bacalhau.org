@@ -10,19 +10,12 @@ As you already know, Bacalhau runs computations contained within Docker images o
 Every time you send a new computation to the network, a new **job** is created.
 
 A **job** is, essentially, an abstraction that represents the execution of your Docker or WASM program in the Bacalhau Network.
-You can check out all the jobs created at the [Bacalhau Dashboard](https://dashboard.bacalhau.org/jobs).
-
-// image
-
-The easiest way to interact with the Bacalhau network is by using the Bacalhau CLI.
-With the `bacalhau` command-line utility installed in your computer, you can create 
-
-## Creating Jobs
-
-The easiest way to interact with the Bacalhau network is by using the Bacalhau CLI.
+You can check out all the jobs created at the [Bacalhau Dashboard](https://dashboard.bacalhau.org/jobs). The easiest way to interact with the Bacalhau network is by using the Bacalhau CLI.
 With the `bacalhau` command-line utility installed on your computer, you can create new jobs, check their status, and read their results.
 
-### Install the Bacalhau CLI
+<img src="/img/getting-started/cli-interaction.svg" width="700" className="img-center" />
+
+## Install the Bacalhau CLI
 
 You can install or update the Bacalhau CLI or pull a Docker image by running the commands in a terminal.
 You may need sudo mode or root password to install the local Bacalhau binary to `/usr/local/bin`:

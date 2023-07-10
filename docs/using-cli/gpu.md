@@ -19,11 +19,3 @@ To submit a job request, use the `--gpu` flag under the `docker run` command to 
 ```bash
 bacalhau docker run --gpu=1 nvidia/cuda:11.0.3-base-ubuntu20.04 nvidia-smi
 ```
-
-## Limitations
-
-The following limitations currently exist within Bacalhau. Bacalhau supports:
-
-* NVIDIA GPUs only
-* a single GPU only
-* the Docker executor only
