@@ -1,5 +1,5 @@
 ---
-sidebar_label: "Bacalhau Docker Image"
+sidebar_label: "Running the Bacalhau client with Docker"
 sidebar_position: 1
 description: How to use the Bacalhau Docker image
 ---

@@ -72,7 +72,7 @@ const config = {
             docId: "intro",
             position: "left",
             label: "Documentation",
-            className: 'intro1-icon',
+            className: 'docs-icon',
           },
           {
             type: 'docSidebar',

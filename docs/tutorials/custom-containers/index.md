@@ -1,5 +1,5 @@
 ---
-sidebar_label: "Custom Containers"
+sidebar_label: "Creating A Custom Docker Container"
 sidebar_position: 11
 ---
 # How To Work With Custom Containers in Bacalhau

@@ -2,9 +2,19 @@
 sidebar_label: 'Running a Private Cluster'
 sidebar_position: 5
 ---
-# Private Cluster
 
-It is possible to run Bacalhau completely disconnected from the main Bacalhau network, so that you can run private workloads without risking running on public nodes or inadvertently sharing your data outside of your organization. The isolated network will not connect to the public Bacalhau network nor connect to a public network. To do this, we will run our network in-process rather than externally.
+# Running a Private Cluster
+
+The Bacalhau team maintains a public, open and free Bacalhau network composed of several nodes available to execute _any_ computation.
+However, some organization may prefer to **run their own private network** in order to avoid security breaches and data exposure.
+
+Running a Bacalhau private network **requires time, money and technical expertise**, but brings some advantages:
+- Your executions are private, so your data is not exposed.
+- You can set up nodes that meet your hardware requirements.
+For example, consider that you want to execute a computation that requires 8GB of RAM in the public network, but the memory limit is 4GB.
+In your private network, you can set your own limits.
+
+The private network will not connect to the public Bacalhau network nor connect to a public network. To do this, we will run our network in-process rather than externally.
 
 :::info
 Private network and storage is easier to set up, but a separate public server is better for production. The private network and storage will use a temporary directory for its repository and so the contents will be lost on shutdown.

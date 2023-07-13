@@ -3,7 +3,7 @@ sidebar_position: 3
 sidebar_label: '(Tutorial) GPU Workloads'
 ---
 
-# GPU Workloads
+# Specifying GPU Limits
 
 Bacalhau supports GPU workloads. In this tutorial, learn how to run a job using GPU workloads with the Bacalhau client.
 

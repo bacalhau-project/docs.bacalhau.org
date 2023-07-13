@@ -23,6 +23,28 @@
     margin: auto;
 }
 
+.docs-icon::before {
+    padding-right: 1.3rem;
+    display: inline;
+    width: 50px;
+    height: 50px;
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/2991/2991108.png');
+    content: '';
+}
+
+.tutorials-icon::before {
+    padding-right: 1.3rem;
+    display: inline;
+    width: 50px;
+    height: 50px;
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/759/759823.png');
+    content: '';
+}
+
 .intro-icon.menu__list-item a::before {
     padding-right: 0.5rem;
     display: inline;
@@ -100,6 +122,39 @@
     content: '';
 }
 
+.python-sdk-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/5968/5968350.png');
+    content: '';
+}
+
+.debugging-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/3592/3592681.png');
+    content: '';
+}
+
+.faqs-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/10870/10870247.png');
+    content: '';
+}
+
 .tutorial-icon.menu__list-item a::before {
     padding-right: 0.5rem;
     display: inline;
@@ -109,19 +164,6 @@
     background-repeat: no-repeat;
     background-image: url('https://cdn-icons-png.flaticon.com/128/711/711284.png');
     content: '';
-}
-
-.menu__list li.tutorial-icon::before {
-    position: relative;
-    top: 10px;
-    left: 12px;
-    display: flex;
-    padding: 0px;
-    font-family: "Arial";
-    font-weight: bold;
-    font-size: 14px;
-    content: 'TUTORIAL';
-    color: #006194;
 }
 
 .menu__list li.tutorial-icon {
@@ -162,14 +204,14 @@
     content: '';
 }
 
-.faqs-icon .menu__list-item-collapsible a::before {
+.help-icon .menu__list-item-collapsible a::before {
     padding-right: 0.5rem;
     display: inline;
     width: 20px;
     height: 20px;
     background-size: 20px 20px;
     background-repeat: no-repeat;
-    background-image: url('https://cdn-icons-png.flaticon.com/128/10870/10870247.png');
+    background-image: url('https://cdn-icons-png.flaticon.com/128/624/624606.png');
     content: '';
 }
 
@@ -185,26 +227,194 @@
 }
 
 
-.intro1-icon::before {
-    padding-right: 1.3rem;
+/* TUTORIALS */
+.programming-icon .menu__list-item-collapsible a::before {
+    padding-right: 0.5rem;
     display: inline;
-    width: 50px;
-    height: 50px;
-    background-size: 18px 18px;
-    background-repeat: no-repeat;
-    background-image: url('https://cdn-icons-png.flaticon.com/128/2991/2991108.png');
-    content: '';
-}
-
-.tutorials-icon::before {
-    padding-right: 1.3rem;
-    display: inline;
-    width: 50px;
-    height: 50px;
-    overflow: visible;
-    background-size: 18px 18px;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
     background-repeat: no-repeat;
     background-image: url('https://cdn-icons-png.flaticon.com/128/759/759823.png');
     content: '';
 }
+
+.prolog-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://plugins.jetbrains.com/files/13954/290585/icon/pluginIcon.png');
+    content: '';
+}
+
+.r-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/1280px-R_logo.svg.png');
+    content: '';
+}
+
+.rust-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Rust_programming_language_black_logo.svg/1024px-Rust_programming_language_black_logo.svg.png');
+    content: '';
+}
+
+.bacalhau-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('/img/logo.png');
+    content: '';
+}
+
+
+.data-processing-icon .menu__list-item-collapsible a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/7935/7935789.png');
+    content: '';
+}
+
+.ethereum-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/4125/4125334.png');
+    content: '';
+}
+
+.parquet-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://images.ctfassets.net/o7xu9whrs0u9/2X2rLL8qHObvzUyTvUBqzL/9055eea66d1291e5ce84eaec73c44483/parquet-logo.jpg');
+    content: '';
+}
+
+.duckdb-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://pbs.twimg.com/profile_images/1274363897676521474/qgbqYYuV_400x400.jpg');
+    content: '';
+}
+
+.image-processing-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/9423/9423110.png');
+    content: '';
+}
+
+.video-processing-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/7626/7626990.png');
+    content: '';
+}
+
+.aws-s3-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Amazon-S3-Logo.svg/1200px-Amazon-S3-Logo.svg.png');
+    content: '';
+}
+
+.jupyter-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1200px-Jupyter_logo.svg.png');
+    content: '';
+}
+
+.general-data-processing-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/4536/4536885.png');
+    content: '';
+}
+
+.nvidia-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/732/732230.png');
+    content: '';
+}
+
+
+.machine-learning-icon .menu__list-item-collapsible a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/3222/3222625.png');
+    content: '';
+}
+
+.folder-icon.menu__list-item a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/1383/1383507.png');
+    content: '';
+}
+
 
