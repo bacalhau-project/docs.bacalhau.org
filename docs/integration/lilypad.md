@@ -90,7 +90,7 @@ Using Lilypad in your own solidity smart contract requires the following steps
     - `lilypadCancelled` - a callback function that will be called when the job fails
 
 2.  Provide a public [Docker Spec compatible for use on Bacalhau](https://docs.bacalhau.org/getting-started/docker-workload-onboarding) in JSON format to the contract.
-3.  To trigger a job from your contract, you need to call the `LilypadEvents` contract which the Lilypad bridge is listening to and which connects to the Bacalhau public network. Create an instance of [`LilypadEvents`](https://github.com/bacalhau-project/lilypad-v0/blob/main/hardhat/contracts/LilypadEvents.sol) by passing the public contract address on the network you are using (see [deployed-network-details.md](deployed-network-details.md 'mention')) to the `LilypadEvents` constructor.
+3.  To trigger a job from your contract, you need to call the `LilypadEvents` contract which the Lilypad bridge is listening to and which connects to the Bacalhau public network. Create an instance of [`LilypadEvents`](https://github.com/bacalhau-project/lilypad-v0/blob/main/hardhat/contracts/LilypadEvents.sol) by passing the public contract address on the network you are using (see [deployed network details](https://docs.lilypadnetwork.org/lilypad-v0-reference/deployed-network-details)) to the `LilypadEvents` constructor.
 4.  Call the [LilypadEvents](https://github.com/bacalhau-project/lilypad-v0/blob/main/hardhat/contracts/LilypadEvents.sol) contract function `runLilypadJob()` passing in the following parameters.&#x20;
 
 |     Name      |                                                              Type                                                               |                                                                                                             Purpose                                                                                                              |
@@ -234,7 +234,7 @@ contract MyContract is LilypadCallerInterface {
 
 Using the LilypadEvents Instance, we can now send jobs to the Bacalhau Network via our contract using the `runLilypadJob()` function.
 
-In this example we'll use the Stable Diffusion Spec shown above in [#add-a-spec-compatible-with-bacalhau](lilypad-v0-quick-start.md#add-a-spec-compatible-with-bacalhau 'mention')
+In this example we'll use the Stable Diffusion Spec shown above in [#add-a-spec-compatible-with-bacalhau](https://docs.lilypadnetwork.org/lilypad-v0-reference/lilypad-v0-quick-start#add-a-spec-compatible-with-bacalhau)
 
 :::info
 Note that calling the runLilypadJob() function requires a network fee. While the Bacalhau public Network is currently free to use, gas fees are still needed to return the results of the job performed. This is the payable fee in the contract.
