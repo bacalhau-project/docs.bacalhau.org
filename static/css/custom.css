@@ -45,6 +45,19 @@
     content: '';
 }
 
+.case-studies-icon::before {
+    padding-right: 1.3rem;
+    top: 0.1rem;
+    position: relative;
+    display: inline;
+    width: 50px;
+    height: 50px;
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/10218/10218668.png');
+    content: '';
+}
+
 .intro-icon.menu__list-item a::before {
     padding-right: 0.5rem;
     display: inline;
@@ -75,6 +88,17 @@
     background-size: 20px 20px;
     background-repeat: no-repeat;
     background-image: url('https://cdn-icons-png.flaticon.com/128/10515/10515609.png');
+    content: '';
+}
+
+.community-icon .menu__list-item-collapsible a::before {
+    padding-right: 0.5rem;
+    display: inline;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-image: url('https://cdn-icons-png.flaticon.com/128/4121/4121044.png');
     content: '';
 }
 
@@ -235,7 +259,7 @@
     height: 20px;
     background-size: 20px 20px;
     background-repeat: no-repeat;
-    background-image: url('https://cdn-icons-png.flaticon.com/128/759/759823.png');
+    background-image: url('https://cdn-icons-png.flaticon.com/128/711/711284.png');
     content: '';
 }
 
@@ -291,7 +315,7 @@
     height: 20px;
     background-size: 20px 20px;
     background-repeat: no-repeat;
-    background-image: url('https://cdn-icons-png.flaticon.com/128/7935/7935789.png');
+    background-image: url('https://cdn-icons-png.flaticon.com/128/4536/4536885.png');
     content: '';
 }
 
@@ -402,7 +426,7 @@
     height: 20px;
     background-size: 20px 20px;
     background-repeat: no-repeat;
-    background-image: url('https://cdn-icons-png.flaticon.com/128/3222/3222625.png');
+    background-image: url('https://cdn-icons-png.flaticon.com/128/6100/6100860.png');
     content: '';
 }
 

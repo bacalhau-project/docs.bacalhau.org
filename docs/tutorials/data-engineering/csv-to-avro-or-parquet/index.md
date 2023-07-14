@@ -1,9 +1,6 @@
 ---
-sidebar_label: "csv-to-avro-or-parquet"
-sidebar_position: 2
+title: "Convert CSV To Parquet Or Avro"
 ---
-# Convert CSV To Parquet Or Avro
-
 
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 

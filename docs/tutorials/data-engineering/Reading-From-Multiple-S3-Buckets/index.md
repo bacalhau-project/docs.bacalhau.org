@@ -1,9 +1,6 @@
 ---
-sidebar_label: "Reading-From-Multiple-S3-Buckets"
-sidebar_position: 2
+sidebar_label: "Reading Data from Multiple S3 Buckets"
 ---
-# Reading Data from Multiple S3 Buckets using Bacalhau
-
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bacalhau-project/examples/blob/main/workload-onboarding/Reading-from-Multiple-S3-buckets/index.ipynb)
 [![Open In Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bacalhau-project/examples/HEAD?labpath=workload-onboarding/Reading-from-Multiple-S3-buckets/index.ipynb)

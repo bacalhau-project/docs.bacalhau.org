@@ -1,9 +1,7 @@
 ---
-sidebar_label: "R Script"
+title: "Running a R Script"
 sidebar_position: 9
 ---
-# Running a Simple R Script in Bacalhau
-
 
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 

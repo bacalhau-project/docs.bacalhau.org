@@ -1,10 +1,7 @@
 ---
-sidebar_label: "Python Custom Container"
+title: "Building and Running A Custom Python Container"
 sidebar_position: 5
 ---
-# Building and Running Custom Python  Container
-
-
 
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 

@@ -1,9 +1,7 @@
 ---
-sidebar_label: "Rust WASM"
+sidebar_label: "Running a Rust WASM Program"
 sidebar_position: 10
 ---
-# Running Rust programs as WebAssembly (WASM)
-
 
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 

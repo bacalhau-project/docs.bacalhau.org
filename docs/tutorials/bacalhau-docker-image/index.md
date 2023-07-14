@@ -1,28 +1,19 @@
 ---
-sidebar_label: "Running the Bacalhau client with Docker"
+title: "Running the Bacalhau CLI with a Docker Container"
 sidebar_position: 1
 description: How to use the Bacalhau Docker image
 ---
-# Bacalhau Docker Image
-
 
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 
-This example shows you how to run some common client-side Bacalhau tasks using the Bacalhau Docker image.
+In order to interact with the Bacalhau network, you use the Bacalhau CLI, which is usually install in your computer.
+However, you can also execute the Bacalhau CLI inside a Docker container.
 
-## TD;LR
-Running Docker image on Bacalhau
+In this tutorial, you will create a Bacalhau job using the Bacalhau CLI contained in a Docker image.
 
 ## Prerequisites
 
-To get started, you need to install the Bacalhau client, see more information [here](https://docs.bacalhau.org/getting-started/installation)
-
-
-```python
-!command -v bacalhau >/dev/null 2>&1 || (export BACALHAU_INSTALL_DIR=.; curl -sL https://get.bacalhau.org/install.sh | bash)
-path=!echo $PATH
-%env PATH=./:{path[0]}
-```
+- This example requires Docker. If you don't have Docker installed, you can install it from [here](https://docs.docker.com/install/).
 
 ## Pull the Docker image
 

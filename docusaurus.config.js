@@ -81,6 +81,13 @@ const config = {
             label: 'Tutorials',
             className: 'tutorials-icon',
           },
+          {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'caseStudies',
+            label: 'Case Studies',
+            className: 'case-studies-icon',
+          },
           // { to: "/blog", label: "Blog", position: "left" },
           {
             href: "https://github.com/bacalhau-project/bacalhau",

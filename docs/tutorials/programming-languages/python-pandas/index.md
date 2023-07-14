@@ -1,5 +1,5 @@
 ---
-sidebar_label: "Python Pandas"
+title: "Running Pandas on Bacalhau"
 sidebar_position: 6
 ---
 # Running Pandas on Bacalhau

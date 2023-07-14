@@ -1,10 +1,7 @@
 ---
-sidebar_label: "Python File"
-sidebar_position: 12
+title: "Running Python Script"
 description: How to run a Python file hosted on Bacalhau
 ---
-# Running a Python Script
-
 
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 

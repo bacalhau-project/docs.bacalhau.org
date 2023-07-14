@@ -1,9 +1,7 @@
 ---
-sidebar_label: "R Custom Container"
+title: "Building and Running A Custom R Container"
 sidebar_position: 8
 ---
-# Building and Running your Custom R Containers on Bacalhau
-
 
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 

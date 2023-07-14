@@ -1,9 +1,7 @@
 ---
-sidebar_label: "Prolog Script"
+title: "Running a Prolog Script"
 sidebar_position: 4
 ---
-# Running a Prolog Script
-
 
 [![stars - badge-generator](https://img.shields.io/github/stars/bacalhau-project/bacalhau?style=social)](https://github.com/bacalhau-project/bacalhau)
 

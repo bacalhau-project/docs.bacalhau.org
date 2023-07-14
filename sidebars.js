@@ -204,41 +204,42 @@ module.exports = {
         title: 'Community',
         slug: '/community',
       },
+      className: "community-icon",
       collapsed: true,
       items: [
-        'community/compute-landscape',
-        'community/development',
-        'community/style-guide',
-        'community/ways-to-contribute',
+        {
+          type: 'doc',
+          id: 'community/compute-landscape',
+          className: 'lecture-icon'
+        },
+        {
+          type: 'doc',
+          id: 'community/development',
+          className: 'lecture-icon'
+        },
+        {
+          type: 'doc',
+          id: 'community/style-guide',
+          className: 'lecture-icon'
+        },
+        {
+          type: 'doc',
+          id: 'community/ways-to-contribute',
+          className: 'lecture-icon'
+        },
       ],
     },
   ],
   tutorials: [
     {
       type: 'doc',
-      id: 'tutorials/index',
-      className: 'intro-icon',
-    },
-    {
-      type: 'doc',
       id: 'tutorials/bacalhau-docker-image/index',
-      className: 'bacalhau-icon',
+      className: 'docker-icon',
     },
     {
       type: 'doc',
       id: 'tutorials/custom-containers/index',
-      className: 'bacalhau-icon',
-    },
-    {
-      type: 'category',
-      label: 'Case Studies',
-      link: {
-        type: 'generated-index',
-        description: "Case Studies",
-      },
-      items: [
-        'tutorials/case-studies/duckdb-log-processing/index',
-      ],
+      className: 'docker-icon',
     },
     {
       type: 'category',
@@ -266,21 +267,6 @@ module.exports = {
         },
         {
           type: 'doc',
-          id: 'tutorials/programming-languages/r-custom-docker-prophet/index',
-          className: 'r-icon'
-        },
-        {
-          type: 'doc',
-          id: 'tutorials/programming-languages/r-hello-world/index',
-          className: 'r-icon'
-        },
-        {
-          type: 'doc',
-          id: 'tutorials/programming-languages/rust-wasm/index',
-          className: 'rust-icon'
-        },
-        {
-          type: 'doc',
           id: 'tutorials/programming-languages/trivial-python/index',
           className: 'python-sdk-icon'
         },
@@ -294,14 +280,29 @@ module.exports = {
           id: 'tutorials/programming-languages/oceanography-conversion/index',
           className: 'python-sdk-icon'
         },
+        {
+          type: 'doc',
+          id: 'tutorials/programming-languages/r-hello-world/index',
+          className: 'r-icon'
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/programming-languages/r-custom-docker-prophet/index',
+          className: 'r-icon'
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/programming-languages/rust-wasm/index',
+          className: 'rust-icon'
+        },
       ],
     },
     {
       type: 'category',
-      label: 'Data Engineering',
+      label: 'Data Processing',
       link: {
         type: 'generated-index',
-        description: "This directory contains examples relating to data engineering workloads. The goal is to provide a range of examples that show you how to work with Bacalhau in a variety of use cases.",
+        description: "This directory contains examples relating to data processing workloads. The goal is to provide a range of examples that show you how to work with Bacalhau in a variety of use cases.",
       },
       className: "data-processing-icon",
       items: [
@@ -350,7 +351,6 @@ module.exports = {
           id: 'tutorials/data-engineering/CUDA/index',
           className: 'nvidia-icon'
         },
-        'tutorials/data-engineering/gpu-workload/index',
       ],
     },
     {
@@ -449,5 +449,12 @@ module.exports = {
         },
       ],
     },
+  ],
+  caseStudies: [
+    {
+      type: 'doc',
+      id: 'case-studies/duckdb-log-processing/index',
+      className: 'duckdb-icon',
+    }
   ]
 }
