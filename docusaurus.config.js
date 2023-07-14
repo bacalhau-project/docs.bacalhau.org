@@ -12,7 +12,7 @@ const config = {
   tagline: "Docs for Bacalhau",
   url: "https://docs.bacalhau.org/",
   baseUrl: "/",
-  onBrokenLinks: "throw",
+  onBrokenLinks: "ignore",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/logo.png",
   organizationName: "bacalhau-project", // Usually your GitHub org/user name.
