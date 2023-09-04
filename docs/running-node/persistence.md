@@ -12,7 +12,7 @@ Both compute nodes, and requester nodes, maintain state. How that state is maint
 The computes nodes maintain information about the work that has been allocated to them, including:
 
 * The current state of the execution, and
-* The original job that that resulted in this allocation 
+* The original job that resulted in this allocation 
 
 This information is used by the compute and requester nodes to ensure allocated jobs are completed successfully.  By default, compute nodes store their state in a bolt-db database and this is located in the bacalhau configuration folder.  For a compute node whose ID is "abc", the database can be found in `~/.bacalhau/abc-compute/executions.db`.
 
