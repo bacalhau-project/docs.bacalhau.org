@@ -14,7 +14,7 @@ The computes nodes maintain information about the work that has been allocated t
 * The current state of the execution, and
 * The original job that resulted in this allocation 
 
-This information is used by the compute and requester nodes to ensure allocated jobs are completed successfully.  By default, compute nodes store their state in a bolt-db database and this is located in the bacalhau configuration folder.  For a compute node whose ID is "abc", the database can be found in `~/.bacalhau/abc-compute/executions.db`.
+This information is used by the compute and requester nodes to ensure allocated jobs are completed successfully.  By default, compute nodes store their state in a bolt-db database and this is located in the bacalhau repository along with configuration data.  For a compute node whose ID is "abc", the database can be found in `~/.bacalhau/abc-compute/executions.db`.
 
 In some cases, it may be preferable to maintain the state in memory, with the caveat that should the node restart, all state will be lost.  This can be configured using the environment variables in the table below.
 
@@ -26,7 +26,7 @@ In some cases, it may be preferable to maintain the state in memory, with the ca
 
 ## Requester node persistence
 
-When running a requester node, it maintains state about the jobs it has been requested to orchestrate and schedule, the evaluation of those jobs, and the executions that have been allocated.  By default, this state is stored in a bolt db database that, with a node ID of "xyz" can be found in `~/.bacalhau/xyz-requester/jobs.db`.
+When running a requester node, it maintains state about the jobs it has been requested to orchestrate and schedule, the evaluation of those jobs, and the executions that have been allocated.  By default, this state is stored in a bolt db database that, with a node ID of "xyz" can be found in  `~/.bacalhau/xyz-requester/jobs.db`.
 
 It is possible, but not recommended, to run the requester node with an inmemory job store, which will result in lost state when the requester node is restarted.  
 
