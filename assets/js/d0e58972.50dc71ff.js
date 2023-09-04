@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbacalhau_docs=self.webpackChunkbacalhau_docs||[]).push([[9271],{7910:e=>{e.exports=JSON.parse('{"title":"Running a node","slug":"/running-node","permalink":"/running-node","navigation":{"previous":{"title":"Private Cluster","permalink":"/next-steps/private-cluster"},"next":{"title":"Quick Start","permalink":"/running-node/quick-start"}}}')}}]);
