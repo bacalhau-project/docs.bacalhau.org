@@ -92,14 +92,10 @@ When jobs are submitted to the requester node, the requester will select few com
 
 The job might also mention the use of `volumes` (for example some CIDs). The compute node can choose to bid on the job if the data for the volume resides locally in the compute node, or it can choose to bid anyway. Bacalhau supports the use of external HTTP or exec hooks to decide if a node wants to bid on a job. This means that a node operator can give granular rules about the jobs they are willing to run.
 
-![image](../../static/img/architecture/architecture-bid-on-job.jpeg 'Bacalhau Architecture Bid on Job')
-
 
 ### Job Acceptance
 
 As bids from compute nodes arrive back at the originating requester node, it can choose which bids to accept and which ones to reject. This can be based on the previous reputation of each compute node or any other factors the requester node might take into account (like locality, hardware resources, cost etc). The requester node will also have the same http or exec hooks to decide if it wants to accept a bid from a given compute node. 
-
-![image](../../static/img/architecture/architecture-accept-job-bid.jpeg 'Bacalhau Architecture Accept Job Bid')
 
 
 ### Job Execution
@@ -109,14 +105,11 @@ As accepted bids are received by compute nodes, they will `execute` the job usin
 For example, a job could use the `docker` executor, `WASM` executor, or a library storage volumes. This would result in a POSIX mount of the storage into a running container or a WASM-style `syscall` to stream the storage bytes into the WASM runtime. Each executor will deal with storage in a different way, so even though each job mentions the storage volumes, they would both end up with different implementations at runtime.
 
 
-![image](../../static/img/architecture/architecture-execute-job.jpeg 'Bacalhau Architecture Execute Job')
-
 
 ### Publishing
 
 Once results are ready, the publisher will publish the raw results folder currently residing on the compute node. The publisher interface mainly consists of a single function, which has the task of uploading the local results folder somewhere and returning a storage reference to where it has been uploaded.
 
-![image](../../static/img/architecture/architecture-publishing.jpeg 'Bacalhau Architecture Publishing')
 
 ### Networking
 
