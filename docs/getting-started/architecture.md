@@ -9,7 +9,7 @@ Bacalhau is a peer-to-peer network of nodes that allows for decentralized commun
 - **Requester Node:** responsible for handling user requests, discovering and ranking compute nodes, forwarding jobs to compute nodes, and monitoring the job lifecycle.
 - **Compute Node:** responsible for executing jobs and producing results. Different compute nodes can be used for different types of jobs, depending on their capabilities and resources.
 
-![image](../../static/img/architecture/architecture-purpose.jpeg 'Bacalhau Architecture')
+![image](../../static/img/architecture/architecture-purpose.jpg 'Bacalhau Architecture')
 
 The requester and compute nodes together form a p2p network and use gossiping to discover each other, share information about node capabilities, available resources and health status.
 
