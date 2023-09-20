@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbacalhau_docs=self.webpackChunkbacalhau_docs||[]).push([[7909],{2189:e=>{e.exports=JSON.parse('{"title":"Integration","slug":"/integration","permalink":"/integration","navigation":{"previous":{"title":"CLI Reference","permalink":"/all-flags"},"next":{"title":"Apache Airflow","permalink":"/integration/apache-airflow"}}}')}}]);
