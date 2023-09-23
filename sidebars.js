@@ -190,6 +190,7 @@ module.exports = {
         'running-node/storage-providers',
         'running-node/job-selection',
         'running-node/resource-limits',
+        'running-node/timeouts',
         'running-node/test-network',
         'running-node/gpu',
         'running-node/persistence',
