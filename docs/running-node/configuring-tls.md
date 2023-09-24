@@ -26,7 +26,7 @@ sudo setcap CAP_NET_BIND_SERVICE+ep $(which bacalhau)
 ```
 :::
 
-A cache of ACME data is held in the config repository, by default `~/.bacalhau/autocert-cache``, and this will be used to manage renewals to avoid rate limits. 
+A cache of ACME data is held in the config repository, by default `~/.bacalhau/autocert-cache`, and this will be used to manage renewals to avoid rate limits. 
 
 
 ## Getting a certificate from a Certificate Authority 
