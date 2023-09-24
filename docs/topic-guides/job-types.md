@@ -37,4 +37,4 @@ Ops jobs are perfect for urgent investigations, granting direct access to logs o
 
 These jobs run like daemon jobs but only on a specified number of nodes. The orchestrator in Bacalhau selects the optimal nodes to run the job, ensuring its health and performance.
 
-Service jobs can be used for similar tasks to Daemon jobs, but are used for occassions where it does not need to be run on every single machine, and where optimal node selection is preferred. This can be used for limited scale long-running jobs to provide services to other jobs, such as mail-delivery, or a KV store for job-specific state.
+Service jobs can be used for similar tasks to Daemon jobs, but are used for occasions where it does not need to be run on every single machine, and where optimal node selection is preferred. This can be used for limited scale long-running jobs to provide services to other jobs, such as mail-delivery, or a KV store for job-specific state.
