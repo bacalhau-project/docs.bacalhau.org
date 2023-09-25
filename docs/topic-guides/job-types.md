@@ -11,7 +11,7 @@ providing more control and flexibility over the orchestration and scheduling of 
 Despite the differences in job types, all jobs benefit from core functionalities provided by Bacalhau, including:```
 
 1. **Node selection** - the appropriate nodes are selected based on several criteria, including resource availability, priority and feedback from the nodes.
-2. **Task monitoring** - tasks are monitored to ensure they complete, and that they stay in a healthy state.  
+2. **Job monitoring** - jobs are monitored to ensure they complete, and that they stay in a healthy state.  
 3. **Retries** - within limits, Bacalhau will retry certain jobs a set number of times should it fail to complete successfully when requested.
 
 
