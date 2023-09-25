@@ -3,7 +3,7 @@ sidebar_label: version
 ---
 # Command: `agent version
 
-The `bacalhau agent version` command is utilized to obtain the version of the bacalhau agent.
+The `bacalhau agent version` command is used to obtain the version of the bacalhau agent.
 
 ## Description:
 Using this command, users can quickly retrieve the version of the agent, allowing them to confirm the specific release of the software they are using.
