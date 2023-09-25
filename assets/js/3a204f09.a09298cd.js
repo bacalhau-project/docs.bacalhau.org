@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbacalhau_docs=self.webpackChunkbacalhau_docs||[]).push([[8488],{8487:a=>{a.exports=JSON.parse('{"title":"Data Ingestion","slug":"/data-ingestion","permalink":"/data-ingestion","navigation":{"previous":{"title":"Job types","permalink":"/topic-guides/job-types"},"next":{"title":"From A URL","permalink":"/data-ingestion/from-url"}}}')}}]);
