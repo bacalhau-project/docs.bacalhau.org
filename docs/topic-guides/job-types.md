@@ -17,15 +17,9 @@ Despite the differences in job types, all jobs benefit from core functionalities
 
 ## Batch Jobs
 
-Batch jobs are typically executed on demand and they operate on a designated number of Bacalhau nodes.  It is expected that batch jobs perform a single discrete task before completing. 
+Batch jobs are executed on demand, running on a specified number of Bacalhau nodes. These jobs either run until completion or until they reach a timeout. They are designed to carry out a single, discrete task before finishing.
 
-Ideal for intermittent yet intensive data dives, for instance performing comp;utation over large datasets before publishing the response.  This approach eliminates the continuous processing overhead, focusing on specific, in-depth investigations and computation.
-
-## Daemon Jobs
-
-Daemon jobs run continuously on all nodes that meet the criteria given in the job specification. Should any new compute nodes join the cluster after the job was started, and should they meet the criteria, the job will be scheduled to run on that node too. 
-
-A good application of daemon jobs is to handle continuously generated data on every compute node.  This might be from edge devices like sensors, or cameras, or from logs where they are generated. The data can then be aggregated and compressed them before sending it onwards.  For logs, the aggregated data can be relayed at regular intervals to platforms like Kafka or Kinesis, or directly to other logging services with edge devices potentially delivering results via MQTT. 
+Ideal for intermittent yet intensive data dives, for instance performing computation over large datasets before publishing the response.  This approach eliminates the continuous processing overhead, focusing on specific, in-depth investigations and computation.
 
 ## Ops Jobs
 
@@ -33,8 +27,14 @@ Similar to batch jobs, ops jobs have a broader reach. They are executed on all n
 
 Ops jobs are perfect for urgent investigations, granting direct access to logs on host machines, where previously you may have had to wait for the logs to arrive at a central locartion before being able to query them. They can also be used for delivering configuration files for other systems should you wish to deploy an update to many machines at once. 
 
+## Daemon Jobs
+
+Daemon jobs run continuously on all nodes that meet the criteria given in the job specification. Should any new compute nodes join the cluster after the job was started, and should they meet the criteria, the job will be scheduled to run on that node too.
+
+A good application of daemon jobs is to handle continuously generated data on every compute node.  This might be from edge devices like sensors, or cameras, or from logs where they are generated. The data can then be aggregated and compressed them before sending it onwards.  For logs, the aggregated data can be relayed at regular intervals to platforms like Kafka or Kinesis, or directly to other logging services with edge devices potentially delivering results via MQTT. 
+
 ## Service Jobs
 
-These jobs run like daemon jobs but only on a specified number of nodes. The orchestrator in Bacalhau selects the optimal nodes to run the job, ensuring its health and performance.
+Service jobs run continuously on a specified number of nodes that meet the criteria given in the job specification. Bacalhau's orchestrator selects the optimal nodes to run the job, and continuously monitors its health, performance. If required it will reschedule on other nodes.
 
-Service jobs can be used for similar tasks to Daemon jobs, but are used for occasions where it does not need to be run on every single machine, and where optimal node selection is preferred. This can be used for limited scale long-running jobs to provide services to other jobs, such as mail-delivery, or a KV store for job-specific state.
+This job type is good for long running consumers such as streaming or queueing services, or real-time event listeners. 
