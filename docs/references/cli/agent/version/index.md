@@ -1,7 +1,7 @@
 ---
 sidebar_label: version
 ---
-# Command: `agent version
+# Command: `agent version`
 
 The `bacalhau agent version` command is used to obtain the version of the bacalhau agent.
 
