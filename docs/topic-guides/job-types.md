@@ -8,7 +8,7 @@ description: The different job types available in Bacalhau
 Bacalhau has recently introduced different job types in v1.1,
 providing more control and flexibility over the orchestration and scheduling of those jobs - depending on their type.
 
-One thing that each job has in common is that Bacalhau provides common functionality for them including:
+Despite the differences in job types, all jobs benefit from core functionalities provided by Bacalhau, including:```
 
 1. **Node selection** - the appropriate nodes are selected based on several criteria, including resource availability, priority and feedback from the nodes.
 2. **Task monitoring** - tasks are monitored to ensure they complete, and that they stay in a healthy state.  
