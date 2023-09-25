@@ -1,6 +1,4 @@
 ---
-sidebar_label: 'Topic Guides'
-sidebar_position: 0
 title: 'Topic Guides'
 ---
 
