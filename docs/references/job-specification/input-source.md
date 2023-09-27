@@ -10,7 +10,7 @@ Bacalhau's `InputSource` is designed with flexibility at its core. As of now, it
 
 ## `InputSource` Parameters:
 
-- **Source** <code>(<a href="./specConfig">SpecConfig</a> : \<required\>)</code>: Specifies the origin of the artifact, which could be a URL, an S3 bucket, or other locations.
+- **Source** <code>(<a href="./spec-config">SpecConfig</a> : \<required\>)</code>: Specifies the origin of the artifact, which could be a URL, an S3 bucket, or other locations.
 
 - **Alias** `(string: <optional>)`: An optional identifier for this input source. It's particularly useful for dynamic operations within a task, such as dynamically importing data in WebAssembly using an alias.
 
