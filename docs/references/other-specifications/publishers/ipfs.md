@@ -4,7 +4,7 @@ sidebar_label: IPFS
 
 # IPFS Publisher Specification
 
-The IPFS Publisher in Bacalhau amplifies the versatility of task result storage by integrating with the InterPlanetary File System (IPFS). IPFS is a protocol and network designed to create a peer-to-peer method of storing and sharing hypermedia in a distributed file system. Bacalhau's seamless integration with IPFS ensures that users have a decentralized option for publishing their task results, enhancing accessibility and resilience while reducing dependence on a single point of failure.
+The IPFS Publisher in Bacalhau amplifies the versatility of task result storage by integrating with the [InterPlanetary File System (IPFS)](https://ipfs.tech/). IPFS is a protocol and network designed to create a peer-to-peer method of storing and sharing hypermedia in a distributed file system. Bacalhau's seamless integration with IPFS ensures that users have a decentralized option for publishing their task results, enhancing accessibility and resilience while reducing dependence on a single point of failure.
 
 ## `IPFS` Publisher Parameters
 For the IPFS publisher, no specific parameters need to be defined in the publisher specification. The user only needs to indicate the publisher type as IPFS, and Bacalhau handles the rest. Here is an example of how to set up an IPFS Publisher in a job specification.
