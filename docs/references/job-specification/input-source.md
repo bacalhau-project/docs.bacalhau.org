@@ -6,7 +6,7 @@ sidebar_label: InputSource
 
 An `InputSource` defines where and how to retrieve specific artifacts needed for a [`Task`](task), such as files or data, and where to mount them within the task's context. This ensures the necessary data is present before the task's execution begins.
 
-Bacalhau's `InputSource` is designed with flexibility at its core. As of now, it natively supports fetching data from remote sources like S3 and IPFS and can also mount local directories. The beauty of Bacalhau lies in its consistent and intuitive `InputSource` structure, making the integration of additional input types straightforward.
+Bacalhau's `InputSource` natively supports fetching data from remote sources like S3 and IPFS and can also mount local directories. It is intended to be flexible for future expansion.
 
 ## `InputSource` Parameters:
 
