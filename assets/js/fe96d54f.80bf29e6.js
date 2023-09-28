@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbacalhau_docs=self.webpackChunkbacalhau_docs||[]).push([[9680],{3642:e=>{e.exports=JSON.parse('{"title":"SDK","slug":"/category/sdk","permalink":"/category/sdk","navigation":{"previous":{"title":"URL","permalink":"/references/other-specifications/sources/url"},"next":{"title":"Bacalhau Python SDK","permalink":"/references/sdk/python-sdk"}}}')}}]);
