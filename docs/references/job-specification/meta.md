@@ -4,7 +4,7 @@ sidebar_label: Meta
 
 # Meta Specification
 
-In both the `Job` and `Task` specifications within Bacalhau, the `Meta` block is a versatile element used to attach arbitrary metadata. This metadata isn't utilized for filtering or categorizing jobs; there's a separate [`Labels`](./label) block specifically designated for that purpose. Instead, the `Meta` block is instrumental for embedding additional information, enhancing clarity and context.
+In both the `Job` and `Task` specifications within Bacalhau, the `Meta` block is a versatile element used to attach arbitrary metadata. This metadata isn't utilized for filtering or categorizing jobs; there's a separate [`Labels`](./label) block specifically designated for that purpose. Instead, the `Meta` block is instrumental for embedding additional information for operators or external systems, enhancing clarity and context.
 
 ## `Meta` Parameters in Job and Task Specs
 
