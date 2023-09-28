@@ -4,7 +4,7 @@ sidebar_label: IPFS
 
 # IPFS Source Specification
 
-The IPFS Input Source enables users to easily integrate data hosted on the InterPlanetary File System (IPFS) into Bacalhau jobs. By specifying the Content Identifier (CID) of the desired IPFS file or directory, users can have the content fetched and made available in the task's execution environment, ensuring efficient and decentralized data access.
+The IPFS Input Source enables users to easily integrate data hosted on the [InterPlanetary File System (IPFS)](https://ipfs.tech) into Bacalhau jobs. By specifying the Content Identifier (CID) of the desired IPFS file or directory, users can have the content fetched and made available in the task's execution environment, ensuring efficient and decentralized data access.
 
 ## Source Specification Parameters
 
