@@ -4,7 +4,7 @@ sidebar_label: Resources
 
 # Resources Specification
 
-The `Resources` provides a structured way to detail the computational resources a `Task` necessitates. By specifying these requirements, you ensure that the task is scheduled on a node with adequate resources, optimizing performance and avoiding potential issues linked to resource constraints.
+The `Resources` provides a structured way to detail the computational resources a `Task` requires. By specifying these requirements, you ensure that the task is scheduled on a node with adequate resources, optimizing performance and avoiding potential issues linked to resource constraints.
 
 ## `Resources` Parameters:
 
