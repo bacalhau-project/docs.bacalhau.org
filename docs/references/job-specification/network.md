@@ -17,10 +17,12 @@ The `Network` object offers a method to specify the networking requirements of a
         - The compute provider assesses the inherent risk of the job based on these domains and bids accordingly.
         - At runtime, the network traffic remains strictly confined to the designated domain(s).
 
-      A typical command for this might resemble:
-      ```
-      bacalhau docker run —network=http —domain=crates.io —domain=github.com -i ipfs://Qmy1234myd4t4,dst=/code rust/compile
-      ```
+:::info
+A typical command for this might resemble:
+    ```
+bacalhau docker run —network=http —domain=crates.io —domain=github.com -i ipfs://Qmy1234myd4t4,dst=/code rust/compile
+    ```
+:::
 
       The primary risks for the compute provider center around possible violations of its terms, its hosting provider's terms, or even prevailing laws in its jurisdiction. This encompasses issues such as unauthorized access or distribution of illicit content and potential cyber-attacks.
 
