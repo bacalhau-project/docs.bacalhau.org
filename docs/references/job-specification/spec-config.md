@@ -6,7 +6,6 @@ sidebar_label: SpecConfig
 
 `SpecConfig` provides a unified structure to specify configurations for various components in Bacalhau, including engines, publishers, and input sources. Its flexible design allows seamless integration with multiple systems like Docker, WebAssembly (Wasm), AWS S3, and local directories, among others.
 
-Certainly! Below is the revised structure for `SpecConfig` to align with the style of the "Job Parameters" section.
 
 ## `SpecConfig` Parameters
 
