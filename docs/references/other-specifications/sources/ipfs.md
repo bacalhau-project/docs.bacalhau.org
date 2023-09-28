@@ -25,7 +25,7 @@ InputSources:
   - Target: "/data"
 ```
 
-In this configuration, the data associated with the specified CID is fetched from the IPFS network and made available in the task's environment at the "/data" path. This seamless integration allows tasks to utilize decentralized and distributed data sources, enhancing the flexibility and capability of Bacalhau jobs.
+In this configuration, the data associated with the specified CID is fetched from the IPFS network and made available in the task's environment at the "/data" path.
 
 ### Example (Imperative/CLI)
 
