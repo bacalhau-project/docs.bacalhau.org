@@ -23,7 +23,7 @@ For security reasons, direct access to local paths must be explicitly allowed wh
 For instance:
 
 ```bash
-bacalhau serve --allow-listed-local-paths "/etc/config:rw,/data/datasets:/etc/*.conf:ro"
+bacalhau serve --allow-listed-local-paths "/etc/config:rw,/etc/*.conf:ro"
 ```
 
 ### Example
