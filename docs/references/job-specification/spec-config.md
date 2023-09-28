@@ -12,6 +12,7 @@ sidebar_label: SpecConfig
 - **Type** `(string : <required>)`: Specifies the type of the configuration. Examples include `docker` and `wasm` for execution engines, `S3` for input sources and publishers, etc.
 
 - **Params** `(map[string]any : <optional>)`: A set of key-value pairs that provide the specific configurations for the chosen type. The keys and values are flexible and depend on the `Type`. For instance, parameters for a Docker engine might include image name and version, while an S3 publisher would require configurations like the bucket name and AWS region. If not provided, it defaults to `nil`.
+
 ## Usage Examples
 
 Here are a few hypothetical examples to demonstrate how you might define `SpecConfig` for different components:
