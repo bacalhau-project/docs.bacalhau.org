@@ -35,7 +35,7 @@ When using the Bacalhau CLI to define the URL input source, you can employ the f
 1. **Fetch data from an HTTP endpoint and mount it**:
    This command demonstrates fetching data from a specific HTTP URL and mounting it to a designated path within the task's environment.
    ```bash
-   bacalhau docker run -i http://example.com/data.txt: ubuntu -- cat /input
+   bacalhau docker run -i http://example.com/data.txt ubuntu -- cat /input
    ```
 
 2. **Fetch data from an HTTPS endpoint and mount it**:
