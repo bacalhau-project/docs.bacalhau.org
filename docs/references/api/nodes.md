@@ -76,13 +76,13 @@ curl 127.0.0.1:1234/api/v1/orchestrator/nodes/QmUDAXvv31WPZ8U9CzuRTMn9iFGiopGE7r
       "EnqueuedExecutions": 0
     },
     "BacalhauVersion": {
-      "major": "1",
-      "minor": "1",
-      "gitversion": "v1.1.0",
-      "gitcommit": "970e1a0f23c7eb739a097aa8212f7964434bcd97",
-      "builddate": "2023-09-25T07:59:00Z",
-      "goos": "linux",
-      "goarch": "amd64"
+      "Major": "1",
+      "Minor": "1",
+      "GitVersion": "v1.1.0",
+      "GitCommit": "970e1a0f23c7eb739a097aa8212f7964434bcd97",
+      "BuildDate": "2023-09-25T07:59:00Z",
+      "GOOS": "linux",
+      "GOARCH": "amd64"
     }
   }
 }
@@ -164,13 +164,13 @@ curl --get  "127.0.0.1:1234/api/v1/orchestrator/nodes?limit=2&order_by=available
         "EnqueuedExecutions": 0
       },
       "BacalhauVersion": {
-        "major": "1",
-        "minor": "1",
-        "gitversion": "v1.1.0",
-        "gitcommit": "970e1a0f23c7eb739a097aa8212f7964434bcd97",
-        "builddate": "2023-09-25T07:59:00Z",
-        "goos": "linux",
-        "goarch": "amd64"
+        "Major": "1",
+        "Minor": "1",
+        "GitVersion": "v1.1.0",
+        "GitCommit": "970e1a0f23c7eb739a097aa8212f7964434bcd97",
+        "BuildDate": "2023-09-25T07:59:00Z",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
       }
     },
     {
@@ -227,13 +227,13 @@ curl --get  "127.0.0.1:1234/api/v1/orchestrator/nodes?limit=2&order_by=available
         "EnqueuedExecutions": 0
       },
       "BacalhauVersion": {
-        "major": "1",
-        "minor": "1",
-        "gitversion": "v1.1.0",
-        "gitcommit": "970e1a0f23c7eb739a097aa8212f7964434bcd97",
-        "builddate": "2023-09-25T07:59:00Z",
-        "goos": "linux",
-        "goarch": "amd64"
+        "Major": "1",
+        "Minor": "1",
+        "GitVersion": "v1.1.0",
+        "GitCommit": "970e1a0f23c7eb739a097aa8212f7964434bcd97",
+        "BuildDate": "2023-09-25T07:59:00Z",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
       }
     }
   ]
