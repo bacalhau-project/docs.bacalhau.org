@@ -7,7 +7,7 @@ sidebar_position: 7
 
 :::info
 
-The following commands refer to bacalhau cli version `v0.3.29`.
+The following commands refer to bacalhau cli version `v1.0.3`.
 For installing or upgrading a client, follow the instructions in the [installation page](https://docs.bacalhau.org/getting-started/installation).
 Run `bacalhau version` in a terminal to check what version you have.
 
@@ -92,7 +92,7 @@ Flags:
       --ipfs-swarm-addrs string     Comma-separated list of IPFS nodes to connect to.
       --local                       Run the job locally. Docker is required
       --output-dir string           Directory to write the output to. (default ".")
-      --wait                        Wait for the job to finish.
+      --wait                        Wait for the job to finish. Use --wait=false to not wait.
       --wait-timeout-secs int       When using --wait, how many seconds to wait for the job to complete before giving up. (default 600)
 ```
 
@@ -118,6 +118,7 @@ spec:
         image: ubuntu
         entryPoint:
             - echo
+        parameters:
             - Hello
             - World
     outputs:
@@ -144,7 +145,8 @@ An example UCAN Invocation that runs the same job as the above example would loo
   "with": "ubuntu",
   "do": "docker/run",
   "inputs": {
-    "entrypoint": ["echo", "hello", "world"],
+    "entrypoint": ["echo"],
+    "parameters": ["hello", "world"],
     "workdir": "/",
     "mounts": {},
     "outputs": {

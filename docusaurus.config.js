@@ -3,6 +3,7 @@
 
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const redirects = require('./redirects');
 
 const simplePlantUML = require("@akebifiky/remark-simple-plantuml");
 
@@ -17,7 +18,10 @@ const config = {
   favicon: "img/logo.png",
   organizationName: "bacalhau-project", // Usually your GitHub org/user name.
   projectName: "docs.bacalhau.org", // Usually your repo name.
-  scripts: [{src: 'https://plausible.io/js/plausible.js', async: true, defer: true, 'data-domain': 'docs.bacalhau.org'}],
+  scripts: [
+    { src: 'https://plausible.io/js/plausible.js', async: true, defer: true, 'data-domain': 'docs.bacalhau.org' },
+    '/koala-script.js'
+  ],
 
   presets: [
     [
@@ -164,6 +168,15 @@ const config = {
       },
       */
     }),
+
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: redirects,
+      },
+    ],
+  ],
 };
 
 module.exports = config;
