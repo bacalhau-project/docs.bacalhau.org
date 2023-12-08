@@ -72,7 +72,7 @@ bacalhau job run job.yaml --template-envs "*"
 ### Passing A Subset of Environment Variables:
 
 ```bash
-bacalhau job run.yaml --template-envs "greeting|name"
+bacalhau job run job.yaml --template-envs "greeting|name"
 ```
 
 ### Dry Run to Preview Templated Spec:
