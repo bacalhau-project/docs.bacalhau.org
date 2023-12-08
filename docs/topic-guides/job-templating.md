@@ -86,3 +86,74 @@ bacalhau job run job.yaml --template-vars "greeting=Hello,name=World" --dry-run
 ```
 
 This will output the processed job specification, showing you how the placeholders have been replaced with the provided values.
+
+### More Examples
+#### Query Live Logs
+```yaml
+Name: Live logs processing
+Type: ops
+Tasks:
+  - Name: main
+    Engine:
+      Type: docker
+      Params:
+        Image: expanso/nginx-access-log-processor:1.0.0
+        Parameters:
+          - --query
+          - {{.query}}
+          - --start-time
+          - {{or (index . "start-time") ""}}
+          - --end-time
+          - {{or (index . "end-time") ""}}
+    InputSources:
+      - Target: /logs
+        Source:
+          Type: localDirectory
+          Params:
+            SourcePath: /data/log-orchestration/logs
+```
+This is an `ops` job that runs on all nodes that match the job selection criteria. It accepts duckdb `query` variable, and two optional `start-time` and `end-time` variables to define the time range for the query.
+
+To run this job, you can use the following command:
+
+```bash
+bacalhau job run job.yaml \
+  -V "query=SELECT status FROM logs WHERE status LIKE '5__'" \
+  -V "start-time=-5m" 
+```
+
+#### Query S3 Logs
+```yaml
+Name: S3 logs processing
+Type: batch
+Count: 1
+Tasks:
+  - Name: main
+    Engine:
+      Type: docker
+      Params:
+        Image: expanso/nginx-access-log-processor:1.0.0
+        Parameters:
+          - --query
+          - {{.query}}
+    InputSources:
+      - Target: /logs
+        Source:
+          Type: s3
+          Params:
+            Bucket: {{.AccessLogBucket}}
+            Key: {{.AccessLogPrefix}}
+            Filter: {{or (index . "AccessLogPattern") ".*"}}
+            Region: {{.AWSRegion}}
+```
+This is a `batch` job that runs on a single node. It accepts duckdb `query` variable, and four other variables to define the S3 bucket, prefix, pattern for the logs and the AWS region.
+
+To run this job, you can use the following command:
+
+```bash
+bacalhau job run job.yaml  \
+    -V "AccessLogBucket=my-bucket" \ 
+    -V "AWSRegion=us-east-1" \
+    -V "AccessLogPrefix=2023-11-19-*"  \
+    -V "AccessLogPattern=^[10-12].*"
+```
