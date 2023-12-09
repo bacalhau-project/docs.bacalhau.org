@@ -1,4 +1,4 @@
 ---
-sidebar_label: 'Running Node'
+sidebar_label: 'Running a Node'
 sidebar_position: 6
 ---

@@ -4,9 +4,9 @@ sidebar_position: 100
 toc_max_heading_level: 4
 ---
 
-# Join as Compute Provider
+# Running a Bacalhau Node
 
-Bacalhau is a peer-to-peer network of computing providers that will run jobs submitted by users. A Compute Provider (CP) is anyone who is running a Bacalhau compute node participating in the Bacalhau compute network, regardless of whether they are hosting any Filecoin data.
+Bacalhau allows any one to create a Bacalhau node and join the nodes together to create a network.
 
 This section will show you how to configure and run a Bacalhau node and start accepting and running jobs.
 
@@ -19,18 +19,10 @@ To bootstrap your node and join the network as a CP you can leap right into the 
 * [GPU Support](https://docs.bacalhau.org/running-node/gpu)
 * [Windows Support](https://docs.bacalhau.org/running-node/windows-support) (with limitations)
 
-:::info
-
-If you run on a different system than Ubuntu, drop us a message on [Slack](https://bit.ly/bacalhau-project-slack/archives/C02RLM3JHUY)!
-We'll add instructions for your favorite OS.
-
-:::
 
 ## Quick start (Ubuntu 22.04)
 
 Estimated time for completion: 10 min.
-
-Tested on: Ubuntu 22.04 LTS (x86/64) running on a GCP e2-standard-4 (4 vCPU, 16 GB memory) instance with 40 GB disk size.
 
 ### Prerequisites
 
@@ -102,12 +94,7 @@ To install a single IPFS node locally on Ubuntu you can follow the [official ins
 Using the command below:
 
 ```bash
-export IPFS_VERSION=$(wget -q -O - https://raw.githubusercontent.com/filecoin-project/bacalhau/main/ops/terraform/prod.tfvars | grep --color=never ipfs_version | awk -F'"' '{print $2}')
-```
-
-Install:
-
-```bash
+export IPFS_VERSION=$(wget -q -O - https://raw.githubusercontent.com/bacalhau-project/bacalhau/main/ops/terraform/prod.tfvars | grep --color=never ipfs_version | awk -F'"' '{print $2}')
 wget "https://dist.ipfs.tech/go-ipfs/${IPFS_VERSION}/go-ipfs_${IPFS_VERSION}_linux-amd64.tar.gz"
 tar -xvzf "go-ipfs_${IPFS_VERSION}_linux-amd64.tar.gz"
 cd go-ipfs
@@ -197,7 +184,7 @@ Now we can run our bacalhau node:
 ```bash
 LOG_LEVEL=debug BACALHAU_ENVIRONMENT=production \
   bacalhau serve \
-    --node-type compute \
+    --node-type requestor,compute \
     --ipfs-connect $IPFS_CONNECT \
     --private-internal-ipfs=false \
     --peer env
@@ -228,9 +215,4 @@ To quickly check your node runs properly, let's submit the following dummy job:
 bacalhau docker run ubuntu echo Test
 ```
 
-If you see logs of your compute node bidding for the job above it means you've successfully joined Bacalhau as a Compute Provider!
-
-### What's next?
-
-At this point, you probably have a number of questions for us. What incentive should you expect for running a public Bacalhau node?
-Please contact us on [Slack](https://bit.ly/bacalhau-project-slack/archives/C02RLM3JHUY) to further discuss this topic and for sharing your valuable feedback.
+If you see logs of your compute node bidding for the job above it means you've successfully created a Bacalhau node!
